@@ -79,6 +79,183 @@
         </div>
       </section>
 
+      <section class="demo-video-section" aria-label="XL-DocBench product demo video">
+        <div class="section-shell demo-video-layout">
+          <div class="demo-video-intro">
+            <p class="eyebrow"><span></span> 25-second benchmark story</p>
+            <h2>Why evidence-grounded<br /><em>extra-long document understanding?</em></h2>
+          </div>
+
+          <div class="demo-video" id="demo-video" aria-label="Six-scene XL-DocBench product animation">
+            <div class="demo-ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+            <header class="demo-hud">
+              <span>XL-DOCBENCH / PRODUCT DEMO</span>
+              <span class="demo-time" id="demo-time">01 / 06 · MOTIVATION</span>
+            </header>
+
+            <div class="demo-scenes">
+              <article class="demo-scene demo-scene-problem is-active" data-scene="0">
+                <div class="demo-copy">
+                  <span class="demo-kicker">REAL-WORLD DOCUMENT WORK</span>
+                  <h3>Critical evidence is buried across <em>thousands of pages.</em></h3>
+                  <p>Annual reports, regulations, clinical guidelines, and technical manuals rarely fit on one page—or in one document.</p>
+                </div>
+                <div class="demo-doc-tower" aria-hidden="true">
+                  <div class="demo-doc-sheet sheet-a"><b>ANNUAL REPORT</b><span>847 pages</span><i></i><i></i><i></i></div>
+                  <div class="demo-doc-sheet sheet-b"><b>REGULATION</b><span>1,204 pages</span><i></i><i></i><i></i></div>
+                  <div class="demo-doc-sheet sheet-c"><b>TECHNICAL MANUAL</b><span>2,303 pages</span><i></i><i></i><i></i></div>
+                  <div class="demo-page-counter"><strong>2,303</strong><span>pages to search</span></div>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-gap" data-scene="1">
+                <div class="demo-evolution-heading">
+                  <span class="demo-kicker">THE BENCHMARK LANDSCAPE</span>
+                  <h3>Document QA is getting longer.<br /><em>But length alone is not enough.</em></h3>
+                </div>
+                <div class="demo-evolution-chart">
+                  <div class="demo-axis-title">AVERAGE CONTEXT PAGES</div>
+                  <svg viewBox="0 0 900 325" preserveAspectRatio="none" aria-label="Average context pages across document understanding benchmarks">
+                    <defs>
+                      <linearGradient id="evolutionArea" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#7f9873" stop-opacity=".34" />
+                        <stop offset="1" stop-color="#7f9873" stop-opacity="0" />
+                      </linearGradient>
+                      <linearGradient id="evolutionLine" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#688276" />
+                        <stop offset=".72" stop-color="#7f9873" />
+                        <stop offset="1" stop-color="#c75b3d" />
+                      </linearGradient>
+                    </defs>
+                    <g class="demo-chart-grid">
+                      <line x1="55" y1="260" x2="855" y2="260" /><line x1="55" y1="205" x2="855" y2="205" />
+                      <line x1="55" y1="150" x2="855" y2="150" /><line x1="55" y1="95" x2="855" y2="95" />
+                      <line x1="55" y1="40" x2="855" y2="40" />
+                    </g>
+                    <path class="demo-evolution-area" d="M75 255 C155 252 190 249 245 245 S375 220 420 210 S545 178 600 164 S710 125 825 48 L825 260 L75 260 Z" />
+                    <path class="demo-evolution-line" pathLength="1" d="M75 255 C155 252 190 249 245 245 S375 220 420 210 S545 178 600 164 S710 125 825 48" />
+                    <g class="demo-chart-points">
+                      <circle cx="75" cy="255" r="5" /><circle cx="245" cy="245" r="5" /><circle cx="420" cy="210" r="5" />
+                      <circle cx="600" cy="164" r="5" /><circle class="demo-xl-point" cx="825" cy="48" r="9" />
+                    </g>
+                    <g class="demo-chart-values">
+                      <text x="75" y="239">1.0</text><text x="245" y="229">8.3</text><text x="420" y="194">47.5</text>
+                      <text x="600" y="148">85.6</text><text class="demo-xl-value" x="825" y="27">297.1</text>
+                    </g>
+                  </svg>
+                  <div class="demo-chart-labels">
+                    <span>DocVQA<small>2020</small></span><span>MP-DocVQA<small>2022</small></span><span>MMLongBench-Doc<small>2024</small></span>
+                    <span>LongDocURL<small>2025</small></span><span class="demo-xl-label">XL-DocBench<small>2026</small></span>
+                  </div>
+                  <div class="demo-xl-callout"><span>3.5×</span> longer than the closest prior benchmark</div>
+                </div>
+                <div class="demo-capability-rail">
+                  <span class="demo-capability-title">AND EVALUATES</span>
+                  <div class="demo-capability"><b>72.6%</b><span>Cross-page</span></div>
+                  <div class="demo-capability"><b>✓</b><span>Cross-document</span></div>
+                  <div class="demo-capability"><b>TXT · TAB · C · I</b><span>Multimodal</span></div>
+                  <div class="demo-capability"><b>✓</b><span>Unanswerable</span></div>
+                  <div class="demo-capability"><b>2.30</b><span>Evidence pages</span></div>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-retrieval" data-scene="2">
+                <div class="demo-retrieval-copy">
+                  <span class="demo-kicker">RETRIEVE → READ → SYNTHESIZE</span>
+                  <h3>Find the evidence.<br /><em>Not just the page.</em></h3>
+                  <p>Search across a document collection, inspect candidate pages, extract multimodal support, and combine only the evidence required by the question.</p>
+                </div>
+
+                <div class="demo-retrieval-stage">
+                  <div class="demo-query-bar"><i></i><span>Which entity satisfies every requirement and exception?</span><b>SEARCHING 331 DOCUMENTS</b></div>
+                  <div class="demo-document-universe" aria-label="Document collection under retrieval">
+                    <span class="demo-mini-doc"><b>PDF 01</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 02</b><i></i><i></i></span>
+                    <span class="demo-mini-doc demo-hit demo-hit-text"><b>PDF 03 · p.42</b><i></i><i></i><em>TXT</em></span>
+                    <span class="demo-mini-doc"><b>PDF 04</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 05</b><i></i><i></i></span>
+                    <span class="demo-mini-doc demo-hit demo-hit-table"><b>PDF 06 · p.187</b><i></i><i></i><em>TAB</em></span>
+                    <span class="demo-mini-doc"><b>PDF 07</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 08</b><i></i><i></i></span>
+                    <span class="demo-mini-doc"><b>PDF 09</b><i></i><i></i></span><span class="demo-mini-doc demo-hit demo-hit-chart"><b>PDF 10 · p.904</b><i></i><i></i><em>CHART</em></span>
+                    <span class="demo-mini-doc"><b>PDF 11</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 12</b><i></i><i></i></span>
+                    <span class="demo-mini-doc demo-hit demo-hit-image"><b>PDF 13 · p.1,208</b><i></i><i></i><em>IMAGE</em></span>
+                    <span class="demo-mini-doc"><b>PDF 14</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 15</b><i></i><i></i></span>
+                    <div class="demo-retrieval-scan" aria-hidden="true"></div>
+                  </div>
+
+                  <div class="demo-evidence-tray" aria-label="Retrieved multimodal evidence">
+                    <span class="demo-tray-label">RETRIEVED EVIDENCE</span>
+                    <article class="demo-evidence-piece evidence-text"><b>TEXT · p.42</b><p>Condition applies to all qualified entities except...</p><i></i></article>
+                    <article class="demo-evidence-piece evidence-table"><b>TABLE · p.187</b><div><span>A</span><span>82</span><span>B</span><span>74</span></div><i></i></article>
+                    <article class="demo-evidence-piece evidence-chart"><b>CHART · p.904</b><div><i></i><i></i><i></i><i></i></div><span>FY21–FY24</span></article>
+                    <article class="demo-evidence-piece evidence-image"><b>IMAGE · p.1,208</b><div><i></i><i></i><i></i></div><span>Exception flow</span></article>
+                  </div>
+
+                  <div class="demo-synthesis-core">
+                    <span>SYNTHESIZE</span><i></i><b>4 / 4</b>
+                  </div>
+                  <div class="demo-generated-answer"><span>VERIFIED ANSWER</span><strong>Entity A</strong><p>All required evidence found · exception checked</p></div>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-groundtruth" data-scene="3">
+                <div class="demo-groundtruth-copy">
+                  <span class="demo-kicker">GROUND TRUTH YOU CAN AUDIT</span>
+                  <h3>Every answer comes with the evidence trail.</h3>
+                  <ul><li>Expert-annotated evidence pages</li><li>Evidence quotes and snippets</li><li>Typed verification rules</li><li>Answer format and aliases</li></ul>
+                </div>
+                <div class="demo-groundtruth-visual">
+                  <img src="assets/figures/pipeline.png" alt="XL-DocBench human-verified construction pipeline" />
+                  <div class="demo-expert-badge"><strong>194</strong><span>human experts</span></div>
+                  <div class="demo-verified-stamp"><b>✓</b><span>FULLY<br />VERIFIED</span></div>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-diagnostics" data-scene="4">
+                <div class="demo-diagnostic-copy"><span class="demo-kicker">NOT JUST ONE SCORE</span><h3>Diagnose where systems fail.</h3><p>12 reasoning types separate retrieval, set tracking, rule following, consistency, and abstention.</p></div>
+                <div class="demo-reasoning-orbit" aria-label="Twelve reasoning types">
+                  <span>Comparison</span><span>Reference</span><span>Ranking</span><span>Coverage</span><span>Reconciliation</span><span>Set difference</span><span>Unanswerable</span><span>Temporal</span><span>Compliance</span><span>Counterfactual</span><span>Aggregation</span><span>Consistency</span>
+                  <strong>12</strong>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-result" data-scene="5">
+                <div class="demo-main-table-viz" aria-label="Top systems from the main results table">
+                  <div class="demo-ranking-head"><span>MAIN RESULTS · OVERALL ACCURACY</span><b>0</b><b>10</b><b>20</b><b>30</b><b>40</b><b>50%</b></div>
+                  <div class="demo-ranking-row rank-first">
+                    <span class="demo-rank">01</span><div class="demo-system"><b>SimpleDoc + GPT-5.4</b><i>AGENT</i></div><div class="demo-score-track"><i style="--score:88%"></i></div><strong>44.0</strong>
+                  </div>
+                  <div class="demo-ranking-row">
+                    <span class="demo-rank">02</span><div class="demo-system"><b>SimpleDoc + Claude Opus 4.6</b><i>AGENT</i></div><div class="demo-score-track"><i style="--score:81.2%"></i></div><strong>40.6</strong>
+                  </div>
+                  <div class="demo-ranking-row rank-ocr">
+                    <span class="demo-rank">03</span><div class="demo-system"><b>Claude Opus 4.6</b><i>OCR</i></div><div class="demo-score-track"><i style="--score:79.6%"></i></div><strong>39.8</strong>
+                  </div>
+                  <div class="demo-ranking-row">
+                    <span class="demo-rank">04</span><div class="demo-system"><b>SimpleDoc + GPT-5.2</b><i>AGENT</i></div><div class="demo-score-track"><i style="--score:76.6%"></i></div><strong>38.3</strong>
+                  </div>
+                  <div class="demo-ranking-row rank-ocr">
+                    <span class="demo-rank">05</span><div class="demo-system"><b>GPT-5.4</b><i>OCR</i></div><div class="demo-score-track"><i style="--score:74.6%"></i></div><strong>37.3</strong>
+                  </div>
+                  <div class="demo-hard-skills">
+                    <span>BEST ACCURACY ON DIFFICULT REASONING TYPES</span>
+                    <div><b>Ranking</b><i><em style="--skill:71.6%"></em></i><strong>35.8</strong></div>
+                    <div><b>Coverage</b><i><em style="--skill:61.6%"></em></i><strong>30.8</strong></div>
+                    <div><b>Set difference</b><i><em style="--skill:72.8%"></em></i><strong>36.4</strong></div>
+                  </div>
+                </div>
+                <div class="demo-result-copy"><span class="demo-kicker">THE CHALLENGE REMAINS OPEN</span><strong>44.0%</strong><h3>best overall accuracy</h3><p>Even the strongest evaluated system fails on more than half of XL-DocBench.</p></div>
+                <div class="demo-end-card"><span>XL-DOCBENCH</span><h3>Find the evidence.<br />Apply the rule.<br /><em>Know when to abstain.</em></h3><p>xl-docbench.github.io</p></div>
+              </article>
+            </div>
+
+            <footer class="demo-controls">
+              <button class="demo-control" id="demo-toggle" type="button" aria-label="Pause demo">Ⅱ</button>
+              <div class="demo-progress" id="demo-progress" aria-label="Demo scene progress"></div>
+              <button class="demo-replay" id="demo-replay" type="button" aria-label="Replay product demo">↻ Replay</button>
+            </footer>
+          </div>
+        </div>
+      </section>
+
       <section class="section-shell benchmark-section" id="benchmark">
         <div class="section-heading reveal">
           <p class="eyebrow"><span></span> Benchmark positioning</p>

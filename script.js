@@ -21,6 +21,18 @@ let caseReasoning;
 let caseGroundTruth;
 let caseFigureLabel;
 let caseStudyImage;
+const demoVideo = document.querySelector('#demo-video');
+const demoScenes = [...document.querySelectorAll('.demo-scene')];
+const demoProgress = document.querySelector('#demo-progress');
+const demoToggleButton = document.querySelector('#demo-toggle');
+const demoReplayButton = document.querySelector('#demo-replay');
+const demoTime = document.querySelector('#demo-time');
+const demoDurations = [3000, 4700, 6200, 3400, 3200, 5200];
+const demoLabels = ['MOTIVATION', 'BENCHMARK EVOLUTION', 'MULTIMODAL RETRIEVAL', 'HUMAN VERIFICATION', 'DIAGNOSTICS', 'RESULTS'];
+const demoLabelsZh = ['研究动机', '基准演进', '多模态检索', '人工核验', '诊断能力', '实验结果'];
+let demoSceneIndex = 0;
+let demoTimer;
+let demoPaused = false;
 
 const languageRules = [
   { selector: '.skip-link', zh: '跳至正文' },
@@ -46,6 +58,54 @@ const languageRules = [
     '每个案例存储证据页与引文、答案格式、类型化验证规则及十二类推理标签。该基准可区分检索、证据使用、规则遵循和无支持回答等失败，而这些差异无法仅通过聚合 QA 准确率诊断。'
   ] },
   { selector: '.abstract-facts dd', zh: ['核验问题', '源文档', '人类专家'] },
+  { selector: '.demo-video-section', attribute: 'aria-label', zh: 'XL-DocBench 产品宣传动画' },
+  { selector: '.demo-video-intro .eyebrow', html: true, zh: '<span></span>25 秒基准故事' },
+  { selector: '.demo-video-intro h2', html: true, zh: '为什么需要证据驱动的<br /><em>超长文档理解？</em>' },
+  { selector: '.demo-video', attribute: 'aria-label', zh: 'XL-DocBench 六镜头产品动画' },
+  { selector: '.demo-hud > span:first-child', zh: 'XL-DOCBENCH / 产品演示' },
+  { selector: '.demo-kicker', zh: ['真实专业文档工作', '基准版图', '检索 → 阅读 → 整合', '可审计的真实标签', '不止一个总分', '挑战仍未解决'] },
+  { selector: '.demo-scene-problem h3', html: true, zh: '关键证据散落在<em>数千页文档中。</em>' },
+  { selector: '.demo-scene-problem .demo-copy > p', zh: '年度报告、法规、临床指南和技术手册很少只存在于一页，甚至一份文档之中。' },
+  { selector: '.demo-doc-sheet b', zh: ['年度报告', '法规', '技术手册'] },
+  { selector: '.demo-doc-sheet span', zh: ['847 页', '1,204 页', '2,303 页'] },
+  { selector: '.demo-page-counter span', zh: '待检索页面' },
+  { selector: '.demo-evolution-heading h3', html: true, zh: '文档问答越来越长。<br /><em>但仅有长度还不够。</em>' },
+  { selector: '.demo-axis-title', zh: '平均上下文页数' },
+  { selector: '.demo-xl-callout', html: true, zh: '<span>3.5×</span> 长于最接近的既有基准' },
+  { selector: '.demo-capability-title', zh: '并同时评测' },
+  { selector: '.demo-capability span', zh: ['跨页', '跨文档', '多模态', '不可回答', '证据页'] },
+  { selector: '.demo-retrieval-copy h3', html: true, zh: '找到证据。<br /><em>而不只是页面。</em>' },
+  { selector: '.demo-retrieval-copy p', zh: '在文档集合中检索、检查候选页面、抽取多模态支持，并仅整合问题所需的证据。' },
+  { selector: '.demo-query-bar span', zh: '哪个实体满足所有要求与例外条款？' },
+  { selector: '.demo-query-bar b', zh: '正在检索 331 份文档' },
+  { selector: '.demo-evidence-tray', attribute: 'aria-label', zh: '检索到的多模态证据' },
+  { selector: '.demo-tray-label', zh: '已检索证据' },
+  { selector: '.demo-evidence-piece b', zh: ['文本 · 第 42 页', '表格 · 第 187 页', '图表 · 第 904 页', '图像 · 第 1,208 页'] },
+  { selector: '.evidence-text p', zh: '条件适用于所有符合要求的实体，除非……' },
+  { selector: '.evidence-chart > span', zh: '财年 21–24' },
+  { selector: '.evidence-image > span', zh: '例外流程' },
+  { selector: '.demo-synthesis-core span', zh: '整合' },
+  { selector: '.demo-generated-answer > span', zh: '已核验答案' },
+  { selector: '.demo-generated-answer strong', zh: '实体 A' },
+  { selector: '.demo-generated-answer p', zh: '已找到全部必需证据 · 已检查例外条款' },
+  { selector: '.demo-groundtruth-copy h3', zh: '每个答案都附带完整证据链。' },
+  { selector: '.demo-groundtruth-copy li', zh: ['专家标注的证据页', '证据引文与片段', '类型化验证规则', '答案格式与别名'] },
+  { selector: '.demo-expert-badge span', zh: '人类专家' },
+  { selector: '.demo-verified-stamp span', html: true, zh: '完整<br />核验' },
+  { selector: '.demo-diagnostic-copy h3', zh: '诊断系统为何失败。' },
+  { selector: '.demo-diagnostic-copy p', zh: '十二类推理区分检索、集合追踪、规则遵循、一致性和拒答能力。' },
+  { selector: '.demo-reasoning-orbit span', zh: ['比较', '引用链', '排序', '覆盖', '对齐', '集合差', '不可回答', '时间', '合规', '反事实', '聚合', '一致性'] },
+  { selector: '.demo-result-copy h3', zh: '最佳总体准确率' },
+  { selector: '.demo-result-copy p', zh: '即使最强系统，在 XL-DocBench 上仍有超过一半的问题回答错误。' },
+  { selector: '.demo-main-table-viz', attribute: 'aria-label', zh: '主结果表中的最佳系统可视化' },
+  { selector: '.demo-ranking-head > span', zh: '主表结果 · 总体准确率' },
+  { selector: '.demo-system i', zh: ['智能体', '智能体', 'OCR', '智能体', 'OCR'] },
+  { selector: '.demo-hard-skills > span', zh: '困难推理类型的最佳准确率' },
+  { selector: '.demo-hard-skills b', zh: ['排序', '覆盖', '集合差'] },
+  { selector: '.demo-end-card h3', html: true, zh: '找到证据。<br />应用规则。<br /><em>知道何时拒答。</em>' },
+  { selector: '.demo-toggle', attribute: 'aria-label', zh: '暂停产品演示' },
+  { selector: '.demo-replay', zh: '↻ 重播' },
+  { selector: '.demo-replay', attribute: 'aria-label', zh: '重播产品演示' },
   { selector: '.benchmark-section .eyebrow', html: true, zh: '<span></span>基准定位' },
   { selector: '.heading-grid h2', html: true, zh: [
     '用于超长文档推理的<br /><em>页面级证据。</em>',
@@ -182,6 +242,7 @@ function applyLanguage(language) {
   languageToggle.setAttribute('title', isChinese ? 'Switch to English' : '切换至中文');
   renderLeaderboard();
   renderEvidenceExplorer();
+  updateDemoTime();
 
   try {
     window.localStorage.setItem('xldocbench-language', language);
@@ -201,6 +262,70 @@ if (preferredLanguage === 'zh') applyLanguage('zh');
 
 languageToggle?.addEventListener('click', () => {
   applyLanguage(document.documentElement.lang.startsWith('zh') ? 'en' : 'zh');
+});
+
+function updateDemoTime() {
+  if (!demoTime) return;
+  const isChinese = document.documentElement.lang.startsWith('zh');
+  const labels = isChinese ? demoLabelsZh : demoLabels;
+  demoTime.textContent = `${String(demoSceneIndex + 1).padStart(2, '0')} / 06 · ${labels[demoSceneIndex]}`;
+}
+
+function buildDemoProgress() {
+  if (!demoProgress) return;
+  demoProgress.innerHTML = demoScenes.map((_, index) => `<button type="button" aria-label="Show scene ${index + 1}" data-demo-scene="${index}"></button>`).join('');
+  demoProgress.querySelectorAll('button').forEach((button) => {
+    button.addEventListener('click', () => showDemoScene(Number(button.dataset.demoScene)));
+  });
+}
+
+function scheduleDemoScene() {
+  window.clearTimeout(demoTimer);
+  if (demoPaused || demoScenes.length === 0) return;
+  demoTimer = window.setTimeout(() => showDemoScene((demoSceneIndex + 1) % demoScenes.length), demoDurations[demoSceneIndex]);
+}
+
+function showDemoScene(index) {
+  if (!demoVideo || demoScenes.length === 0) return;
+  demoSceneIndex = (index + demoScenes.length) % demoScenes.length;
+  demoScenes.forEach((scene, sceneIndex) => {
+    const active = sceneIndex === demoSceneIndex;
+    scene.classList.toggle('is-active', active);
+    if (active) {
+      scene.style.animation = 'none';
+      void scene.offsetWidth;
+      scene.style.animation = '';
+    }
+  });
+  const progressButtons = [...(demoProgress?.querySelectorAll('button') || [])];
+  progressButtons.forEach((button, buttonIndex) => {
+    button.classList.toggle('is-active', buttonIndex === demoSceneIndex);
+    button.classList.toggle('is-complete', buttonIndex < demoSceneIndex);
+    button.style.setProperty('--scene-duration', `${demoDurations[demoSceneIndex]}ms`);
+  });
+  updateDemoTime();
+  scheduleDemoScene();
+}
+
+function toggleDemoPlayback() {
+  demoPaused = !demoPaused;
+  demoVideo?.classList.toggle('is-paused', demoPaused);
+  if (demoToggleButton) {
+    demoToggleButton.textContent = demoPaused ? '▶' : 'Ⅱ';
+    demoToggleButton.setAttribute('aria-label', demoPaused ? 'Play demo' : 'Pause demo');
+  }
+  if (demoPaused) window.clearTimeout(demoTimer);
+  else showDemoScene(demoSceneIndex);
+}
+
+buildDemoProgress();
+showDemoScene(0);
+demoToggleButton?.addEventListener('click', toggleDemoPlayback);
+demoReplayButton?.addEventListener('click', () => {
+  demoPaused = false;
+  demoVideo?.classList.remove('is-paused');
+  if (demoToggleButton) demoToggleButton.textContent = 'Ⅱ';
+  showDemoScene(0);
 });
 
 menuToggle?.addEventListener('click', () => {

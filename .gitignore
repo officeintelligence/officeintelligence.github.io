@@ -5,3 +5,6 @@ Thumbs.db
 
 # Local logs
 *.log
+
+# Locally rendered demo videos
+assets/video/
