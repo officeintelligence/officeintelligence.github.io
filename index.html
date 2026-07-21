@@ -24,18 +24,57 @@
     <main id="top">
       <section class="hero" aria-label="Office Intelligence">
         <div class="hero-network" aria-hidden="true">
-          <svg viewBox="0 0 1440 760" preserveAspectRatio="none">
-            <path id="portal-path-a" d="M60 155 C260 40 430 145 610 280 S1010 520 1385 160" />
-            <path id="portal-path-b" d="M20 610 C270 740 460 565 700 430 S1050 230 1430 625" />
-            <path id="portal-path-c" d="M250 45 C470 250 640 175 790 330 S1040 590 1240 710" />
-            <circle class="signal signal-red" r="4"><animateMotion dur="8s" repeatCount="indefinite"><mpath href="#portal-path-a" /></animateMotion></circle>
-            <circle class="signal signal-green" r="4"><animateMotion dur="9s" begin="-4s" repeatCount="indefinite"><mpath href="#portal-path-b" /></animateMotion></circle>
-            <circle class="signal signal-blue" r="3"><animateMotion dur="7s" begin="-2s" repeatCount="indefinite"><mpath href="#portal-path-c" /></animateMotion></circle>
+          <div class="office-grid"></div>
+          <svg class="network-map" viewBox="0 0 1440 760" preserveAspectRatio="none">
+            <path class="route route-red" id="portal-path-a" d="M40 145 C250 30 390 120 575 285 S930 505 1400 135" />
+            <path class="route route-green" id="portal-path-b" d="M10 650 C260 760 450 590 620 445 S1030 205 1430 650" />
+            <path class="route route-blue" id="portal-path-c" d="M230 20 C400 225 555 170 720 350 S1050 610 1245 745" />
+            <path class="route route-violet" id="portal-path-d" d="M30 390 C300 250 445 500 715 375 S1110 215 1410 390" />
+            <path class="route route-gold" id="portal-path-e" d="M345 745 C410 570 540 505 720 380 S1050 245 1115 10" />
+            <path class="route route-faint" d="M720 375 L185 125 M720 375 L1260 135 M720 375 L195 625 M720 375 L1255 625" />
+            <g class="fixed-nodes">
+              <circle cx="185" cy="125" r="5"/><circle cx="1260" cy="135" r="5"/>
+              <circle cx="195" cy="625" r="5"/><circle cx="1255" cy="625" r="5"/>
+              <circle cx="390" cy="315" r="3"/><circle cx="1035" cy="315" r="3"/>
+              <circle cx="420" cy="545" r="3"/><circle cx="1010" cy="545" r="3"/>
+            </g>
+            <circle class="signal signal-red" r="5" data-route="portal-path-a" data-duration="7000" data-offset="0"></circle>
+            <circle class="signal signal-red signal-small" r="3" data-route="portal-path-a" data-duration="7000" data-offset="3500"></circle>
+            <circle class="signal signal-green" r="5" data-route="portal-path-b" data-duration="8500" data-offset="4000"></circle>
+            <circle class="signal signal-blue" r="4" data-route="portal-path-c" data-duration="6500" data-offset="2000"></circle>
+            <circle class="signal signal-violet" r="4" data-route="portal-path-d" data-duration="7800" data-offset="5000"></circle>
+            <circle class="signal signal-gold" r="4" data-route="portal-path-e" data-duration="6800" data-offset="1000"></circle>
           </svg>
+
+          <div class="intelligence-core">
+            <i class="core-ring ring-one"></i><i class="core-ring ring-two"></i><i class="core-ring ring-three"></i>
+            <span class="core-chip"><i data-lucide="cpu"></i></span>
+            <b class="core-satellite satellite-one"></b><b class="core-satellite satellite-two"></b><b class="core-satellite satellite-three"></b>
+          </div>
+
+          <div class="artifact artifact-document">
+            <span class="artifact-icon"><i data-lucide="file-text"></i></span>
+            <div class="document-lines"><i></i><i></i><i></i><i></i></div>
+            <mark></mark>
+          </div>
+          <div class="artifact artifact-table">
+            <span class="artifact-icon"><i data-lucide="table-2"></i></span>
+            <div class="mini-table"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+          <div class="artifact artifact-workflow">
+            <span class="artifact-icon"><i data-lucide="workflow"></i></span>
+            <div class="workflow-map"><i></i><i></i><i></i><i></i><b></b><b></b><b></b></div>
+          </div>
+          <div class="artifact artifact-analysis">
+            <span class="artifact-icon"><i data-lucide="chart-no-axes-combined"></i></span>
+            <div class="mini-chart"><i></i><i></i><i></i><i></i><i></i></div>
+          </div>
+
           <span class="network-node node-doc"><i data-lucide="files"></i></span>
           <span class="network-node node-evidence"><i data-lucide="scan-search"></i></span>
           <span class="network-node node-agent"><i data-lucide="brain-circuit"></i></span>
-          <span class="network-node node-eval"><i data-lucide="chart-no-axes-combined"></i></span>
+          <span class="network-node node-eval"><i data-lucide="blocks"></i></span>
+          <span class="scroll-indicator"><i data-lucide="chevrons-down"></i></span>
         </div>
       </section>
 
