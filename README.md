@@ -1,10 +1,10 @@
-# Document Intelligence project portal
+# Office Intelligence project portal
 
-This repository publishes the Document Intelligence research portal and its project websites:
+This repository publishes the Office Intelligence research portal and its project websites:
 
-- `https://xl-docbench.github.io/` — Document Intelligence / 文档智能
-- `https://xl-docbench.github.io/xl-docbench/` — XL-DocBench
-- `https://xl-docbench.github.io/docatlas/` — DocAtlas
+- `https://officeintelligence.github.io/` — Office Intelligence / 办公智能
+- `https://officeintelligence.github.io/xl-docbench/` — XL-DocBench
+- `https://officeintelligence.github.io/docatlas/` — DocAtlas
 
 ## Preview
 
@@ -26,10 +26,10 @@ The repository is self-contained: its static figure images are already included.
 
 ## Current scope
 
-The root is a responsive Document Intelligence portal. Each project subdirectory is a self-contained static academic site with its own figures, interactions, bilingual copy, and results tables. Paper, Dataset, Code, and Model destination URLs remain disabled until release URLs are available.
+The root is a responsive Office Intelligence portal. Each project subdirectory is a self-contained static academic site with its own figures, interactions, bilingual copy, and results tables. Paper, Dataset, Code, and Model destination URLs remain disabled until release URLs are available.
 
 ## GitHub Pages deployment
 
 The repository includes `.github/workflows/deploy-pages.yml`. After this project is pushed to GitHub, enable **GitHub Actions** under the repository's **Settings → Pages** source. Every push to `main` validates and deploys the repository root automatically.
 
-Because this repository is named `xl-docbench.github.io`, GitHub publishes the portal at the account root and preserves each project directory as a subpath. All sites use relative asset paths.
+Because this repository is named `officeintelligence.github.io`, GitHub publishes the portal at the account root and preserves each project directory as a subpath. All sites use relative asset paths.
