@@ -41,12 +41,17 @@ const languageRules = [
   { selector: '.site-nav', attribute: 'aria-label', zh: '主导航' },
   { selector: '.site-nav a', zh: ['基准测试', '构建流程', '推理分类', '排行榜'] },
   { selector: '.hero .eyebrow', html: true, zh: '<span></span>一个经过人工核验的超长文档理解基准' },
-  { selector: '.hero h1', zh: 'XL-DocBench：面向超长文档的证据驱动理解基准' },
+  { selector: '.hero-kicker', zh: 'XL-DOCBENCH · 2026' },
+  { selector: '.hero h1', html: true, zh: '跨越<em>数千页文档</em>的证据驱动推理。' },
+  { selector: '.hero-deck', zh: '一个经过完整人工核验的基准，用于评测系统在超长专业文档中定位、整合并验证证据的能力。' },
   { selector: '.hero-identity-label', zh: '作者与机构' },
   { selector: '.hero-summary', zh: 'XL-DocBench 评估系统能否在数百乃至数千页的专业文档中定位、整合并验证证据。' },
   { selector: '.hero-affiliations', html: true, zh: '<span><sup>1</sup> 武汉大学</span><span><sup>2</sup> 微软</span>' },
   { selector: '.hero-contribution', html: true, zh: '<span>† 共同贡献</span><span>‡ 工作在微软亚洲研究院实习期间完成</span><span>* 项目负责人</span>' },
   { selector: '.hero-actions a', html: true, zh: ['基准概览 <span aria-hidden="true">↓</span>', '排行榜 <span aria-hidden="true">→</span>'] },
+  { selector: '.scale-copy span', zh: '上下文规模' },
+  { selector: '.scale-copy p', zh: '最长评测上下文所包含的页面数' },
+  { selector: '.scale-trace span', zh: ['1 页', '2,303 页'] },
   { selector: '.release-strip', attribute: 'aria-label', zh: '发布状态' },
   { selector: '.release-strip-label', zh: '项目资源' },
   { selector: '.release-item b', zh: ['论文', '数据集', '代码'] },
@@ -58,6 +63,30 @@ const languageRules = [
     '每个案例存储证据页与引文、答案格式、类型化验证规则及十二类推理标签。该基准可区分检索、证据使用、规则遵循和无支持回答等失败，而这些差异无法仅通过聚合 QA 准确率诊断。'
   ] },
   { selector: '.abstract-facts dd', zh: ['核验问题', '源文档', '人类专家'] },
+  { selector: '.benchmark-opening .section-overline', zh: '为真实文档工作构建的基准' },
+  { selector: '.benchmark-opening h2', html: true, zh: '长上下文仍然不够。<br /><em>系统必须找到正确证据。</em>' },
+  { selector: '.opening-statement', zh: '专业问题依赖于散落在长文档中的政策、例外、表格、图表和重复测量。XL-DocBench 通过专家标注的证据页与类型化验证规则，让每个答案都可审计。' },
+  { selector: '.opening-facts h3', zh: ['人工核验问题', '跨页推理', '多模态证据', '人类专家'] },
+  { selector: '.opening-facts p', zh: ['每个保留样本都由专家重新作答并完成证据标注。', '1,103 个问题需要来自多个页面的证据。', '表格、图表与图像是回答所必需的，而非装饰。', '页面支持、答案规则和歧义均由人工检查。'] },
+  { selector: '.evidence-loop-section .section-overline', zh: '为什么证据驱动评测至关重要' },
+  { selector: '.evidence-loop-section .story-heading h2', html: true, zh: '一个答案可能掩盖<br /><em>四种不同的失败。</em>' },
+  { selector: '.evidence-loop-section .story-heading > p:last-child', zh: '系统可能错过正确页面、忽略部分证据、应用错误规则，或在缺少支持时仍然作答。仅有最终答案准确率无法区分这些失败。' },
+  { selector: '.evidence-loop > header span', zh: '证据驱动闭环' },
+  { selector: '.evidence-loop > header b', zh: '跨页面与文档重复执行' },
+  { selector: '.loop-query small', zh: '问题' },
+  { selector: '.loop-query p', zh: '哪个实体满足所有要求与例外条款？' },
+  { selector: '.loop-rule small', zh: '类型化规则' },
+  { selector: '.loop-rule p', zh: '所有必要条件都必须成立；明确的例外优先于默认规则。' },
+  { selector: '.loop-verdict span', zh: '已核验' },
+  { selector: '.loop-verdict strong', zh: '实体 A' },
+  { selector: '.loop-verdict p', zh: '3 个证据页 · 规则已满足' },
+  { selector: '.loop-steps span', zh: ['定位', '检查', '核验', '诊断'] },
+  { selector: '.loop-steps small', zh: ['搜索完整上下文', '阅读多模态页面', '应用类型化规则', '归因失败原因'] },
+  { selector: '.scale-story-section .section-overline', zh: '专业尺度下的文档问答' },
+  { selector: '.scale-story-section .story-heading h2', html: true, zh: '从一页<br /><em>到数百页。</em>' },
+  { selector: '.scale-story-section .story-heading > p:last-child', zh: '既有基准让文档问答越来越长。XL-DocBench 进一步迈向专业文档上下文，同时提升跨页、跨文档、多模态与不可回答覆盖。' },
+  { selector: '.scale-axis span', zh: ['平均上下文页数', '0', '100', '200', '300'] },
+  { selector: '.scale-chart > p', html: true, zh: '<b>3.5×</b> 平均长度超过最接近的既有基准 <span>·</span> 最长 <b>2,303</b> 页' },
   { selector: '.demo-video-section', attribute: 'aria-label', zh: 'XL-DocBench 产品宣传动画' },
   { selector: '.demo-video-intro .eyebrow', html: true, zh: '<span></span>25 秒基准故事' },
   { selector: '.demo-video-intro h2', html: true, zh: '为什么需要证据驱动的<br /><em>超长文档理解？</em>' },
@@ -142,6 +171,10 @@ const languageRules = [
   { selector: '.visual-section .eyebrow', html: true, zh: '<span></span>构建方法' },
   { selector: '.dataset-design-section .eyebrow', html: true, zh: '<span></span>数据集设计与标注' },
   { selector: '.results-section .eyebrow', html: true, zh: '<span></span>XL-DocBench 排行榜' },
+  { selector: '.result-ceiling span', zh: '最佳总体准确率' },
+  { selector: '.result-ceiling p', zh: 'SimpleDoc + GPT-5.4 在超过一半的人工核验问题上仍然失败。' },
+  { selector: '.result-observations h3', zh: ['长上下文窗口仍然不够。', '智能体并非自动更强。', '集合追踪仍是瓶颈。'] },
+  { selector: '.result-observations p', zh: ['GPT-5.4 与 Claude Opus 4.6 均支持 1M token，但在相同 OCR 预算下表现不同。系统仍需抑制无关页面并保持正确证据。', '同样使用 GPT-5.4，SimpleDoc 达到 44.0%，而 MDocAgent 为 35.0%，DeepRead 为 32.2%。检索质量决定智能体接口是否有效。', '排序、覆盖与集合差的最佳准确率仅为 35.8%、30.8% 和 36.4%。'] },
   { selector: '.dynamics-section .eyebrow', html: true, zh: '<span></span>检索分析' },
   { selector: '.cases-section .eyebrow', html: true, zh: '<span></span>案例研究' },
   { selector: '.figure-panel-head span:first-child', zh: ['图 01', '图 02', '图 03', '图 04', '图 05', '图 06', '示例'] },
@@ -327,6 +360,27 @@ demoReplayButton?.addEventListener('click', () => {
   if (demoToggleButton) demoToggleButton.textContent = 'Ⅱ';
   showDemoScene(0);
 });
+
+const evidenceLoop = document.querySelector('#evidence-loop');
+const evidenceLoopButtons = [...document.querySelectorAll('[data-loop-target]')];
+let evidenceLoopStep = 0;
+let evidenceLoopTimer;
+
+function showEvidenceLoopStep(step) {
+  if (!evidenceLoop || evidenceLoopButtons.length === 0) return;
+  evidenceLoopStep = (step + evidenceLoopButtons.length) % evidenceLoopButtons.length;
+  evidenceLoop.dataset.loopStep = String(evidenceLoopStep);
+  evidenceLoopButtons.forEach((button, index) => {
+    const active = index === evidenceLoopStep;
+    button.classList.toggle('is-active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+  window.clearTimeout(evidenceLoopTimer);
+  evidenceLoopTimer = window.setTimeout(() => showEvidenceLoopStep(evidenceLoopStep + 1), 2800);
+}
+
+evidenceLoopButtons.forEach((button) => button.addEventListener('click', () => showEvidenceLoopStep(Number(button.dataset.loopTarget))));
+showEvidenceLoopStep(0);
 
 menuToggle?.addEventListener('click', () => {
   const isOpen = menuToggle.getAttribute('aria-expanded') === 'true';

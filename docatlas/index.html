@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="DocAtlas treats long-document understanding as mutable-state interaction through search, reading, note-taking, review, and end-to-end reinforcement learning." />
+    <title>DocAtlas — Mutable-State Long-Document Understanding</title>
+    <link rel="stylesheet" href="edge.css" />
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+    <script src="edge.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="edge-header" id="page-top">
+      <div class="edge-header-inner">
+        <a class="edge-brand" href="#page-top">DocAtlas</a>
+        <nav class="edge-nav" aria-label="Primary navigation">
+          <a href="#overview">Overview</a>
+          <a href="#findings">Results</a>
+          <a href="#leaderboard">Leaderboard</a>
+          <button class="language-toggle" id="edge-language" type="button">EN / 中文</button>
+        </nav>
+      </div>
+    </header>
+
+    <header class="legacy-site" hidden>
+      <a class="brand" href="#top" aria-label="DocAtlas home">
+        <span class="brand-orbit" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>DocAtlas</span>
+      </a>
+      <div class="header-controls">
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a href="#overview">Overview</a>
+          <a href="#framework">Framework</a>
+          <a href="#results">Results</a>
+          <a href="#cases">Cases</a>
+        </nav>
+        <button class="language-toggle" id="language-toggle" type="button" aria-label="Switch to Chinese" aria-pressed="false">中文</button>
+      </div>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-controls="site-nav" aria-expanded="false"><span class="sr-only">Toggle navigation</span><i></i><i></i></button>
+    </header>
+
+    <main id="main-content">
+      <section class="edge-hero" aria-labelledby="hero-title">
+        <div class="hero-effect atlas-state-field" aria-hidden="true">
+          <svg class="atlas-links" viewBox="0 0 1180 610" preserveAspectRatio="none">
+            <path class="atlas-path path-search" id="atlas-path-search" d="M110 155 C260 55 360 110 490 210 S760 380 1035 165" />
+            <path class="atlas-path path-memory" id="atlas-path-memory" d="M135 470 C315 560 420 475 555 365 S825 205 1050 450" />
+            <path class="atlas-path path-state" id="atlas-path-state" d="M490 210 C590 120 710 120 800 260 S830 420 1050 450" />
+            <circle class="atlas-signal signal-one" r="4"><animateMotion dur="6.8s" repeatCount="indefinite"><mpath href="#atlas-path-search" /></animateMotion></circle>
+            <circle class="atlas-signal signal-two" r="4"><animateMotion dur="7.4s" begin="-3.1s" repeatCount="indefinite"><mpath href="#atlas-path-memory" /></animateMotion></circle>
+            <circle class="atlas-signal signal-three" r="3"><animateMotion dur="5.6s" begin="-1.7s" repeatCount="indefinite"><mpath href="#atlas-path-state" /></animateMotion></circle>
+          </svg>
+          <span class="atlas-node atlas-search"><i></i><b>Search</b></span>
+          <span class="atlas-node atlas-read"><i></i><b>Read</b></span>
+          <span class="atlas-node atlas-note"><i></i><b>Note</b></span>
+          <span class="atlas-node atlas-review"><i></i><b>Review</b></span>
+          <span class="atlas-state atlas-state-zero"><small>initial document</small><b>state v0</b></span>
+          <span class="atlas-state atlas-state-one"><small>evidence enriched</small><b>state v1</b></span>
+        </div>
+        <div class="hero-space" aria-hidden="true"></div>
+        <div class="hero-main">
+          <h1 id="hero-title">DocAtlas</h1>
+          <p class="hero-tagline" data-copy="tagline">Long-document understanding as mutable-state interaction.</p>
+          <div class="hero-resources" aria-label="Project resources">
+            <span class="resource-link" aria-disabled="true"><i data-lucide="file-text" aria-hidden="true"></i><span>Paper</span></span>
+            <span class="resource-link" aria-disabled="true"><i data-lucide="github" aria-hidden="true"></i><span>Code</span></span>
+          </div>
+          <p class="hero-authors">Hongchen Wei<sup>1,†,‡</sup>, Yuanzhe Wang<sup>2,†,‡</sup>, Bei Liu<sup>2,*</sup>, Yifan Yang<sup>2</sup>, Qi Dai<sup>2</sup>, Kai Qiu<sup>2</sup>, Yunsheng Li<sup>2</sup>, Dongdong Chen<sup>2</sup>, Chong Luo<sup>2</sup>, Zhenzhong Chen<sup>1</sup>, Baining Guo<sup>2</sup></p>
+          <p class="hero-affiliations"><span><sup>1</sup> Wuhan University</span><span><sup>2</sup> Microsoft</span><span>† Equal contribution</span><span>‡ Work done during an internship at MSRA</span><span>* Project leader</span></p>
+        </div>
+      </section>
+
+      <div class="page-layout">
+        <aside class="contents" aria-hidden="true"></aside>
+
+        <article class="article">
+          <section class="story-section" id="overview">
+            <h2 data-copy="overviewTitle">A document becomes more useful as the agent interacts with it</h2>
+            <p class="section-lead" data-copy="overviewLead">DocAtlas turns long-document understanding into a stateful process: search proposes where to look, reading exposes multimodal evidence, notes write findings back, and review recalls what matters next.</p>
+            <div class="feature-grid">
+              <article class="feature"><strong>71.4%</strong><h3 data-copy="f1Title">MMLongBench-Doc accuracy</h3><p data-copy="f1Text">GPT-5.4 with DocAtlas exceeds the 65.8% human-expert reference.</p></article>
+              <article class="feature"><strong>63.7%</strong><h3 data-copy="f2Title">Compact policy after RL</h3><p data-copy="f2Text">A Qwen3.5-4B policy improves from 54.4% direct input to 63.7%.</p></article>
+              <article class="feature"><strong>+20.5</strong><h3 data-copy="f3Title">FinRAGBench-V gain</h3><p data-copy="f3Text">GPT-5.4 improves from 55.1 to 75.6 LLM-as-judge.</p></article>
+              <article class="feature"><strong>4</strong><h3 data-copy="f4Title">Tools in one environment</h3><p data-copy="f4Text">Search, Read, Note, and Review can be selected in any order.</p></article>
+            </div>
+            <div class="subsection">
+              <h3 data-copy="benchmarkTitle">Three benchmarks, one interaction strategy</h3>
+              <p data-copy="benchmarkLead">Select a benchmark to compare DocAtlas with direct long-context input.</p>
+              <div class="domain-tabs" role="group" aria-label="Benchmark selector"><button class="is-active" type="button" data-benchmark="mml">MMLongBench-Doc</button><button type="button" data-benchmark="fin">FinRAGBench-V</button><button type="button" data-benchmark="long">LongDocURL</button></div>
+              <div class="domain-panel" aria-live="polite">
+                <div class="domain-stat"><strong id="benchmark-score">71.4</strong><span id="benchmark-metric">All accuracy</span></div>
+                <div class="domain-copy"><h4 id="benchmark-title">MMLongBench-Doc</h4><p id="benchmark-description"></p><div class="benchmark-delta" id="benchmark-delta"></div></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="story-section" id="mutable-state">
+            <h2 data-copy="stateTitle">Why long documents should be mutable state</h2>
+            <p class="section-lead" data-copy="stateLead">Static retrieval commits before reasoning begins. DocAtlas lets evidence change what the agent can find and do next.</p>
+            <div class="split-explanation">
+              <div class="explanation-copy"><p data-copy="stateBody">The initial tree contains titles, page ranges, and summaries. When the agent records a source-grounded note, that finding updates both structured memory and the document tree. Later search operates on an enriched state rather than the same frozen index.</p></div>
+              <div class="evidence-loop" aria-label="Mutable-state interaction loop">
+                <span data-copy="loopTitle">The mutable-state loop</span>
+                <div class="loop-step is-active"><b>1</b><div><h4 data-copy="loop1">Search</h4><p data-copy="loop1Text">Navigate the visual-aware tree.</p></div></div>
+                <div class="loop-step"><b>2</b><div><h4 data-copy="loop2">Read</h4><p data-copy="loop2Text">Inspect selected multimodal pages.</p></div></div>
+                <div class="loop-step"><b>3</b><div><h4 data-copy="loop3">Note</h4><p data-copy="loop3Text">Write grounded findings back.</p></div></div>
+                <div class="loop-step"><b>4</b><div><h4 data-copy="loop4">Review</h4><p data-copy="loop4Text">Recall evidence when it matters.</p></div></div>
+                <div class="loop-footer"><i></i><span data-copy="loopFooter">Evidence updates the state used by later actions</span></div>
+                <div class="state-version"><b>state v0</b><i></i><span>evidence</span><i></i><b>state v1</b></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="story-section" id="framework">
+            <h2 data-copy="frameworkTitle">One document harness for inference and end-to-end RL</h2>
+            <p class="section-lead" data-copy="frameworkLead">The same environment supports frontier VLM agents at inference time and trains compact open policies with outcome rewards.</p>
+            <figure class="paper-figure"><img src="assets/figures/framework.png" alt="DocAtlas mutable document harness"/><figcaption class="figure-caption">DocAtlas exposes Search, Read, Note, and Review over a mutable document tree and active memory.</figcaption></figure>
+            <div class="pipeline-steps">
+              <article class="pipeline-step"><b>01 · SEARCH</b><h3 data-copy="p1">Search the tree</h3><p data-copy="p1Text">Retrieve candidate regions from hierarchy, summaries, and prior findings.</p></article>
+              <article class="pipeline-step"><b>02 · READ</b><h3 data-copy="p2">Read selectively</h3><p data-copy="p2Text">Choose the pages and multimodal views that enter active context.</p></article>
+              <article class="pipeline-step"><b>03 · NOTE</b><h3 data-copy="p3">Write grounded notes</h3><p data-copy="p3Text">Compress evidence with source attribution and update the tree.</p></article>
+              <article class="pipeline-step"><b>04 · REVIEW</b><h3 data-copy="p4">Review on demand</h3><p data-copy="p4Text">Retrieve relevant findings from structured memory before answering.</p></article>
+            </div>
+          </section>
+
+          <section class="story-section" id="efficiency">
+            <h2 data-copy="efficiencyTitle">Search broadly. Read selectively.</h2>
+            <p class="section-lead" data-copy="efficiencyLead">Search is optimized for evidence recall; Read converts those candidates into a compact, high-precision evidence set.</p>
+            <div class="metric-strip">
+              <article><strong>87.45</strong><h3 data-copy="e1">Full Search All-Hit</h3><p data-copy="e1Text">Coverage of all gold evidence pages before selective reading.</p></article>
+              <article><strong>5.79</strong><h3 data-copy="e2">Pages after Full Read</h3><p data-copy="e2Text">The agent consumes only a small subset of candidate pages.</p></article>
+              <article><strong>+7.40</strong><h3 data-copy="e3">Tree-annotation gain</h3><p data-copy="e3Text">All-Hit improvement from writing findings back into the tree.</p></article>
+            </div>
+            <div class="efficiency-table-wrap"><table class="efficiency-table"><thead><tr><th>Method</th><th>Avg. pages</th><th>All-Hit</th><th>Page F1</th></tr></thead><tbody>
+              <tr><td>ColQwen top-2</td><td>2.00</td><td>64.12</td><td>38.75</td></tr><tr><td>ColQwen top-6</td><td>6.00</td><td>76.42</td><td>24.36</td></tr><tr><td>ColQwen top-10</td><td>10.00</td><td>83.60</td><td>18.38</td></tr><tr><td>Full Search</td><td>16.65</td><td>87.45</td><td>38.33</td></tr><tr><td>Search w/o Annotation</td><td>16.94</td><td>80.05</td><td>29.40</td></tr><tr><td>First Read</td><td>2.67</td><td>59.90</td><td>56.04</td></tr><tr class="ours"><td>Full Read</td><td>5.79</td><td>78.01</td><td>58.99</td></tr><tr><td>Read w/o Annotation</td><td>6.01</td><td>76.93</td><td>58.17</td></tr>
+            </tbody></table></div>
+          </section>
+
+          <section class="story-section" id="findings">
+            <h2 data-copy="findingsTitle">Mutable-state interaction improves frontier and compact agents</h2>
+            <p class="section-lead" data-copy="findingsLead">DocAtlas reaches 71.4% on MMLongBench-Doc with GPT-5.4 and trains a 4B policy to 63.7% in the same environment.</p>
+            <div class="result-headline">
+              <div class="big-score"><strong>71.4%</strong><span data-copy="bestLabel">MMLongBench-Doc accuracy</span></div>
+              <div class="finding-list">
+                <article><b>1</b><h3 data-copy="find1">Above the human reference</h3><p data-copy="find1Text">DocAtlas + GPT-5.4 reaches 71.4%, compared with 65.8% for human experts.</p></article>
+                <article><b>2</b><h3 data-copy="find2">One harness, two scales</h3><p data-copy="find2Text">The same tools support frontier inference and end-to-end RL for compact VLMs.</p></article>
+                <article><b>3</b><h3 data-copy="find3">Gains transfer across benchmarks</h3><p data-copy="find3Text">GPT-5.4 improves by 20.5 points on FinRAGBench-V and 11.9 on LongDocURL.</p></article>
+              </div>
+            </div>
+            <div class="result-bars" aria-label="MMLongBench-Doc overall accuracy">
+              <div class="result-row"><span>GPT-5.4 direct</span><i><b style="--score:78%"></b></i><strong>62.4</strong></div><div class="result-row"><span>Human expert</span><i><b style="--score:82.25%"></b></i><strong>65.8</strong></div><div class="result-row"><span>DocLens + Gemini Pro</span><i><b style="--score:84.5%"></b></i><strong>67.6</strong></div><div class="result-row"><span>DocAtlas + GPT-5.2</span><i><b style="--score:88.25%"></b></i><strong>70.6</strong></div><div class="result-row best"><span>DocAtlas + GPT-5.4</span><i><b style="--score:89.25%"></b></i><strong>71.4</strong></div>
+            </div>
+          </section>
+
+          <section class="story-section" id="analysis">
+            <h2 data-copy="analysisTitle">What changes when state is mutable</h2>
+            <p class="section-lead" data-copy="analysisLead">Component ablations and tool allocation show that performance comes from the interaction loop rather than a single retrieval call.</p>
+            <div class="figure-switcher">
+              <div class="chart-tabs" role="group" aria-label="Analysis figure"><button class="is-active" type="button" data-figure="ablation">Component ablation</button><button type="button" data-figure="tools">Tool allocation</button></div>
+              <div class="figure-stage"><figure class="is-active" data-figure-panel="ablation"><img src="assets/figures/ablation.png" alt="DocAtlas component ablation"/></figure><figure data-figure-panel="tools"><img src="assets/figures/tool-calls.png" alt="DocAtlas average tool calls"/></figure></div>
+            </div>
+          </section>
+
+          <section class="story-section" id="trajectories">
+            <h2 data-copy="trajectoriesTitle">Inside a complete DocAtlas trajectory</h2>
+            <p class="section-lead" data-copy="trajectoriesLead">Follow how the agent searches, reads, records source-grounded evidence, reviews memory, and produces a final answer.</p>
+            <div class="case-tabs" role="group" aria-label="Trajectory selector"><button class="is-active" type="button" data-trajectory="multihop">Multi-hop evidence</button><button type="button" data-trajectory="raptor">Complete reasoning flow</button></div>
+            <div class="case-stage">
+              <div class="case-copy"><div><span id="trajectory-tools">Search · Read · Note · Review</span><strong id="trajectory-state">Evidence writes back to the tree</strong></div><div><h3 id="trajectory-title">Multi-hop evidence gathering</h3><p id="trajectory-description"></p></div></div>
+              <img class="case-image" id="trajectory-image" src="assets/figures/trajectory-multihop.png" alt="DocAtlas multi-hop trajectory"/>
+            </div>
+          </section>
+
+          <section class="story-section" id="leaderboard">
+            <h2 data-copy="leaderboardTitle">Complete results across 27 systems and three benchmarks</h2>
+            <p class="section-lead" data-copy="leaderboardLead">The full table retains evidence-type breakdowns, aggregate metrics, compact-policy RL, and results on FinRAGBench-V and LongDocURL.</p>
+            <div class="leaderboard-tabs" role="group" aria-label="Results view"><button class="is-active" type="button" data-result-view="overall" data-copy="overall">Overall results</button><button type="button" data-result-view="detailed" data-copy="detailed">Full 14-metric table</button></div>
+            <div class="leaderboard-toolbar"><div class="leaderboard-filter" role="group" aria-label="System group"><button class="is-active" type="button" data-result-filter="all" data-copy="all">All systems</button><button type="button" data-result-filter="baseline" data-copy="baseline">Direct / OCR</button><button type="button" data-result-filter="agent" data-copy="agent">Agent frameworks</button><button type="button" data-result-filter="ours" data-copy="ours">DocAtlas</button></div></div>
+            <div class="table-wrap" tabindex="0"><table class="results-table" id="results-table"></table></div>
+            <p class="table-note" data-copy="tableNote">Best non-human values in the selected view are highlighted in red; second-best values are blue. Missing results are shown as dashes.</p>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="edge-footer"><div class="edge-footer-inner"><span data-copy="footer">Long-document understanding as mutable-state interaction.</span><a href="#page-top" data-copy="back">Back to top</a></div></footer>
+
+    <main class="legacy-site" hidden>
+      <section class="hero section-shell">
+        <p class="eyebrow" data-i18n="heroEyebrow"><span></span> Long-document understanding as mutable-state interaction</p>
+        <h1 data-i18n="heroTitle">DocAtlas: Long-Document Understanding as <em>Mutable-State Interaction</em></h1>
+        <div class="hero-identity">
+          <span class="identity-label" data-i18n="authorsLabel">AUTHORS &amp; AFFILIATIONS</span>
+          <p class="authors">Hongchen Wei<sup>1,†,‡</sup>, Yuanzhe Wang<sup>2,†,‡</sup>, Bei Liu<sup>2,*</sup>, Yifan Yang<sup>2</sup>, Qi Dai<sup>2</sup>, Kai Qiu<sup>2</sup>, Yunsheng Li<sup>2</sup>, Dongdong Chen<sup>2</sup>, Chong Luo<sup>2</sup>, Zhenzhong Chen<sup>1</sup>, Baining Guo<sup>2</sup></p>
+          <p class="affiliations"><span><sup>1</sup> <span data-i18n="university">Wuhan University</span></span><span><sup>2</sup> Microsoft</span></p>
+          <p class="contributions" data-i18n="contributions">† Equal contribution &nbsp; ‡ Work done during an internship at MSRA &nbsp; * Project leader</p>
+        </div>
+        <p class="hero-summary" data-i18n="heroSummary">DocAtlas turns a long document into a mutable environment: the agent searches a visual-aware tree, reads selected pages, writes source-grounded notes, reviews prior findings, and uses the updated state to make later decisions.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#overview" data-i18n="frameworkButton">See the interaction <span>↓</span></a>
+          <a class="button button-secondary" href="#results" data-i18n="resultsButton">See the evidence <span>→</span></a>
+        </div>
+        <div class="hero-evidence" aria-label="DocAtlas performance highlights" data-i18n-aria="heroEvidenceAria">
+          <div><strong>71.4%</strong><span data-i18n="heroEvidenceOne">MMLongBench-Doc<br />GPT-5.4 + DocAtlas</span></div>
+          <div><strong>+9.0</strong><span data-i18n="heroEvidenceTwo">points over<br />GPT-5.4 direct input</span></div>
+          <div><strong>63.7%</strong><span data-i18n="heroEvidenceThree">4B policy after<br />end-to-end RL</span></div>
+        </div>
+      </section>
+
+      <section class="abstract-section">
+        <div class="section-shell abstract-layout">
+          <div><p class="eyebrow" data-i18n="abstractEyebrow"><span></span> Abstract</p><h2 data-i18n="abstractTitle">Long documents should be <em>stateful environments.</em></h2></div>
+          <div class="abstract-copy">
+            <p data-i18n="abstractP1">Existing retrieval systems choose evidence from a static index, while many document agents use tool calls around frozen backbones. DocAtlas instead models long-document understanding as mutable-state information seeking.</p>
+            <p data-i18n="abstractP2">A document harness exposes search, reading, note-taking, and review tools; evidence recorded during exploration updates both a hierarchical tree and a structured memory store. The same environment supports large VLM inference and end-to-end RL for compact VLM agents.</p>
+            <dl class="fact-row">
+              <div><dt>71.4%</dt><dd data-i18n="fact1">MMLongBench-Doc with GPT-5.4</dd></div>
+              <div><dt>63.7%</dt><dd data-i18n="fact2">RL-trained Qwen3.5-4B</dd></div>
+              <div><dt>+9.3</dt><dd data-i18n="fact3">points over 4B direct input</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section class="docatlas-demo-section" id="overview">
+        <div class="section-shell">
+          <div class="demo-intro">
+            <p class="eyebrow" data-i18n="demoEyebrow"><span></span> 27-second product story</p>
+            <h2 data-i18n="demoTitle">Why should long-document understanding be<br /><em>a mutable-state interaction?</em></h2>
+          </div>
+
+          <div class="docatlas-video" id="docatlas-video" aria-label="Six-scene DocAtlas product demo" data-i18n-aria="demoAria">
+            <div class="video-ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+            <header class="video-hud"><span>DOCATLAS / FILM 01</span><span id="video-time">01 / 06 · REAL-WORLD NEED</span></header>
+
+            <div class="film-scenes">
+              <article class="film-scene film-world is-active" data-scene="0">
+                <div class="film-index">01</div>
+                <div class="film-copy"><span data-i18n="needKicker">REAL-WORLD DOCUMENT WORK</span><h3 data-i18n="filmNeedTitle">The answer is rarely<br/>on <em>one page.</em></h3><p data-i18n="needText">Financial reports, legal contracts, scientific papers, and government filings mix text, layouts, tables, charts, and figures.</p></div>
+                <div class="film-page-field" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><div><strong>100+</strong><span data-i18n="pagesToNavigate">pages to navigate</span></div></div>
+              </article>
+
+              <article class="film-scene film-dilemma" data-scene="1">
+                <div class="film-index">02</div>
+                <span class="film-overline" data-i18n="dilemmaKicker">WHY CURRENT APPROACHES STRUGGLE</span>
+                <div class="dilemma-lines"><p><span>Static retrieval.</span><b data-i18n="filmFrozen">Frozen before reasoning begins.</b></p><p><span>Full context.</span><b data-i18n="filmOverflow">Attention diluted by irrelevant pages.</b></p><p><span>Prompted agents.</span><b data-i18n="filmFixed">Tool use without a trainable policy.</b></p></div>
+                <h3 data-i18n="filmDilemmaTitle">The document stays fixed.<br/><em>The problem does not.</em></h3>
+              </article>
+
+              <article class="film-scene film-reveal" data-scene="2">
+                <div class="film-orbit" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+                <span class="film-overline" data-i18n="introducing">INTRODUCING</span>
+                <h3>DocAtlas</h3>
+                <p data-i18n="filmRevealLine">The document becomes <em>state.</em></p>
+                <div class="film-pillars"><span>Mutable</span><span>Grounded</span><span>Flexible</span><span>Trainable</span></div>
+              </article>
+
+              <article class="film-scene film-strategy" data-scene="3">
+                <div class="film-index">03</div>
+                <div class="film-strategy-copy"><span data-i18n="strategyKicker">THE DOCATLAS STRATEGY</span><h3 data-i18n="filmStrategyTitle">Evidence changes<br/><em>what happens next.</em></h3></div>
+                <div class="film-state-core"><span>STATE</span><b>v0</b><i></i><b>v1</b><em data-i18n="filmEnriched">enriched by evidence</em></div>
+                <div class="film-tool-sequence"><span>Search</span><i></i><span>Read</span><i></i><span>Note</span><i></i><span>Search+</span><i></i><span>Review</span><i></i><span>Answer</span></div>
+                <svg viewBox="0 0 1000 260" aria-hidden="true"><path d="M70 175 C170 40 310 40 390 140 S610 250 700 120 S870 20 940 135"/></svg>
+              </article>
+
+              <article class="film-scene film-scale" data-scene="4">
+                <div class="film-index">04</div>
+                <span class="film-overline" data-i18n="advantagesKicker">ONE ENVIRONMENT · TWO SCALES</span>
+                <div class="film-scale-grid"><div><small>INFERENCE</small><strong>71.4</strong><span>GPT-5.4</span></div><i></i><div><small>END-TO-END RL</small><strong>63.7</strong><span>Qwen3.5-4B</span></div></div>
+                <p data-i18n="filmScaleLine">The same harness powers frontier agents and trains compact open policies.</p>
+              </article>
+
+              <article class="film-scene film-performance" data-scene="5">
+                <div class="film-index">05</div>
+                <span class="film-overline" data-i18n="performanceKicker">MMLONGBENCH-DOC · ALL ACCURACY</span>
+                <div class="film-bars"><div><span>GPT-5.4 direct</span><i><b style="--score:62.4%"></b></i><strong>62.4</strong></div><div class="human"><span data-i18n="humanReference">Human expert</span><i><b style="--score:65.8%"></b></i><strong>65.8</strong></div><div><span>DocLens + Gemini Pro</span><i><b style="--score:67.6%"></b></i><strong>67.6</strong></div><div class="ours"><span>DocAtlas + GPT-5.2</span><i><b style="--score:70.6%"></b></i><strong>70.6</strong></div><div class="ours best"><span>DocAtlas + GPT-5.4</span><i><b style="--score:71.4%"></b></i><strong>71.4</strong></div></div>
+                <div class="film-gains"><span>+9.0<small>MMLongBench-Doc</small></span><span>+20.5<small>FinRAGBench-V</small></span><span>+11.9<small>LongDocURL</small></span></div>
+                <div class="film-end"><span>DOCATLAS</span><h3 data-i18n="endStatement">Find evidence.<br/>Update state.<br/><em>Learn to interact.</em></h3><p>71.4% · above human expert</p></div>
+              </article>
+            </div>
+
+            <footer class="video-controls"><button id="video-toggle" type="button" aria-label="Pause demo">Ⅱ</button><div class="video-progress" id="video-progress"></div><button id="video-replay" type="button" data-i18n="replay">↻ Replay</button></footer>
+          </div>
+        </div>
+      </section>
+
+      <section class="framework-section section-shell" id="framework">
+        <div class="section-heading"><p class="eyebrow" data-i18n="frameworkEyebrow"><span></span> Framework</p><div class="heading-grid"><h2 data-i18n="frameworkTitle">A document harness for<br /><em>inference and RL.</em></h2><p data-i18n="frameworkIntro">The same tool environment supports powerful VLM agents at inference time and end-to-end reinforcement learning for compact VLM policies.</p></div></div>
+        <div class="framework-figure figure-panel"><div class="figure-head"><span>FIG. 01</span><span data-i18n="frameworkFig">DocAtlas mutable document harness</span></div><img src="assets/figures/framework.png" alt="Overview of DocAtlas mutable document harness" /></div>
+      </section>
+
+      <section class="principles-section">
+        <div class="section-shell">
+          <div class="section-heading"><p class="eyebrow" data-i18n="principlesEyebrow"><span></span> System principles</p><div class="heading-grid"><h2 data-i18n="principlesTitle">Three mechanisms,<br /><em>one mutable environment.</em></h2><p data-i18n="principlesIntro">DocAtlas is defined not by a fixed tool sequence but by a stateful loop in which later retrieval and reasoning depend on earlier evidence.</p></div></div>
+          <div class="principle-grid">
+            <article><span>01</span><h3 data-i18n="principle1Title">Self-improving retrieval</h3><p data-i18n="principle1Text">Source-attributed notes are written back into a hierarchical tree, enriching the retrieval state for subsequent search.</p></article>
+            <article><span>02</span><h3 data-i18n="principle2Title">Selective evidence access</h3><p data-i18n="principle2Text">Search proposes candidate regions; Read decides the final pages and multimodal views consumed by the agent.</p></article>
+            <article><span>03</span><h3 data-i18n="principle3Title">Active working memory</h3><p data-i18n="principle3Text">Structured notes compress page-grounded evidence while Review retrieves relevant findings on demand.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="results-section" id="results">
+        <div class="section-shell">
+          <div class="section-heading"><p class="eyebrow" data-i18n="resultsEyebrow"><span></span> Main results</p><div class="heading-grid"><h2 data-i18n="resultsTitle">Mutable-state interaction<br /><em>improves long-document agents.</em></h2><p data-i18n="resultsIntro">Across MMLongBench-Doc, FinRAGBench-V, and LongDocURL, DocAtlas improves both large VLM agents and compact Qwen policies trained in the same environment.</p></div></div>
+          <div class="results-grid">
+            <div class="result-card result-highlight"><span data-i18n="r1Label">GPT-5.4 + DocAtlas</span><strong>71.4%</strong><p data-i18n="r1Text">MMLongBench-Doc ALL — above the 65.8% human-expert reference.</p></div>
+            <div class="result-card"><span data-i18n="r2Label">Qwen3.5-4B + RL</span><strong>63.7%</strong><p data-i18n="r2Text">Compared with 54.4% for the direct-input compact baseline.</p></div>
+            <div class="result-card"><span data-i18n="r3Label">GPT-5.4 + DocAtlas</span><strong>78.8%</strong><p data-i18n="r3Text">LongDocURL LLM-as-judge score, up from 66.9% direct input.</p></div>
+          </div>
+          <div class="main-table-heading"><div><span data-i18n="mainTableLabel">TABLE 01 · COMPLETE MAIN RESULTS</span><h3 data-i18n="mainTableTitle">Three benchmarks, evidence-type breakdowns, and compact-policy RL.</h3></div><p data-i18n="mainTableNote">Green cells mark the best result and pale yellow cells mark the second best. Asterisks indicate performance above the MMLongBench-Doc human-expert reference.</p></div>
+          <div class="results-table-wrap full-results-wrap" tabindex="0">
+            <table class="results-table full-results-table" id="full-results-table" aria-label="Complete DocAtlas main results"></table>
+          </div>
+          <div class="result-figure-grid">
+            <div class="figure-panel"><div class="figure-head"><span>FIG. 02</span><span data-i18n="ablationFig">Component ablation</span></div><img src="assets/figures/ablation.png" alt="DocAtlas component ablation results" /></div>
+            <div class="figure-panel"><div class="figure-head"><span>FIG. 03</span><span data-i18n="toolCallsFig">Tool-use allocation</span></div><img src="assets/figures/tool-calls.png" alt="Average tool calls per question for DocAtlas agents" /></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="analysis-section section-shell">
+        <div class="section-heading"><p class="eyebrow" data-i18n="analysisEyebrow"><span></span> Evidence efficiency</p><div class="heading-grid"><h2 data-i18n="analysisTitle">High-recall search.<br /><em>Selective reading.</em></h2><p data-i18n="analysisIntro">Search is deliberately broad; Read turns candidate regions into compact, high-precision evidence consumption.</p></div></div>
+        <div class="analysis-grid">
+          <article><span data-i18n="searchAllHit">Full Search All-Hit</span><strong>87.45</strong><p data-i18n="searchAllHitText">coverage of all gold evidence pages before selective reading.</p></article>
+          <article><span data-i18n="readF1">Full Read page F1</span><strong>58.99</strong><p data-i18n="readF1Text">best evidence precision after the agent chooses which pages to consume.</p></article>
+          <article><span data-i18n="annotationGain">Tree-annotation gain</span><strong>+7.40</strong><p data-i18n="annotationGainText">All-Hit points from writing evidence findings back into the tree.</p></article>
+        </div>
+        <div class="efficiency-table-wrap" tabindex="0">
+          <table class="efficiency-table">
+            <caption data-i18n="efficiencyCaption">Search–Read evidence efficiency on MMLongBench-Doc</caption>
+            <thead><tr><th data-i18n="effMethod">Method</th><th data-i18n="effAvg">Avg. pages</th><th>All-Hit</th><th>Page F1</th></tr></thead>
+            <tbody>
+              <tr><td>ColQwen top-2</td><td>2.00</td><td>64.12</td><td>38.75</td></tr>
+              <tr><td>ColQwen top-6</td><td>6.00</td><td>76.42</td><td>24.36</td></tr>
+              <tr><td>ColQwen top-10</td><td>10.00</td><td>83.60</td><td>18.38</td></tr>
+              <tr class="table-divider"><td>Full Search</td><td>16.65</td><td><strong>87.45</strong></td><td>38.33</td></tr>
+              <tr><td>Search w/o Annotation</td><td>16.94</td><td>80.05</td><td>29.40</td></tr>
+              <tr><td>First Read</td><td>2.67</td><td>59.90</td><td>56.04</td></tr>
+              <tr class="ours-row"><td>Full Read</td><td>5.79</td><td>78.01</td><td><strong>58.99</strong></td></tr>
+              <tr><td>Read w/o Annotation</td><td>6.01</td><td>76.93</td><td>58.17</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="cases-section" id="cases">
+        <div class="section-shell">
+          <div class="section-heading"><p class="eyebrow" data-i18n="casesEyebrow"><span></span> Trajectory case studies</p><div class="heading-grid"><h2 data-i18n="casesTitle">Inspect the complete<br /><em>interaction trajectory.</em></h2><p data-i18n="casesIntro">Select a case to follow how DocAtlas searches the tree, reads evidence, records source-grounded notes, reviews memory, and answers.</p></div></div>
+          <div class="case-selector" role="group" aria-label="Case-study selector" data-i18n-aria="caseSelectorAria">
+            <button class="case-button is-active" data-case="multihop" aria-pressed="true" data-i18n="caseMulti">Multi-hop evidence</button>
+            <button class="case-button" data-case="raptor" aria-pressed="false" data-i18n="caseRaptor">Full reasoning flow</button>
+          </div>
+          <div class="case-layout">
+            <div class="case-copy"><span data-i18n="caseKicker">SELECTED TRAJECTORY</span><h3 id="case-title">Multi-hop evidence gathering</h3><p id="case-description">DocAtlas iteratively searches the document tree, reads selected pages, records intermediate findings, and combines them through review before answering.</p><dl><div><dt data-i18n="caseTools">Tools used</dt><dd id="case-tools">Search · Read · Note · Review</dd></div><div><dt data-i18n="caseState">State update</dt><dd id="case-state">Evidence writes back to tree</dd></div><div><dt data-i18n="caseOutput">Output</dt><dd id="case-output">Page-grounded answer</dd></div></dl></div>
+            <div class="figure-panel trajectory-figure"><div class="figure-head"><span data-i18n="caseLabel">CASE</span><span id="case-figure-title">Multi-hop trajectory</span></div><img id="case-image" src="assets/figures/trajectory-multihop.png" alt="DocAtlas multi-hop evidence gathering trajectory" /></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="legacy-site" hidden><a class="brand" href="#top"><span class="brand-orbit" aria-hidden="true"><i></i><i></i><i></i></span><span>DocAtlas</span></a><p data-i18n="footer">Long-document understanding as mutable-state interaction.</p><a href="#top" data-i18n="backTop">Back to top ↑</a></footer>
+  </body>
+</html>

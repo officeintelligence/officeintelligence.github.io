@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="XL-DocBench is a human-verified benchmark for evidence-grounded reasoning over extra-long professional documents."
+    />
+    <title>XL-DocBench — Evidence at Scale</title>
+    <link rel="stylesheet" href="edge.css" />
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
+    <script src="edge.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="edge-header" id="page-top">
+      <div class="edge-header-inner">
+        <a class="edge-brand" href="#page-top">XL-DocBench</a>
+        <nav class="edge-nav" aria-label="Primary navigation">
+          <a href="#overview">Benchmark</a>
+          <a href="#findings">Results</a>
+          <a href="#leaderboard">Leaderboard</a>
+          <button class="language-toggle" id="edge-language" type="button">EN / 中文</button>
+        </nav>
+      </div>
+    </header>
+
+    <header class="legacy-site" hidden>
+      <a class="brand" href="#top" aria-label="XL-DocBench home">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>XL-DocBench</span>
+      </a>
+      <div class="header-controls">
+        <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+          <a href="#benchmark">Benchmark</a>
+          <a href="#pipeline">Pipeline</a>
+          <a href="#taxonomy">Taxonomy</a>
+          <a href="#results">Leaderboard</a>
+        </nav>
+        <button class="language-toggle" type="button" aria-label="Switch to Chinese" aria-pressed="false" title="切换至中文">中文</button>
+      </div>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="sr-only">Toggle navigation</span>
+        <span></span><span></span>
+      </button>
+    </header>
+
+    <main id="main-content">
+      <section class="edge-hero" aria-labelledby="hero-title">
+        <div class="hero-effect xl-evidence-field" aria-hidden="true">
+          <div class="xl-page xl-page-1"><i></i><i></i><i></i></div>
+          <div class="xl-page xl-page-2"><i></i><i></i><i></i></div>
+          <div class="xl-page xl-page-3 is-evidence"><i></i><i></i><i></i><b>p. 042</b></div>
+          <div class="xl-page xl-page-4"><i></i><i></i><i></i></div>
+          <div class="xl-page xl-page-5"><i></i><i></i><i></i></div>
+          <div class="xl-page xl-page-6"><i></i><i></i><i></i></div>
+          <div class="xl-page xl-page-7 is-evidence"><i></i><i></i><i></i><b>p. 904</b></div>
+          <div class="xl-page xl-page-8"><i></i><i></i><i></i></div>
+          <div class="xl-page xl-page-9"><i></i><i></i><i></i></div>
+          <div class="xl-scan"><span>evidence scan</span></div>
+          <div class="xl-field-readout"><strong>2,303</strong><span>pages</span><i></i><b>3 evidence hits</b></div>
+        </div>
+        <div class="hero-space" aria-hidden="true"></div>
+        <div class="hero-main">
+          <h1 id="hero-title">XL-DocBench</h1>
+          <p class="hero-tagline" data-copy="tagline">Benchmarking evidence-grounded extra-long document understanding.</p>
+          <div class="hero-resources" aria-label="Project resources">
+            <span class="resource-link" aria-disabled="true"><i data-lucide="file-text" aria-hidden="true"></i><span>Paper</span></span>
+            <span class="resource-link" aria-disabled="true"><i data-lucide="github" aria-hidden="true"></i><span>Code</span></span>
+            <span class="resource-link" aria-disabled="true"><i data-lucide="database" aria-hidden="true"></i><span>Dataset</span></span>
+          </div>
+          <p class="hero-authors">Hongchen Wei<sup>1,†,‡</sup>, Yuanzhe Wang<sup>2,†,‡</sup>, Bei Liu<sup>2,*</sup>, Yifan Yang<sup>2</sup>, Qi Dai<sup>2</sup>, Ruichun Ma<sup>2</sup>, Kai Qiu<sup>2</sup>, Yunsheng Li<sup>2</sup>, Dongdong Chen<sup>2</sup>, Chong Luo<sup>2</sup>, Zhenzhong Chen<sup>1</sup>, Baining Guo<sup>2</sup></p>
+          <p class="hero-affiliations"><span><sup>1</sup> Wuhan University</span><span><sup>2</sup> Microsoft</span><span>† Equal contribution</span><span>‡ Work done during an internship at MSRA</span><span>* Project leader</span></p>
+        </div>
+      </section>
+
+      <div class="page-layout">
+        <aside class="contents" aria-hidden="true"></aside>
+
+        <article class="article">
+          <section class="story-section" id="overview">
+            <h2 data-copy="overviewTitle">A human-verified benchmark for evidence-grounded reasoning across extra-long documents</h2>
+            <p class="section-lead" data-copy="overviewLead">Most document benchmarks test whether a model can answer. XL-DocBench also records where the answer comes from, what rule verifies it, and whether the available evidence is sufficient.</p>
+            <div class="feature-grid">
+              <article class="feature"><strong>1,519</strong><h3 data-copy="f1Title">Questions verified end to end</h3><p data-copy="f1Text">Every retained item is re-answered by experts with full access to the source documents.</p></article>
+              <article class="feature"><strong>2,303</strong><h3 data-copy="f2Title">Professional-scale contexts</h3><p data-copy="f2Text">The median context is 211 pages, while the longest multi-document context spans 2,303 pages.</p></article>
+              <article class="feature"><strong>72.6%</strong><h3 data-copy="f3Title">Evidence beyond one page</h3><p data-copy="f3Text">1,103 questions require evidence distributed across multiple pages.</p></article>
+              <article class="feature"><strong>12</strong><h3 data-copy="f4Title">Diagnostic reasoning types</h3><p data-copy="f4Text">Twelve labels separate retrieval, set tracking, rule following, and abstention failures.</p></article>
+            </div>
+            <div class="subsection">
+              <h3 data-copy="domainsTitle">Six professional domains, one evidence standard</h3>
+              <p data-copy="domainsLead">Select a domain to inspect its coverage in the final human-verified benchmark.</p>
+              <div class="domain-tabs" role="group" aria-label="Document domain">
+                <button class="is-active" type="button" data-domain="legal">Legal</button><button type="button" data-domain="finance">Finance</button><button type="button" data-domain="technical">Technical</button><button type="button" data-domain="medical">Medical</button><button type="button" data-domain="scientific">Scientific</button><button type="button" data-domain="narrative">Narrative</button>
+              </div>
+              <div class="domain-panel" aria-live="polite">
+                <div class="domain-stat"><strong id="domain-count">311</strong><span>questions</span></div>
+                <div class="domain-copy"><h4 id="domain-title">Legal &amp; Regulatory</h4><p id="domain-description"></p><div class="domain-examples" id="domain-examples"></div></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="story-section" id="evidence">
+            <h2 data-copy="evidenceTitle">Why page-level evidence matters</h2>
+            <p class="section-lead" data-copy="evidenceLead">The same wrong answer can come from very different system failures.</p>
+            <div class="split-explanation">
+              <div class="explanation-copy"><p data-copy="evidenceBody">A model may miss the required page, read the right page but ignore a table, combine only part of the support, or answer even though a required condition is absent. XL-DocBench stores evidence pages, supporting snippets, answer formats, and typed verification rules so these failures can be distinguished.</p></div>
+              <div class="evidence-loop" aria-label="Evidence-grounding loop">
+                <span data-copy="loopTitle">The evidence-grounding loop</span>
+                <div class="loop-step is-active"><b>1</b><div><h4 data-copy="loop1">Locate</h4><p data-copy="loop1Text">Search the complete document context.</p></div></div>
+                <div class="loop-step"><b>2</b><div><h4 data-copy="loop2">Inspect</h4><p data-copy="loop2Text">Read text, tables, charts, and figures.</p></div></div>
+                <div class="loop-step"><b>3</b><div><h4 data-copy="loop3">Combine</h4><p data-copy="loop3Text">Track all required support and exceptions.</p></div></div>
+                <div class="loop-step"><b>4</b><div><h4 data-copy="loop4">Verify</h4><p data-copy="loop4Text">Apply the typed rule or abstain.</p></div></div>
+                <div class="loop-footer"><i></i><span data-copy="loopFooter">Repeats across pages and related documents</span></div>
+              </div>
+            </div>
+          </section>
+
+          <section class="story-section" id="scale">
+            <h2 data-copy="scaleTitle">From one page to 2,303 pages</h2>
+            <p class="section-lead" data-copy="scaleLead">Document QA has grown longer, but XL-DocBench also increases evidence dispersion, multimodal support, and cross-document scope.</p>
+            <div class="scale-plot">
+              <div class="plot-header"><span>AVERAGE CONTEXT PAGES</span><span>2020 → 2026</span></div>
+              <div class="plot">
+                <svg viewBox="0 0 700 280" preserveAspectRatio="none" aria-label="Average context pages across document benchmarks">
+                  <defs><linearGradient id="scaleArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ad4a50" stop-opacity=".18"/><stop offset="1" stop-color="#ad4a50" stop-opacity="0"/></linearGradient></defs>
+                  <path class="plot-area" d="M45 263 C150 260 210 257 225 252 S360 230 385 218 S510 196 545 172 S635 68 675 25 L675 270 L45 270 Z"/>
+                  <path class="plot-line" pathLength="1" d="M45 263 C150 260 210 257 225 252 S360 230 385 218 S510 196 545 172 S635 68 675 25"/>
+                  <circle class="plot-point" cx="45" cy="263" r="5"/><circle class="plot-point" cx="225" cy="252" r="5"/><circle class="plot-point" cx="385" cy="218" r="5"/><circle class="plot-point" cx="545" cy="172" r="5"/><circle class="plot-point" cx="675" cy="25" r="8"/>
+                </svg>
+                <div class="plot-labels"><span><b>DocVQA</b><small>1.0</small></span><span><b>MP-DocVQA</b><small>8.3</small></span><span><b>MMLongBench</b><small>47.5</small></span><span><b>LongDocURL</b><small>85.6</small></span><span><b>XL-DocBench</b><small>297.1</small></span></div>
+              </div>
+              <div class="plot-callout"><div><strong>297.1</strong><span data-copy="scaleCall1">average context pages</span></div><div><strong>2,303</strong><span data-copy="scaleCall2">longest evaluation context</span></div><div><strong>51</strong><span data-copy="scaleCall3">questions over 1,000 pages</span></div></div>
+            </div>
+          </section>
+
+          <section class="story-section" id="construction">
+            <h2 data-copy="constructionTitle">Tree-guided synthesis, verified by 194 human experts</h2>
+            <p class="section-lead" data-copy="constructionLead">Models propose difficult candidates from document branches; people establish the final answer, evidence pages, supporting quotes, and verification rule.</p>
+            <figure class="paper-figure"><img src="assets/figures/pipeline.png" alt="XL-DocBench tree-guided construction and human verification pipeline"/><figcaption class="figure-caption">XL-DocBench construction pipeline. Page-level evidence in the released benchmark comes from human verification.</figcaption></figure>
+            <div class="pipeline-steps">
+              <article class="pipeline-step"><b>01</b><h3 data-copy="p1">Structure documents</h3><p data-copy="p1Text">Parse pages, text, tables, figures, and headings into a navigable tree.</p></article>
+              <article class="pipeline-step"><b>02</b><h3 data-copy="p2">Test branch dependency</h3><p data-copy="p2Text">Reject questions that remain answerable after a required branch is removed.</p></article>
+              <article class="pipeline-step"><b>03</b><h3 data-copy="p3">Refine and filter</h3><p data-copy="p3Text">Remove world-knowledge shortcuts, metadata leakage, weak support, and malformed answers.</p></article>
+              <article class="pipeline-step"><b>04</b><h3 data-copy="p4">Verify every item</h3><p data-copy="p4Text">Experts re-answer, mark exact pages and quotes, resolve ambiguity, and check the rule.</p></article>
+            </div>
+          </section>
+
+          <section class="story-section" id="findings">
+            <h2 data-copy="findingsTitle">Current systems still fail on more than half of XL-DocBench</h2>
+            <p class="section-lead" data-copy="findingsLead">The strongest evaluated pipeline reaches 44.0% overall accuracy. Long windows help, but evidence selection and set tracking remain binding constraints.</p>
+            <div class="result-headline">
+              <div class="big-score"><strong>44.0%</strong><span data-copy="bestLabel">best overall accuracy</span></div>
+              <div class="finding-list">
+                <article><b>1</b><h3 data-copy="find1">A long window is not enough</h3><p data-copy="find1Text">Models with the same 1M-token window still differ at the same OCR budget.</p></article>
+                <article><b>2</b><h3 data-copy="find2">Agents are not automatically better</h3><p data-copy="find2Text">With GPT-5.4, SimpleDoc reaches 44.0%, MDocAgent 35.0%, and DeepRead 32.2%.</p></article>
+                <article><b>3</b><h3 data-copy="find3">Set tracking remains difficult</h3><p data-copy="find3Text">Best ranking, coverage, and set-difference accuracy stays below 37%.</p></article>
+              </div>
+            </div>
+            <div class="result-bars" aria-label="Top systems by overall accuracy">
+              <div class="result-row best"><span>SimpleDoc + GPT-5.4</span><i><b style="--score:88%"></b></i><strong>44.0</strong></div>
+              <div class="result-row"><span>SimpleDoc + Opus 4.6</span><i><b style="--score:81.2%"></b></i><strong>40.6</strong></div>
+              <div class="result-row"><span>Claude Opus 4.6 OCR</span><i><b style="--score:79.6%"></b></i><strong>39.8</strong></div>
+              <div class="result-row"><span>SimpleDoc + GPT-5.2</span><i><b style="--score:76.6%"></b></i><strong>38.3</strong></div>
+              <div class="result-row"><span>GPT-5.4 OCR</span><i><b style="--score:74.6%"></b></i><strong>37.3</strong></div>
+            </div>
+          </section>
+
+          <section class="story-section" id="diagnostics">
+            <h2 data-copy="diagnosticsTitle">Same final accuracy, different failure modes</h2>
+            <p class="section-lead" data-copy="diagnosticsLead">Breakdowns by context length, evidence count, and evidence span reveal whether a system loses information because the input is long or because the required support is dispersed.</p>
+            <figure class="diagnostic-figure"><img src="assets/figures/experimental-diagnostics.png" alt="Accuracy by context length, evidence-page count, and evidence span"/><figcaption class="figure-caption">Accuracy under context and evidence pressure for all evaluated systems.</figcaption></figure>
+            <div class="diagnostic-notes">
+              <article><b>01</b><h3 data-copy="d1">Context pressure</h3><p data-copy="d1Text">Direct readers degrade as irrelevant pages grow, even before hard context limits bind.</p></article>
+              <article><b>02</b><h3 data-copy="d2">Evidence pressure</h3><p data-copy="d2Text">Questions requiring several support pages expose incomplete retrieval and set tracking.</p></article>
+              <article><b>03</b><h3 data-copy="d3">Span pressure</h3><p data-copy="d3Text">Evidence separated by hundreds of pages is harder to keep active and reconcile.</p></article>
+            </div>
+          </section>
+
+          <section class="story-section" id="dynamics">
+            <h2 data-copy="dynamicsTitle">Retrieval is not the same as a correct answer</h2>
+            <p class="section-lead" data-copy="dynamicsLead">Evidence-hit curves and answer-yield curves separate page-search failures from evidence-use and rule-following failures.</p>
+            <div class="figure-switcher">
+              <div class="chart-tabs" role="group" aria-label="Agent dynamics figure"><button class="is-active" type="button" data-figure="yield">Answer yield</button><button type="button" data-figure="retrieval">Evidence hit</button></div>
+              <div class="figure-stage"><figure class="is-active" data-figure-panel="yield"><img src="assets/figures/agent-answer-yield.png" alt="Agent answer yield over retrieval rounds"/></figure><figure data-figure-panel="retrieval"><img src="assets/figures/agent-retrieval-dynamics.png" alt="Agent evidence hit over retrieval rounds"/></figure></div>
+            </div>
+          </section>
+
+          <section class="story-section" id="cases">
+            <h2 data-copy="casesTitle">Inside a human-verified example</h2>
+            <p class="section-lead" data-copy="casesLead">Each case exposes the question, evidence scope, reasoning type, and expert-verified support rather than showing only a final answer.</p>
+            <div class="case-tabs" role="group" aria-label="Case studies"><button class="is-active" type="button" data-case="cross">Cross-document</button><button type="button" data-case="comparison">Comparison</button><button type="button" data-case="difference">Set difference</button><button type="button" data-case="unanswerable">Unanswerable</button><button type="button" data-case="compliance">Compliance</button></div>
+            <div class="case-stage">
+              <div class="case-copy"><div><span id="case-scope">Multiple PDFs</span><strong id="case-reasoning">Temporal</strong></div><div><h3 id="case-title">Cross-document temporal reasoning</h3><p id="case-description"></p></div></div>
+              <img class="case-image" id="case-image" src="assets/figures/cross-document-temporal.png" alt="Cross-document temporal reasoning case study"/>
+            </div>
+          </section>
+
+          <section class="story-section" id="leaderboard">
+            <h2 data-copy="leaderboardTitle">Benchmark leaderboard across 27 evaluated systems</h2>
+            <p class="section-lead" data-copy="leaderboardLead">Filter by system family or inspect the full twelve-type reasoning breakdown. All scores come from the same deterministic evaluator and expert-verified ground truth.</p>
+            <div class="leaderboard-tabs" role="group" aria-label="Leaderboard view"><button class="is-active" type="button" data-view="overall" data-copy="overall">Overall ranking</button><button type="button" data-view="detailed" data-copy="detailed">Full reasoning breakdown</button></div>
+            <div class="leaderboard-toolbar"><div class="leaderboard-filter" role="group" aria-label="System family"><button class="is-active" type="button" data-family="all" data-copy="all">All systems</button><button type="button" data-family="closed" data-copy="closed">Closed-source</button><button type="button" data-family="open" data-copy="open">Open-source</button><button type="button" data-family="agent" data-copy="agent">Agent pipelines</button></div></div>
+            <div class="table-wrap" tabindex="0"><table class="results-table" id="results-table"></table></div>
+            <p class="table-note" data-copy="tableNote">Best values in the selected view are highlighted in red; second-best values are blue. Failed, missing, and unparsable predictions count as incorrect.</p>
+          </section>
+        </article>
+      </div>
+    </main>
+
+    <footer class="edge-footer"><div class="edge-footer-inner"><span data-copy="footer">Measuring evidence-grounded reasoning in extra-long document understanding.</span><a href="#page-top" data-copy="back">Back to top</a></div></footer>
+
+    <main class="legacy-site" hidden>
+      <section class="hero academic-hero section-shell">
+        <div class="hero-copy reveal">
+          <p class="hero-kicker">XL-DOCBENCH · 2026</p>
+          <h1>Evidence-grounded reasoning across <em>thousands of pages.</em></h1>
+          <p class="hero-deck">A fully human-verified benchmark for finding, combining, and validating evidence in extra-long professional documents.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#benchmark">Explore the benchmark <span aria-hidden="true">↓</span></a>
+            <a class="button button-quiet" href="#results">View leaderboard <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-paperline">
+            <p class="hero-authors">Hongchen Wei<sup>1,†,‡</sup>, Yuanzhe Wang<sup>2,†,‡</sup>, Bei Liu<sup>2,*</sup>, Yifan Yang<sup>2</sup>, Qi Dai<sup>2</sup>, Ruichun Ma<sup>2</sup>, Kai Qiu<sup>2</sup>, Yunsheng Li<sup>2</sup>, Dongdong Chen<sup>2</sup>, Chong Luo<sup>2</sup>, Zhenzhong Chen<sup>1</sup>, Baining Guo<sup>2</sup></p>
+            <p class="hero-affiliations"><span><sup>1</sup> Wuhan University</span><span><sup>2</sup> Microsoft</span><span>† Equal contribution</span><span>* Project leader</span></p>
+          </div>
+        </div>
+        <div class="hero-scale" aria-label="XL-DocBench benchmark scale">
+          <div class="scale-copy"><span>CONTEXT SCALE</span><strong>2,303</strong><p>pages in the longest evaluation context</p></div>
+          <div class="scale-stack" aria-hidden="true">
+            <i style="--page:1"></i><i style="--page:2"></i><i style="--page:3"></i><i style="--page:4"></i><i style="--page:5"></i><i style="--page:6"></i><i style="--page:7"></i><i style="--page:8"></i><i style="--page:9"></i><i style="--page:10"></i><i style="--page:11"></i><i style="--page:12"></i>
+          </div>
+          <div class="scale-trace"><span>1 page</span><i><b></b></i><span>2,303 pages</span></div>
+        </div>
+      </section>
+
+      <section class="abstract-section" id="benchmark">
+        <div class="section-shell benchmark-opening reveal">
+          <p class="section-overline">A BENCHMARK BUILT FOR REAL DOCUMENT WORK</p>
+          <h2>Long context is not enough.<br /><em>Systems must find the right evidence.</em></h2>
+          <p class="opening-statement">Professional questions depend on policies, exceptions, tables, charts, and repeated measurements scattered across long files. XL-DocBench makes every answer auditable with expert-annotated evidence pages and typed verification rules.</p>
+          <div class="opening-facts">
+            <article><strong>1,519</strong><h3>Human-verified questions</h3><p>Every retained item is re-answered and grounded by experts.</p></article>
+            <article><strong>72.6%</strong><h3>Cross-page reasoning</h3><p>1,103 questions require evidence from multiple pages.</p></article>
+            <article><strong>36.6%</strong><h3>Multimodal evidence</h3><p>Tables, charts, and figures are required, not decorative.</p></article>
+            <article><strong>194</strong><h3>Human experts</h3><p>Page support, answer rules, and ambiguity are checked manually.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="evidence-loop-section">
+        <div class="section-shell story-heading reveal">
+          <p class="section-overline">WHY EVIDENCE-GROUNDED EVALUATION MATTERS</p>
+          <h2>One answer can hide<br /><em>four different failures.</em></h2>
+          <p>A system can miss the right page, ignore part of the evidence, apply the wrong rule, or answer when support is absent. Final-answer accuracy alone cannot tell these failures apart.</p>
+        </div>
+        <div class="section-shell evidence-loop reveal" id="evidence-loop" data-loop-step="0">
+          <header><span>THE EVIDENCE-GROUNDING LOOP</span><b>REPEATS ACROSS PAGES AND DOCUMENTS</b></header>
+          <div class="loop-canvas">
+            <div class="loop-query"><small>QUESTION</small><p>Which entity satisfies every requirement and exception?</p></div>
+            <div class="loop-pages" aria-hidden="true">
+              <span class="loop-page page-one"><b>p. 042</b><i></i><i></i><mark></mark></span>
+              <span class="loop-page page-two"><b>p. 187</b><i></i><i></i><mark></mark></span>
+              <span class="loop-page page-three"><b>p. 904</b><i></i><i></i><mark></mark></span>
+            </div>
+            <svg class="loop-path" viewBox="0 0 1000 330" preserveAspectRatio="none" aria-hidden="true"><path d="M170 170 C290 30 430 40 505 160 S735 300 850 155"/></svg>
+            <div class="loop-rule"><small>TYPED RULE</small><p>All required conditions must hold; explicit exceptions override defaults.</p></div>
+            <div class="loop-verdict"><span>VERIFIED</span><strong>Entity A</strong><p>3 evidence pages · rule satisfied</p></div>
+          </div>
+          <div class="loop-steps" role="group" aria-label="Evidence-grounding loop steps">
+            <button class="is-active" type="button" data-loop-target="0" aria-pressed="true"><b>1</b><span>Locate</span><small>Search the full context</small></button>
+            <button type="button" data-loop-target="1" aria-pressed="false"><b>2</b><span>Inspect</span><small>Read multimodal pages</small></button>
+            <button type="button" data-loop-target="2" aria-pressed="false"><b>3</b><span>Verify</span><small>Apply the typed rule</small></button>
+            <button type="button" data-loop-target="3" aria-pressed="false"><b>4</b><span>Diagnose</span><small>Attribute the failure</small></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="scale-story-section">
+        <div class="section-shell scale-story reveal">
+          <div class="story-heading">
+            <p class="section-overline">DOCUMENT QA, AT PROFESSIONAL SCALE</p>
+            <h2>From one page<br /><em>to hundreds.</em></h2>
+            <p>Prior benchmarks made document QA longer. XL-DocBench moves to professional contexts while also increasing cross-page, cross-document, multimodal, and unanswerable coverage.</p>
+          </div>
+          <div class="scale-chart" aria-label="Average context pages across document understanding benchmarks">
+            <div class="scale-axis"><span>AVERAGE CONTEXT PAGES</span><span>0</span><span>100</span><span>200</span><span>300</span></div>
+            <div class="scale-row"><span><b>DocVQA</b><small>2020</small></span><i><em style="--bar:.34%"></em></i><strong>1.0</strong></div>
+            <div class="scale-row"><span><b>MP-DocVQA</b><small>2022</small></span><i><em style="--bar:2.8%"></em></i><strong>8.3</strong></div>
+            <div class="scale-row"><span><b>MMLongBench-Doc</b><small>2024</small></span><i><em style="--bar:16%"></em></i><strong>47.5</strong></div>
+            <div class="scale-row"><span><b>LongDocURL</b><small>2025</small></span><i><em style="--bar:28.8%"></em></i><strong>85.6</strong></div>
+            <div class="scale-row scale-row-ours"><span><b>XL-DocBench</b><small>2026</small></span><i><em style="--bar:100%"></em></i><strong>297.1</strong></div>
+            <p><b>3.5×</b> longer on average than the closest prior benchmark <span>·</span> <b>2,303</b> pages at maximum</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo-video-section" aria-label="XL-DocBench product demo video" hidden>
+        <div class="section-shell demo-video-layout">
+          <div class="demo-video-intro">
+            <p class="eyebrow"><span></span> 25-second benchmark story</p>
+            <h2>Why evidence-grounded<br /><em>extra-long document understanding?</em></h2>
+          </div>
+
+          <div class="demo-video" id="demo-video" aria-label="Six-scene XL-DocBench product animation">
+            <div class="demo-ambient" aria-hidden="true"><i></i><i></i><i></i></div>
+            <header class="demo-hud">
+              <span>XL-DOCBENCH / PRODUCT DEMO</span>
+              <span class="demo-time" id="demo-time">01 / 06 · MOTIVATION</span>
+            </header>
+
+            <div class="demo-scenes">
+              <article class="demo-scene demo-scene-problem is-active" data-scene="0">
+                <div class="demo-copy">
+                  <span class="demo-kicker">REAL-WORLD DOCUMENT WORK</span>
+                  <h3>Critical evidence is buried across <em>thousands of pages.</em></h3>
+                  <p>Annual reports, regulations, clinical guidelines, and technical manuals rarely fit on one page—or in one document.</p>
+                </div>
+                <div class="demo-doc-tower" aria-hidden="true">
+                  <div class="demo-doc-sheet sheet-a"><b>ANNUAL REPORT</b><span>847 pages</span><i></i><i></i><i></i></div>
+                  <div class="demo-doc-sheet sheet-b"><b>REGULATION</b><span>1,204 pages</span><i></i><i></i><i></i></div>
+                  <div class="demo-doc-sheet sheet-c"><b>TECHNICAL MANUAL</b><span>2,303 pages</span><i></i><i></i><i></i></div>
+                  <div class="demo-page-counter"><strong>2,303</strong><span>pages to search</span></div>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-gap" data-scene="1">
+                <div class="demo-evolution-heading">
+                  <span class="demo-kicker">THE BENCHMARK LANDSCAPE</span>
+                  <h3>Document QA is getting longer.<br /><em>But length alone is not enough.</em></h3>
+                </div>
+                <div class="demo-evolution-chart">
+                  <div class="demo-axis-title">AVERAGE CONTEXT PAGES</div>
+                  <svg viewBox="0 0 900 325" preserveAspectRatio="none" aria-label="Average context pages across document understanding benchmarks">
+                    <defs>
+                      <linearGradient id="evolutionArea" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0" stop-color="#7f9873" stop-opacity=".34" />
+                        <stop offset="1" stop-color="#7f9873" stop-opacity="0" />
+                      </linearGradient>
+                      <linearGradient id="evolutionLine" x1="0" y1="0" x2="1" y2="0">
+                        <stop offset="0" stop-color="#688276" />
+                        <stop offset=".72" stop-color="#7f9873" />
+                        <stop offset="1" stop-color="#c75b3d" />
+                      </linearGradient>
+                    </defs>
+                    <g class="demo-chart-grid">
+                      <line x1="55" y1="260" x2="855" y2="260" /><line x1="55" y1="205" x2="855" y2="205" />
+                      <line x1="55" y1="150" x2="855" y2="150" /><line x1="55" y1="95" x2="855" y2="95" />
+                      <line x1="55" y1="40" x2="855" y2="40" />
+                    </g>
+                    <path class="demo-evolution-area" d="M75 255 C155 252 190 249 245 245 S375 220 420 210 S545 178 600 164 S710 125 825 48 L825 260 L75 260 Z" />
+                    <path class="demo-evolution-line" pathLength="1" d="M75 255 C155 252 190 249 245 245 S375 220 420 210 S545 178 600 164 S710 125 825 48" />
+                    <g class="demo-chart-points">
+                      <circle cx="75" cy="255" r="5" /><circle cx="245" cy="245" r="5" /><circle cx="420" cy="210" r="5" />
+                      <circle cx="600" cy="164" r="5" /><circle class="demo-xl-point" cx="825" cy="48" r="9" />
+                    </g>
+                    <g class="demo-chart-values">
+                      <text x="75" y="239">1.0</text><text x="245" y="229">8.3</text><text x="420" y="194">47.5</text>
+                      <text x="600" y="148">85.6</text><text class="demo-xl-value" x="825" y="27">297.1</text>
+                    </g>
+                  </svg>
+                  <div class="demo-chart-labels">
+                    <span>DocVQA<small>2020</small></span><span>MP-DocVQA<small>2022</small></span><span>MMLongBench-Doc<small>2024</small></span>
+                    <span>LongDocURL<small>2025</small></span><span class="demo-xl-label">XL-DocBench<small>2026</small></span>
+                  </div>
+                  <div class="demo-xl-callout"><span>3.5×</span> longer than the closest prior benchmark</div>
+                </div>
+                <div class="demo-capability-rail">
+                  <span class="demo-capability-title">AND EVALUATES</span>
+                  <div class="demo-capability"><b>72.6%</b><span>Cross-page</span></div>
+                  <div class="demo-capability"><b>✓</b><span>Cross-document</span></div>
+                  <div class="demo-capability"><b>TXT · TAB · C · I</b><span>Multimodal</span></div>
+                  <div class="demo-capability"><b>✓</b><span>Unanswerable</span></div>
+                  <div class="demo-capability"><b>2.30</b><span>Evidence pages</span></div>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-retrieval" data-scene="2">
+                <div class="demo-retrieval-copy">
+                  <span class="demo-kicker">RETRIEVE → READ → SYNTHESIZE</span>
+                  <h3>Find the evidence.<br /><em>Not just the page.</em></h3>
+                  <p>Search across a document collection, inspect candidate pages, extract multimodal support, and combine only the evidence required by the question.</p>
+                </div>
+
+                <div class="demo-retrieval-stage">
+                  <div class="demo-query-bar"><i></i><span>Which entity satisfies every requirement and exception?</span><b>SEARCHING 331 DOCUMENTS</b></div>
+                  <div class="demo-document-universe" aria-label="Document collection under retrieval">
+                    <span class="demo-mini-doc"><b>PDF 01</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 02</b><i></i><i></i></span>
+                    <span class="demo-mini-doc demo-hit demo-hit-text"><b>PDF 03 · p.42</b><i></i><i></i><em>TXT</em></span>
+                    <span class="demo-mini-doc"><b>PDF 04</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 05</b><i></i><i></i></span>
+                    <span class="demo-mini-doc demo-hit demo-hit-table"><b>PDF 06 · p.187</b><i></i><i></i><em>TAB</em></span>
+                    <span class="demo-mini-doc"><b>PDF 07</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 08</b><i></i><i></i></span>
+                    <span class="demo-mini-doc"><b>PDF 09</b><i></i><i></i></span><span class="demo-mini-doc demo-hit demo-hit-chart"><b>PDF 10 · p.904</b><i></i><i></i><em>CHART</em></span>
+                    <span class="demo-mini-doc"><b>PDF 11</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 12</b><i></i><i></i></span>
+                    <span class="demo-mini-doc demo-hit demo-hit-image"><b>PDF 13 · p.1,208</b><i></i><i></i><em>IMAGE</em></span>
+                    <span class="demo-mini-doc"><b>PDF 14</b><i></i><i></i></span><span class="demo-mini-doc"><b>PDF 15</b><i></i><i></i></span>
+                    <div class="demo-retrieval-scan" aria-hidden="true"></div>
+                  </div>
+
+                  <div class="demo-evidence-tray" aria-label="Retrieved multimodal evidence">
+                    <span class="demo-tray-label">RETRIEVED EVIDENCE</span>
+                    <article class="demo-evidence-piece evidence-text"><b>TEXT · p.42</b><p>Condition applies to all qualified entities except...</p><i></i></article>
+                    <article class="demo-evidence-piece evidence-table"><b>TABLE · p.187</b><div><span>A</span><span>82</span><span>B</span><span>74</span></div><i></i></article>
+                    <article class="demo-evidence-piece evidence-chart"><b>CHART · p.904</b><div><i></i><i></i><i></i><i></i></div><span>FY21–FY24</span></article>
+                    <article class="demo-evidence-piece evidence-image"><b>IMAGE · p.1,208</b><div><i></i><i></i><i></i></div><span>Exception flow</span></article>
+                  </div>
+
+                  <div class="demo-synthesis-core">
+                    <span>SYNTHESIZE</span><i></i><b>4 / 4</b>
+                  </div>
+                  <div class="demo-generated-answer"><span>VERIFIED ANSWER</span><strong>Entity A</strong><p>All required evidence found · exception checked</p></div>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-groundtruth" data-scene="3">
+                <div class="demo-groundtruth-copy">
+                  <span class="demo-kicker">GROUND TRUTH YOU CAN AUDIT</span>
+                  <h3>Every answer comes with the evidence trail.</h3>
+                  <ul><li>Expert-annotated evidence pages</li><li>Evidence quotes and snippets</li><li>Typed verification rules</li><li>Answer format and aliases</li></ul>
+                </div>
+                <div class="demo-groundtruth-visual">
+                  <img src="assets/figures/pipeline.png" alt="XL-DocBench human-verified construction pipeline" />
+                  <div class="demo-expert-badge"><strong>194</strong><span>human experts</span></div>
+                  <div class="demo-verified-stamp"><b>✓</b><span>FULLY<br />VERIFIED</span></div>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-diagnostics" data-scene="4">
+                <div class="demo-diagnostic-copy"><span class="demo-kicker">NOT JUST ONE SCORE</span><h3>Diagnose where systems fail.</h3><p>12 reasoning types separate retrieval, set tracking, rule following, consistency, and abstention.</p></div>
+                <div class="demo-reasoning-orbit" aria-label="Twelve reasoning types">
+                  <span>Comparison</span><span>Reference</span><span>Ranking</span><span>Coverage</span><span>Reconciliation</span><span>Set difference</span><span>Unanswerable</span><span>Temporal</span><span>Compliance</span><span>Counterfactual</span><span>Aggregation</span><span>Consistency</span>
+                  <strong>12</strong>
+                </div>
+              </article>
+
+              <article class="demo-scene demo-scene-result" data-scene="5">
+                <div class="demo-main-table-viz" aria-label="Top systems from the main results table">
+                  <div class="demo-ranking-head"><span>MAIN RESULTS · OVERALL ACCURACY</span><b>0</b><b>10</b><b>20</b><b>30</b><b>40</b><b>50%</b></div>
+                  <div class="demo-ranking-row rank-first">
+                    <span class="demo-rank">01</span><div class="demo-system"><b>SimpleDoc + GPT-5.4</b><i>AGENT</i></div><div class="demo-score-track"><i style="--score:88%"></i></div><strong>44.0</strong>
+                  </div>
+                  <div class="demo-ranking-row">
+                    <span class="demo-rank">02</span><div class="demo-system"><b>SimpleDoc + Claude Opus 4.6</b><i>AGENT</i></div><div class="demo-score-track"><i style="--score:81.2%"></i></div><strong>40.6</strong>
+                  </div>
+                  <div class="demo-ranking-row rank-ocr">
+                    <span class="demo-rank">03</span><div class="demo-system"><b>Claude Opus 4.6</b><i>OCR</i></div><div class="demo-score-track"><i style="--score:79.6%"></i></div><strong>39.8</strong>
+                  </div>
+                  <div class="demo-ranking-row">
+                    <span class="demo-rank">04</span><div class="demo-system"><b>SimpleDoc + GPT-5.2</b><i>AGENT</i></div><div class="demo-score-track"><i style="--score:76.6%"></i></div><strong>38.3</strong>
+                  </div>
+                  <div class="demo-ranking-row rank-ocr">
+                    <span class="demo-rank">05</span><div class="demo-system"><b>GPT-5.4</b><i>OCR</i></div><div class="demo-score-track"><i style="--score:74.6%"></i></div><strong>37.3</strong>
+                  </div>
+                  <div class="demo-hard-skills">
+                    <span>BEST ACCURACY ON DIFFICULT REASONING TYPES</span>
+                    <div><b>Ranking</b><i><em style="--skill:71.6%"></em></i><strong>35.8</strong></div>
+                    <div><b>Coverage</b><i><em style="--skill:61.6%"></em></i><strong>30.8</strong></div>
+                    <div><b>Set difference</b><i><em style="--skill:72.8%"></em></i><strong>36.4</strong></div>
+                  </div>
+                </div>
+                <div class="demo-result-copy"><span class="demo-kicker">THE CHALLENGE REMAINS OPEN</span><strong>44.0%</strong><h3>best overall accuracy</h3><p>Even the strongest evaluated system fails on more than half of XL-DocBench.</p></div>
+                <div class="demo-end-card"><span>XL-DOCBENCH</span><h3>Find the evidence.<br />Apply the rule.<br /><em>Know when to abstain.</em></h3><p>xl-docbench.github.io/xl-docbench/</p></div>
+              </article>
+            </div>
+
+            <footer class="demo-controls">
+              <button class="demo-control" id="demo-toggle" type="button" aria-label="Pause demo">Ⅱ</button>
+              <div class="demo-progress" id="demo-progress" aria-label="Demo scene progress"></div>
+              <button class="demo-replay" id="demo-replay" type="button" aria-label="Replay product demo">↻ Replay</button>
+            </footer>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell benchmark-section" id="landscape">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Benchmark positioning</p>
+          <div class="heading-grid">
+            <h2>Page-level evidence for<br /><em>extra-long document reasoning.</em></h2>
+            <p>
+              XL-DocBench evaluates long-document systems under realistic document length, evidence dispersion, multimodal support, and explicit answer-verification conditions.
+            </p>
+          </div>
+        </div>
+
+        <div class="benchmark-specification reveal">
+          <article>
+            <span>DOCUMENTS</span>
+            <h3>331 public professional documents</h3>
+            <p>Legal, finance, technical, medical, scientific, and narrative sources with contexts ranging from local documents to multi-PDF series.</p>
+          </article>
+          <article>
+            <span>ANNOTATION</span>
+            <h3>Expert-verified evidence records</h3>
+            <p>Every retained item includes answer support from annotated pages and quotes, together with an answer format and typed verification rule.</p>
+          </article>
+          <article>
+            <span>TASK CONDITIONS</span>
+            <h3>Evidence spread and answer support</h3>
+            <p>Multi-page, multimodal, cross-document, and <code>None</code>-answer examples expose distinct long-document failure modes.</p>
+          </article>
+        </div>
+
+        <div class="stat-grid reveal" aria-label="Dataset statistics">
+          <article><strong>72.6%</strong><span>multi-page evidence</span></article>
+          <article><strong>36.6%</strong><span>table, chart, or image evidence</span></article>
+          <article><strong>10.9%</strong><span>cross-document questions</span></article>
+          <article><strong>14.4%</strong><span><code>None</code>-answer cases</span></article>
+          <article><strong>6</strong><span>professional domains</span></article>
+          <article><strong>12</strong><span>diagnostic reasoning types</span></article>
+        </div>
+
+        <div class="benchmark-table-intro reveal">
+          <div>
+            <p class="benchmark-table-kicker">TABLE 01 · BENCHMARK LANDSCAPE</p>
+            <h3>Scale, evidence, and scope.</h3>
+          </div>
+          <p class="benchmark-table-description">XL-DocBench jointly increases context scale, evidence spread, cross-document scope, and answer-support diagnostics.</p>
+        </div>
+        <div class="benchmark-comparison reveal" aria-label="Comparison of XL-DocBench and prior document understanding benchmarks">
+          <div class="comparison-table-wrap" tabindex="0">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th scope="col">Benchmark</th>
+                  <th scope="col">Release</th>
+                  <th scope="col">Pages</th>
+                  <th scope="col">Tokens</th>
+                  <th scope="col">Cross-page</th>
+                  <th scope="col">Cross-doc.</th>
+                  <th scope="col">Unans.</th>
+                  <th scope="col">Source</th>
+                  <th scope="col">Avg. evidence pages</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>DocVQA</td><td>2020-07</td><td>1.0</td><td>151.5</td><td>×</td><td>×</td><td>×</td><td>TXT/L/C/TAB/I</td><td>1.0</td></tr>
+                <tr><td>ChartQA</td><td>2022-03</td><td>1.0</td><td>236.9</td><td>×</td><td>×</td><td>×</td><td>C</td><td>1.0</td></tr>
+                <tr><td>InfoVQA</td><td>2021-04</td><td>1.2</td><td>288.0</td><td>×</td><td>×</td><td>×</td><td>L/C/TAB/I</td><td>1.0</td></tr>
+                <tr><td>TAT-QA</td><td>2022-07</td><td>1.1</td><td>577.0</td><td>×</td><td>×</td><td>×</td><td>TXT/TAB</td><td>1.0</td></tr>
+                <tr><td>VisualWebBench</td><td>2024-04</td><td>1.0</td><td>452.4</td><td>×</td><td>×</td><td>×</td><td>L/I</td><td>1.0</td></tr>
+                <tr><td>MP-DocVQA</td><td>2022-12</td><td>8.3</td><td>2,026.6</td><td>×</td><td>×</td><td>×</td><td>TXT/L/C/TAB/I</td><td>1.0</td></tr>
+                <tr><td>DUDE</td><td>2023-05</td><td>5.7</td><td>1,831.5</td><td>✓ (*)</td><td>×</td><td>✓ (*)</td><td>TXT/L/C/TAB/I</td><td>—</td></tr>
+                <tr><td>SlideVQA</td><td>2023-01</td><td>20.0</td><td>2,030.5</td><td>✓ (*)</td><td>×</td><td>×</td><td>TXT/L/C/TAB/I</td><td>—</td></tr>
+                <tr><td>MMLongBench-Doc</td><td>2024-07</td><td>47.5</td><td>21,214.1</td><td>✓ (33.0%)</td><td>×</td><td>✓</td><td>TXT/L/C/TAB/I</td><td>1.88</td></tr>
+                <tr><td>LongDocURL</td><td>2025-07</td><td>85.6</td><td>43,622.6</td><td>✓ (52.9%)</td><td>×</td><td>✓</td><td>TXT/L/TAB/I</td><td>1.53</td></tr>
+                <tr class="comparison-ours"><td>XL-DocBench</td><td>2026-04</td><td>297.1</td><td>227,463.2</td><td>✓ (72.6%)</td><td>✓</td><td>✓</td><td>TXT/TAB/C/I</td><td>2.30</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="comparison-table-note">TXT/L/C/TAB/I: text, layout, chart, table, and image. (*) indicates the benchmark includes the capability but does not report the corresponding percentage.</p>
+        </div>
+      </section>
+
+      <section class="section-shell visual-section" id="pipeline">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Construction methodology</p>
+          <div class="heading-grid">
+            <h2>Tree-guided construction<br /><em>and human verification.</em></h2>
+            <p>
+              Candidate generation operates over document-tree branches; human experts establish the final page-level evidence and verification labels.
+            </p>
+          </div>
+        </div>
+
+        <div class="figure-layout reveal">
+          <div class="figure-panel figure-large">
+            <div class="figure-panel-head"><span>FIG. 01</span><span>Construction pipeline</span></div>
+            <img class="figure-image" src="assets/figures/pipeline.png" alt="XL-DocBench construction pipeline" />
+          </div>
+          <ol class="pipeline-list">
+            <li><b>01</b><div><h3>Structure documents</h3><p>Parse PDFs into pages, text, tables, figures, and hierarchical trees.</p></div></li>
+            <li><b>02</b><div><h3>Test branch dependency</h3><p>Keep candidates only when removing a selected branch removes necessary support.</p></div></li>
+            <li><b>03</b><div><h3>Refine and filter</h3><p>Reject local shortcuts, metadata leakage, malformed answers, and weak evidence.</p></div></li>
+            <li><b>04</b><div><h3>Verify with experts</h3><p>Experts re-answer, mark pages and quotes, and check the typed rule.</p></div></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section-shell dataset-design-section" id="taxonomy">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Dataset design and annotation</p>
+          <div class="heading-grid">
+            <h2>Reasoning labels, annotation records,<br /><em>and dataset statistics.</em></h2>
+            <p>Each example combines a reasoning label, evidence-grounded verification record, and context-level statistics for diagnostic evaluation.</p>
+          </div>
+        </div>
+
+        <div class="dataset-design-top reveal">
+          <div class="dataset-subsection taxonomy-copy">
+            <p class="subsection-kicker">2.1 REASONING TAXONOMY</p>
+            <div class="tier"><span>T1</span><div><h3>Core</h3><p>Comparison · Reference chain</p></div></div>
+            <div class="tier"><span>T2</span><div><h3>Structural</h3><p>Ranking · Coverage · Reconciliation</p></div></div>
+            <div class="tier"><span>T3</span><div><h3>Advanced</h3><p>Set difference · Unanswerable · Temporal · Compliance · Counterfactual · Aggregation · Consistency</p></div></div>
+            <p class="taxonomy-note">The labels separate evidence localization, set tracking, rule following, and abstention errors.</p>
+          </div>
+          <div class="figure-panel taxonomy-figure">
+            <div class="figure-panel-head"><span>FIG. 02</span><span>Reasoning labels and evidence structure</span></div>
+            <img class="figure-image" src="assets/figures/reasoning-labels.png" alt="Distribution of reasoning labels and evidence structure across XL-DocBench" />
+          </div>
+        </div>
+
+        <div class="dataset-records reveal">
+          <div class="dataset-subsection-copy">
+            <p class="subsection-kicker">2.2 ANNOTATION RECORD</p>
+            <p>Each retained example pairs its answer with evidence pages, evidence snippets, an answer format, and a typed verification rule.</p>
+          </div>
+          <div class="evidence-grid">
+            <article class="evidence-card page-card"><span class="small-label">EVIDENCE</span><b>Pages 83 · 217 · 891</b><p>Traceable sources reveal whether a model found all required support.</p></article>
+            <article class="evidence-card rule-card"><span class="small-label">RULE</span><b>Reconcile values under a stated condition.</b><p>Verification reflects the reasoning operation, not only the answer surface.</p></article>
+            <article class="evidence-card answer-example"><span class="small-label">ANSWER</span><b>Verified and normalized</b><p>Unsupported answers are measured explicitly with <code>None</code>-answer cases.</p></article>
+          </div>
+        </div>
+
+        <div class="dataset-statistics reveal">
+          <div class="dataset-subsection-copy">
+            <p class="subsection-kicker">2.3 DATASET STATISTICS</p>
+            <p>Context length, evidence span, evidence count, modality, and answer format describe distinct forms of document-level difficulty.</p>
+          </div>
+          <div class="figure-panel stats-figure">
+            <div class="figure-panel-head"><span>FIG. 03</span><span>Dataset composition</span></div>
+            <img class="figure-image" src="assets/figures/dataset-composition.png" alt="XL-DocBench context, evidence span, modality, and answer-format composition" />
+          </div>
+        </div>
+      </section>
+
+      <section class="results-section" id="results">
+        <div class="section-shell">
+          <div class="section-heading light reveal">
+            <p class="eyebrow"><span></span> XL-DocBench leaderboard</p>
+            <div class="heading-grid">
+              <h2>Evaluation results and<br /><em>system comparison.</em></h2>
+              <p>Direct long-context readers and PDF-based agents are evaluated against the same expert-verified answers and typed verification rules.</p>
+            </div>
+          </div>
+          <div class="result-story reveal">
+            <div class="result-ceiling"><span>BEST OVERALL ACCURACY</span><strong>44.0%</strong><p>SimpleDoc + GPT-5.4 still fails on more than half of the human-verified questions.</p></div>
+            <div class="result-observations">
+              <article><b>01</b><h3>A long window is not enough.</h3><p>GPT-5.4 and Claude Opus 4.6 both support 1M tokens, yet differ at the same OCR budget. Systems must still suppress irrelevant pages and keep the right evidence active.</p></article>
+              <article><b>02</b><h3>Agents are not automatically better.</h3><p>With GPT-5.4, SimpleDoc reaches 44.0%, while MDocAgent reaches 35.0% and DeepRead 32.2%. Retrieval quality determines whether the interface helps.</p></article>
+              <article><b>03</b><h3>Set tracking remains the bottleneck.</h3><p>Best ranking, coverage, and set-difference accuracy remains only 35.8%, 30.8%, and 36.4%.</p></article>
+            </div>
+          </div>
+          <div class="leaderboard reveal">
+            <div class="leaderboard-toolbar">
+              <div>
+                <p class="leaderboard-kicker">PRIMARY METRIC · RULE-BASED ACCURACY</p>
+                <p class="leaderboard-description">Scores are percentages. Failed, missing, and unparsable predictions are counted as incorrect.</p>
+              </div>
+              <div class="leaderboard-switch" role="group" aria-label="Leaderboard view">
+                <button class="leaderboard-view is-active" type="button" data-leaderboard-view="overall" aria-pressed="true">Overall ranking</button>
+                <button class="leaderboard-view" type="button" data-leaderboard-view="detailed" aria-pressed="false">Full reasoning breakdown</button>
+              </div>
+            </div>
+            <div class="leaderboard-filterbar">
+              <div class="leaderboard-filter-group" role="group" aria-label="Model family filter">
+                <span>MODEL FAMILY</span>
+                <button class="leaderboard-filter is-active" type="button" data-filter-family="all" aria-pressed="true">All systems</button>
+                <button class="leaderboard-filter" type="button" data-filter-family="closed" aria-pressed="false">Closed-source</button>
+                <button class="leaderboard-filter" type="button" data-filter-family="open" aria-pressed="false">Open-source</button>
+                <button class="leaderboard-filter" type="button" data-filter-family="agent" aria-pressed="false">Agent</button>
+              </div>
+              <div class="leaderboard-filter-group" role="group" aria-label="Input interface filter">
+                <span>INPUT</span>
+                <button class="leaderboard-filter is-active" type="button" data-filter-input="all" aria-pressed="true">All inputs</button>
+                <button class="leaderboard-filter" type="button" data-filter-input="OCR" aria-pressed="false">OCR</button>
+                <button class="leaderboard-filter" type="button" data-filter-input="Img" aria-pressed="false">Page image</button>
+                <button class="leaderboard-filter" type="button" data-filter-input="Agent" aria-pressed="false">Agent / PDF</button>
+              </div>
+            </div>
+            <div class="leaderboard-table-wrap" tabindex="0">
+              <table class="leaderboard-table" id="leaderboard-table" aria-live="polite"></table>
+            </div>
+            <p class="leaderboard-note" id="leaderboard-note"></p>
+          </div>
+          <div class="leaderboard-diagnostic reveal">
+            <div class="leaderboard-diagnostic-copy">
+              <span>DIAGNOSTIC VIEW</span>
+              <p>Aggregate rank alone hides context-length, evidence-count, and evidence-span failure modes.</p>
+            </div>
+            <div class="figure-panel dark-panel">
+              <div class="figure-panel-head"><span>FIG. 04</span><span>Accuracy under context and evidence pressure</span></div>
+              <img class="figure-image" src="assets/figures/experimental-diagnostics.png" alt="Accuracy diagnostics by context length, evidence-page count, and evidence span" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell dynamics-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Retrieval analysis</p>
+          <div class="heading-grid">
+            <h2>Evidence retrieval and<br /><em>answer-yield dynamics.</em></h2>
+            <p>Evidence-hit dynamics separate page-search failures from evidence-use and rule-following failures.</p>
+          </div>
+        </div>
+        <div class="dynamics-grid reveal">
+          <div class="figure-panel compact-panel">
+            <div class="figure-panel-head"><span>FIG. 05</span><span>Agent answer yield</span></div>
+            <img class="figure-image" src="assets/figures/agent-answer-yield.png" alt="Agent answer yield as retrieval rounds increase" />
+          </div>
+          <div class="figure-panel compact-panel">
+            <div class="figure-panel-head"><span>FIG. 06</span><span>Evidence-hit dynamics</span></div>
+            <img class="figure-image" src="assets/figures/agent-retrieval-dynamics.png" alt="Evidence hit rate as the number of retrieved and read page rounds increases" />
+          </div>
+        </div>
+      </section>
+
+      <section class="section-shell cases-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow"><span></span> Case studies</p>
+          <div class="heading-grid">
+            <h2>Human-verified evidence<br /><em>case studies.</em></h2>
+            <p>These records make retrieval, evidence-use, and rule-following distinctions directly inspectable.</p>
+          </div>
+        </div>
+        <div class="case-layout reveal">
+          <div class="case-copy">
+            <span class="case-kicker">SELECTED EXAMPLES</span>
+            <h3 id="case-title">Cross-document temporal reasoning</h3>
+            <p id="case-description">This example requires linking evidence across related documents rather than extracting a local phrase from a single page.</p>
+            <dl>
+              <div><dt>Evidence scope</dt><dd id="case-scope">Multiple PDFs</dd></div>
+              <div><dt>Reasoning type</dt><dd id="case-reasoning">Temporal</dd></div>
+              <div><dt>Ground truth</dt><dd id="case-ground-truth">Expert verified</dd></div>
+            </dl>
+            <div class="case-tabs" role="group" aria-label="Case-study selector">
+              <button class="case-tab is-active" type="button" data-case="cross-document-temporal" aria-pressed="true">Cross-doc temporal</button>
+              <button class="case-tab" type="button" data-case="comparison" aria-pressed="false">Comparison</button>
+              <button class="case-tab" type="button" data-case="set-difference" aria-pressed="false">Set difference</button>
+              <button class="case-tab" type="button" data-case="unanswerable" aria-pressed="false">Unanswerable</button>
+              <button class="case-tab" type="button" data-case="compliance" aria-pressed="false">Compliance</button>
+            </div>
+          </div>
+          <div class="figure-panel case-figure">
+            <div class="figure-panel-head"><span>EXAMPLE</span><span id="case-figure-label">Cross-document temporal</span></div>
+            <img class="figure-image" id="case-study-image" src="assets/figures/cross-document-temporal.png" alt="Cross-document temporal reasoning case study" />
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="legacy-site" hidden>
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span><span>XL-DocBench</span></a>
+      <p>Measuring evidence-grounded reasoning in extra-long document understanding.</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
+  </body>
+</html>

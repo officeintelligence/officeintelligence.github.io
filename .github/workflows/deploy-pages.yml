@@ -25,7 +25,11 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Validate static website
-        run: test -f index.html
+        run: |
+          test -f index.html
+          test -f portal.css
+          test -f xl-docbench/index.html
+          test -f docatlas/index.html
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

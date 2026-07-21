@@ -1,10 +1,14 @@
-# XL-DocBench project website
+# Document Intelligence project portal
 
-This repository contains the static project website for XL-DocBench.
+This repository publishes the Document Intelligence research portal and its project websites:
+
+- `https://xl-docbench.github.io/` — Document Intelligence / 文档智能
+- `https://xl-docbench.github.io/xl-docbench/` — XL-DocBench
+- `https://xl-docbench.github.io/docatlas/` — DocAtlas
 
 ## Preview
 
-Open `index.html` in a modern browser, or serve the repository root with any static-file server.
+Open `index.html` in a modern browser, or serve the repository root with any static-file server. The two project sites are under `xl-docbench/` and `docatlas/`.
 
 ## Figure sources
 
@@ -22,10 +26,10 @@ The repository is self-contained: its static figure images are already included.
 
 ## Current scope
 
-This first version is a responsive, zero-dependency research landing page. The Paper, Dataset, and Code destination URLs are intentionally not added yet because release URLs were not present in the workspace.
+The root is a responsive Document Intelligence portal. Each project subdirectory is a self-contained static academic site with its own figures, interactions, bilingual copy, and results tables. Paper, Dataset, Code, and Model destination URLs remain disabled until release URLs are available.
 
 ## GitHub Pages deployment
 
 The repository includes `.github/workflows/deploy-pages.yml`. After this project is pushed to GitHub, enable **GitHub Actions** under the repository's **Settings → Pages** source. Every push to `main` validates and deploys the repository root automatically.
 
-For a project repository, GitHub publishes the page at `https://<owner>.github.io/<repository>/`. If the repository itself is named `<owner>.github.io`, the site is published at the account root instead. The site uses relative asset paths, so the same build works for either URL structure.
+Because this repository is named `xl-docbench.github.io`, GitHub publishes the portal at the account root and preserves each project directory as a subpath. All sites use relative asset paths.
