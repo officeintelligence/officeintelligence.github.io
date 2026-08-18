@@ -28,6 +28,7 @@ jobs:
         run: |
           test -f index.html
           test -f portal.css
+          test -f assets/vendor/lucide.min.js
           test -f xl-docbench/index.html
           test -f docatlas/index.html
 
