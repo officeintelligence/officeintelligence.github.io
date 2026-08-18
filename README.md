@@ -2,7 +2,7 @@
 
 This repository publishes the Office Intelligence research portal and its project websites:
 
-- `https://officeintelligence.github.io/` — Office Intelligence / 办公智能
+- `https://officeintelligence.github.io/` — Office Intelligence
 - `https://officeintelligence.github.io/xl-docbench/` — XL-DocBench
 - `https://officeintelligence.github.io/docatlas/` — DocAtlas
 
@@ -26,7 +26,7 @@ The repository is self-contained: its static figure images are already included.
 
 ## Current scope
 
-The root is a responsive Office Intelligence portal. Each project subdirectory is a self-contained static academic site with its own figures, interactions, bilingual copy, and results tables. Paper, Dataset, Code, and Model destination URLs remain disabled until release URLs are available.
+The root is a responsive Office Intelligence portal. Each project subdirectory is a self-contained static academic site with its own figures, interactions, bilingual copy, and results tables. Paper links are enabled; Dataset, Code, and Model destinations remain disabled until release URLs are available.
 
 ## GitHub Pages deployment
 

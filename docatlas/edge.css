@@ -57,7 +57,8 @@ img { max-width: 100%; }
 .hero-main h1 { margin: 0; font-family: var(--serif); font-size: clamp(68px, 7vw, 92px); font-weight: 500; letter-spacing: -.055em; line-height: 1.01; }
 .hero-tagline { margin: 18px 0 0; color: #3f4147; font-family: var(--serif); font-size: 22px; line-height: 1.45; }
 .hero-resources { display:flex; justify-content:center; flex-wrap:wrap; gap:7px; max-width:520px; margin:28px auto 0; }
-.resource-link { display:inline-flex; min-height:34px; align-items:center; gap:7px; padding:7px 11px; border:1px solid var(--line-strong); color:var(--muted); background:#fff; font-size:10px; }
+.resource-link { display:inline-flex; min-height:34px; align-items:center; gap:7px; padding:7px 11px; border:1px solid var(--line-strong); color:var(--muted); background:#fff; font-size:10px; text-decoration:none; transition:border-color .18s ease,color .18s ease,background-color .18s ease; }
+.resource-link[href]:hover,.resource-link[href]:focus-visible { border-color:var(--accent); color:var(--accent-dark); background:var(--accent-soft); }
 .resource-link svg { width:13px; height:13px; stroke-width:1.6; }
 .hero-authors { max-width: 730px; margin: 34px 0 0; color: #3f4147; font-size: 11px; line-height: 1.7; }
 .hero-authors sup { color: var(--accent); font-weight: 700; }

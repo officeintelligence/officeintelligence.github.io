@@ -3,18 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Office Intelligence is a research home for document understanding, work agents, and interactive organizational environments." />
-    <title>Office Intelligence | 办公智能</title>
+    <meta name="description" content="Office Intelligence builds executable environments where agents understand information, complete real workflows, and learn from interaction." />
+    <title>Office Intelligence</title>
     <link rel="stylesheet" href="portal.css" />
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
     <script src="portal.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#projects">Skip to projects</a>
+    <a class="skip-link" href="#vision">Skip to vision</a>
 
     <header class="site-header">
       <a class="brand" href="#top">Office Intelligence</a>
       <nav aria-label="Primary navigation">
+        <a href="#vision">Vision</a>
         <a href="#projects">Projects</a>
         <a href="./xl-docbench/">XL-DocBench</a>
         <a href="./docatlas/">DocAtlas</a>
@@ -76,9 +77,48 @@
           <span class="network-node node-eval"><i data-lucide="blocks"></i></span>
           <span class="scroll-indicator"><i data-lucide="chevrons-down"></i></span>
         </div>
+
+        <div class="hero-intro">
+          <p class="eyebrow">A research program for executable work intelligence</p>
+          <h1>Office Intelligence</h1>
+          <p class="hero-copy">Building simulated organizations where agents understand information, execute real workflows, and learn from interaction.</p>
+          <a class="hero-action" href="#vision">Read our vision <i data-lucide="arrow-down"></i></a>
+        </div>
+      </section>
+
+      <section class="vision" id="vision" aria-labelledby="vision-title">
+        <div class="vision-layout">
+          <p class="vision-label">Our vision</p>
+          <div class="vision-copy">
+            <h2 id="vision-title">Make knowledge work <em>executable, observable, and learnable.</em></h2>
+            <p>At the core of Office Intelligence are executable simulated organizations: persistent environments where agents take on roles, use tools, coordinate under rules, and work toward shared goals over time. These organizations form a shared environment layer for dynamic evaluation, synthetic data generation, and reinforcement-learning-based post-training.</p>
+
+            <div class="vision-loop" aria-label="Office Intelligence research loop">
+              <article>
+                <span>01</span>
+                <h3>Understand</h3>
+                <p>Ground decisions in long, multimodal, evidence-rich information.</p>
+              </article>
+              <article>
+                <span>02</span>
+                <h3>Act</h3>
+                <p>Use tools, coordinate roles, and complete real workflows over time.</p>
+              </article>
+              <article>
+                <span>03</span>
+                <h3>Improve</h3>
+                <p>Turn interaction traces into evaluations, training data, and RL signals.</p>
+              </article>
+            </div>
+          </div>
+        </div>
       </section>
 
       <section class="projects" id="projects" aria-label="Projects">
+        <div class="section-heading">
+          <p>Current research systems</p>
+          <h2>Building the environment layer for evidence, interaction, and learning.</h2>
+        </div>
 
         <article class="project project-xl">
           <a class="project-visual" href="./xl-docbench/" aria-label="Open XL-DocBench project page">
@@ -94,7 +134,10 @@
               <div><dt>72.6%</dt><dd>multi-page evidence</dd></div>
               <div><dt>194</dt><dd>human experts</dd></div>
             </dl>
-            <a class="project-link" href="./xl-docbench/">View project <i data-lucide="arrow-up-right"></i></a>
+            <div class="project-actions">
+              <a class="project-link" href="./xl-docbench/">View project <i data-lucide="arrow-up-right"></i></a>
+              <a class="project-link" href="https://arxiv.org/abs/2608.00036v1" target="_blank" rel="noopener noreferrer">Paper <i data-lucide="file-text"></i></a>
+            </div>
           </div>
         </article>
 
@@ -112,7 +155,10 @@
               <div><dt>63.7%</dt><dd>RL-trained 4B policy</dd></div>
               <div><dt>4</dt><dd>stateful tools</dd></div>
             </dl>
-            <a class="project-link" href="./docatlas/">View project <i data-lucide="arrow-up-right"></i></a>
+            <div class="project-actions">
+              <a class="project-link" href="./docatlas/">View project <i data-lucide="arrow-up-right"></i></a>
+              <a class="project-link" href="https://arxiv.org/abs/2608.07527" target="_blank" rel="noopener noreferrer">Paper <i data-lucide="file-text"></i></a>
+            </div>
           </div>
         </article>
       </section>
@@ -120,7 +166,6 @@
 
     <footer>
       <a class="brand" href="#top">Office Intelligence</a>
-      <p>Office Intelligence · Wuhan University × Microsoft</p>
       <a href="#top">Back to top</a>
     </footer>
   </body>
