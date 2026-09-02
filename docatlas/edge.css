@@ -37,9 +37,13 @@ img { max-width: 100%; }
 .edge-header { position: sticky; z-index: 50; top: 0; height: 66px; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.94); backdrop-filter: blur(12px); }
 .edge-header-inner { width: calc(100% - 48px); height: 100%; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
 .edge-brand { font-size: 14px; font-weight: 600; letter-spacing: -.02em; text-decoration: none; }
-.edge-nav { display: flex; align-items: center; gap: 22px; }
+.edge-nav { display: flex; align-items: center; gap: 12px; }
 .edge-nav a,.language-toggle { border: 0; color: var(--muted); background: transparent; font-size: 11px; text-decoration: none; cursor: pointer; }
 .edge-nav a:hover,.language-toggle:hover { color: var(--ink); }
+.edge-nav .header-action { display: inline-flex; align-items: center; gap: 6px; padding: 6px 8px; border: 1px solid var(--line-strong); border-radius: 4px; color: var(--ink); line-height: 1; }
+.edge-nav .header-action:hover { border-color: var(--ink); }
+.edge-nav .header-action svg { width: 12px; height: 12px; }
+.edge-nav .section-link-start { margin-left: 6px; }
 .language-toggle { padding: 6px 0; border-bottom: 1px solid var(--ink); }
 
 .edge-hero { position:relative; isolation:isolate; width:100%; min-height:calc(100svh - 66px); margin:0; padding:126px 0 38px; display:grid; grid-template-columns:max(24px,calc((100vw - 1180px)/2)) var(--aside) var(--gap) minmax(0,var(--reading)) minmax(24px,1fr); gap:0; align-content:center; }
@@ -227,6 +231,7 @@ img { max-width: 100%; }
 
 @media (max-width: 900px) {
   :root { --shell: min(760px, calc(100vw - 38px)); --aside: 0px; --gap: 0px; }
+  .edge-nav .section-link { display: none; }
   .edge-hero { width:100%; grid-template-columns:1fr; min-height:calc(100svh - 66px); padding-top:108px; }
   .hero-space { display: none; }
   .hero-main,.hero-meta { grid-column:1; width:var(--shell); margin-right:auto; margin-left:auto; }
@@ -240,7 +245,10 @@ img { max-width: 100%; }
   body { font-size: 15px; }
   .edge-header { height: 58px; }
   .edge-header-inner { width: calc(100% - 34px); }
-  .edge-nav a { display: none; }
+  .edge-nav { gap: 7px; }
+  .edge-nav .header-action { padding: 6px; font-size: 10px; }
+  .edge-nav .site-return span { display: none; }
+  .edge-nav .site-return { width: 28px; height: 28px; justify-content: center; }
   .edge-hero { min-height:calc(100svh - 58px); padding:80px 0 24px; }
   .hero-main h1 { font-size: 57px; }
   .atlas-state-field { opacity:.42; }

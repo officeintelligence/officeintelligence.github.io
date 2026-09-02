@@ -8,9 +8,9 @@
       content="XL-DocBench is a human-verified benchmark for evidence-grounded reasoning over extra-long professional documents."
     />
     <title>XL-DocBench — Evidence at Scale</title>
-    <link rel="stylesheet" href="edge.css?v=20260818-2" />
+    <link rel="stylesheet" href="edge.css?v=20260902-2" />
     <script src="../assets/vendor/lucide.min.js?v=0.468.0" defer></script>
-    <script src="edge.js?v=20260818-2" defer></script>
+    <script src="edge.js?v=20260902-1" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -19,9 +19,11 @@
       <div class="edge-header-inner">
         <a class="edge-brand" href="#page-top">XL-DocBench</a>
         <nav class="edge-nav" aria-label="Primary navigation">
-          <a href="#overview">Benchmark</a>
-          <a href="#findings">Results</a>
-          <a href="#leaderboard">Leaderboard</a>
+          <a class="header-action site-return" href="../" aria-label="Back to Office Intelligence home" title="Office Intelligence home"><i data-lucide="house" aria-hidden="true"></i><span>Office Intelligence</span></a>
+          <a class="header-action project-switch" href="../docatlas/" aria-label="Open DocAtlas" title="Open DocAtlas"><span>DocAtlas</span><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          <a class="section-link section-link-start" href="#overview">Benchmark</a>
+          <a class="section-link" href="#findings">Results</a>
+          <a class="section-link" href="#leaderboard">Leaderboard</a>
           <button class="language-toggle" id="edge-language" type="button">EN / 中文</button>
         </nav>
       </div>
@@ -68,8 +70,7 @@
           <p class="hero-tagline" data-copy="tagline">Benchmarking evidence-grounded extra-long document understanding.</p>
           <div class="hero-resources" aria-label="Project resources">
             <a class="resource-link" href="https://arxiv.org/abs/2608.00036v1" target="_blank" rel="noopener noreferrer"><i data-lucide="file-text" aria-hidden="true"></i><span>Paper</span></a>
-            <span class="resource-link" aria-disabled="true"><i data-lucide="github" aria-hidden="true"></i><span>Code</span></span>
-            <span class="resource-link" aria-disabled="true"><i data-lucide="database" aria-hidden="true"></i><span>Dataset</span></span>
+            <a class="resource-link" href="https://huggingface.co/datasets/microsoft/XL-DocBench" target="_blank" rel="noopener noreferrer"><i data-lucide="database" aria-hidden="true"></i><span>Dataset</span></a>
           </div>
           <p class="hero-authors">Hongchen Wei<sup>1,†,‡</sup>, Yuanzhe Wang<sup>2,†,‡</sup>, Bei Liu<sup>2,*</sup>, Yifan Yang<sup>2</sup>, Qi Dai<sup>2</sup>, Ruichun Ma<sup>2</sup>, Kai Qiu<sup>2</sup>, Yunsheng Li<sup>2</sup>, Dongdong Chen<sup>2</sup>, Chong Luo<sup>2</sup>, Zhenzhong Chen<sup>1</sup>, Baining Guo<sup>2</sup></p>
           <p class="hero-affiliations"><span><sup>1</sup> Wuhan University</span><span><sup>2</sup> Microsoft</span><span>† Equal contribution</span><span>‡ Work done during an internship at MSRA</span><span>* Project leader</span></p>
@@ -158,33 +159,6 @@
                 <article><b>2</b><h3 data-copy="find2">Agents are not automatically better</h3><p data-copy="find2Text">With GPT-5.4, SimpleDoc reaches 44.0%, MDocAgent 35.0%, and DeepRead 32.2%.</p></article>
                 <article><b>3</b><h3 data-copy="find3">Set tracking remains difficult</h3><p data-copy="find3Text">Best ranking, coverage, and set-difference accuracy stays below 37%.</p></article>
               </div>
-            </div>
-            <div class="result-bars" aria-label="Top systems by overall accuracy">
-              <div class="result-row best"><span>SimpleDoc + GPT-5.4</span><i><b style="--score:88%"></b></i><strong>44.0</strong></div>
-              <div class="result-row"><span>SimpleDoc + Opus 4.6</span><i><b style="--score:81.2%"></b></i><strong>40.6</strong></div>
-              <div class="result-row"><span>Claude Opus 4.6 OCR</span><i><b style="--score:79.6%"></b></i><strong>39.8</strong></div>
-              <div class="result-row"><span>SimpleDoc + GPT-5.2</span><i><b style="--score:76.6%"></b></i><strong>38.3</strong></div>
-              <div class="result-row"><span>GPT-5.4 OCR</span><i><b style="--score:74.6%"></b></i><strong>37.3</strong></div>
-            </div>
-          </section>
-
-          <section class="story-section" id="diagnostics">
-            <h2 data-copy="diagnosticsTitle">Same final accuracy, different failure modes</h2>
-            <p class="section-lead" data-copy="diagnosticsLead">Breakdowns by context length, evidence count, and evidence span reveal whether a system loses information because the input is long or because the required support is dispersed.</p>
-            <figure class="diagnostic-figure"><img src="assets/figures/experimental-diagnostics.png" alt="Accuracy by context length, evidence-page count, and evidence span"/><figcaption class="figure-caption">Accuracy under context and evidence pressure for all evaluated systems.</figcaption></figure>
-            <div class="diagnostic-notes">
-              <article><b>01</b><h3 data-copy="d1">Context pressure</h3><p data-copy="d1Text">Direct readers degrade as irrelevant pages grow, even before hard context limits bind.</p></article>
-              <article><b>02</b><h3 data-copy="d2">Evidence pressure</h3><p data-copy="d2Text">Questions requiring several support pages expose incomplete retrieval and set tracking.</p></article>
-              <article><b>03</b><h3 data-copy="d3">Span pressure</h3><p data-copy="d3Text">Evidence separated by hundreds of pages is harder to keep active and reconcile.</p></article>
-            </div>
-          </section>
-
-          <section class="story-section" id="dynamics">
-            <h2 data-copy="dynamicsTitle">Retrieval is not the same as a correct answer</h2>
-            <p class="section-lead" data-copy="dynamicsLead">Evidence-hit curves and answer-yield curves separate page-search failures from evidence-use and rule-following failures.</p>
-            <div class="figure-switcher">
-              <div class="chart-tabs" role="group" aria-label="Agent dynamics figure"><button class="is-active" type="button" data-figure="yield">Answer yield</button><button type="button" data-figure="retrieval">Evidence hit</button></div>
-              <div class="figure-stage"><figure class="is-active" data-figure-panel="yield"><img src="assets/figures/agent-answer-yield.png" alt="Agent answer yield over retrieval rounds"/></figure><figure data-figure-panel="retrieval"><img src="assets/figures/agent-retrieval-dynamics.png" alt="Agent evidence hit over retrieval rounds"/></figure></div>
             </div>
           </section>
 

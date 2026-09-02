@@ -18,9 +18,6 @@ const copy = {
     p1: 'Structure documents', p1Text: 'Parse pages, text, tables, figures, and headings into a navigable tree.', p2: 'Test branch dependency', p2Text: 'Reject questions that remain answerable after a required branch is removed.', p3: 'Refine and filter', p3Text: 'Remove world-knowledge shortcuts, metadata leakage, weak support, and malformed answers.', p4: 'Verify every item', p4Text: 'Experts re-answer, mark exact pages and quotes, resolve ambiguity, and check the rule.',
     findingsTitle: 'Current systems still fail on more than half of XL-DocBench', findingsLead: 'The strongest evaluated pipeline reaches 44.0% overall accuracy. Long windows help, but evidence selection and set tracking remain binding constraints.',
     bestLabel: 'best overall accuracy', find1: 'A long window is not enough', find1Text: 'Models with the same 1M-token window still differ at the same OCR budget.', find2: 'Agents are not automatically better', find2Text: 'With GPT-5.4, SimpleDoc reaches 44.0%, MDocAgent 35.0%, and DeepRead 32.2%.', find3: 'Set tracking remains difficult', find3Text: 'Best ranking, coverage, and set-difference accuracy stays below 37%.',
-    diagnosticsTitle: 'Same final accuracy, different failure modes', diagnosticsLead: 'Breakdowns by context length, evidence count, and evidence span reveal whether a system loses information because the input is long or because the required support is dispersed.',
-    d1: 'Context pressure', d1Text: 'Direct readers degrade as irrelevant pages grow, even before hard context limits bind.', d2: 'Evidence pressure', d2Text: 'Questions requiring several support pages expose incomplete retrieval and set tracking.', d3: 'Span pressure', d3Text: 'Evidence separated by hundreds of pages is harder to keep active and reconcile.',
-    dynamicsTitle: 'Retrieval is not the same as a correct answer', dynamicsLead: 'Evidence-hit curves and answer-yield curves separate page-search failures from evidence-use and rule-following failures.',
     casesTitle: 'Inside a human-verified example', casesLead: 'Each case exposes the question, evidence scope, reasoning type, and expert-verified support rather than showing only a final answer.',
     leaderboardTitle: 'Benchmark leaderboard across 27 evaluated systems', leaderboardLead: 'Filter by system family or inspect the full twelve-type reasoning breakdown. All scores come from the same deterministic evaluator and expert-verified ground truth.',
     overall: 'Overall ranking', detailed: 'Full reasoning breakdown', all: 'All systems', closed: 'Closed-source', open: 'Open-source', agent: 'Agent pipelines',
@@ -46,9 +43,6 @@ const copy = {
     p1: '构建文档结构', p1Text: '将页面、文本、表格、图像和标题解析为可导航的树。', p2: '测试分支依赖', p2Text: '删除必要分支后仍可回答的问题会被拒绝。', p3: '细化并过滤', p3Text: '移除世界知识捷径、元数据泄漏、弱证据和格式错误答案。', p4: '核验每个样本', p4Text: '专家重新作答、标记精确页面与引文、消除歧义并检查规则。',
     findingsTitle: '当前系统在超过一半的 XL-DocBench 问题上仍然失败', findingsLead: '最强评测系统的总体准确率仅为 44.0%。长窗口有所帮助，但证据选择与集合追踪仍是核心瓶颈。',
     bestLabel: '最佳总体准确率', find1: '长窗口仍然不够', find1Text: '具有相同 1M-token 窗口的模型，在同一 OCR 预算下仍有明显差异。', find2: '智能体并非自动更强', find2Text: '同样使用 GPT-5.4，SimpleDoc 为 44.0%，MDocAgent 为 35.0%，DeepRead 为 32.2%。', find3: '集合追踪仍然困难', find3Text: '排序、覆盖和集合差的最佳准确率均低于 37%。',
-    diagnosticsTitle: '相同最终准确率，不同失败模式', diagnosticsLead: '按上下文长度、证据数量和证据跨度进行拆解，可以判断系统是因输入过长，还是因必要支持过于分散而丢失信息。',
-    d1: '上下文压力', d1Text: '即便尚未达到上下文硬限制，直接阅读器也会因无关页面增加而退化。', d2: '证据压力', d2Text: '需要多个支持页面的问题会暴露不完整检索和集合追踪失败。', d3: '跨度压力', d3Text: '相隔数百页的证据更难保持激活并完成对齐。',
-    dynamicsTitle: '检索到证据不等于回答正确', dynamicsLead: '证据命中曲线与答案产出曲线将页面搜索失败和证据使用、规则遵循失败区分开。',
     casesTitle: '深入一个人工核验案例', casesLead: '每个案例展示问题、证据范围、推理类型和专家核验支持，而不只展示最终答案。',
     leaderboardTitle: '27 个评测系统的基准排行榜', leaderboardLead: '可按系统类型筛选，或检查完整的十二类推理明细。全部分数均来自同一确定性评估器与专家核验真实标签。',
     overall: '总体排名', detailed: '完整推理明细', all: '全部系统', closed: '闭源模型', open: '开源模型', agent: '智能体系统',
@@ -195,10 +189,6 @@ function renderLeaderboard() {
 document.querySelector('#edge-language')?.addEventListener('click', () => applyLanguage(language === 'en' ? 'zh' : 'en'));
 document.querySelectorAll('[data-domain]').forEach(button => button.addEventListener('click', () => { activeDomain = button.dataset.domain; renderDomain(); }));
 document.querySelectorAll('[data-case]').forEach(button => button.addEventListener('click', () => { activeCase = button.dataset.case; renderCase(); }));
-document.querySelectorAll('[data-figure]').forEach(button => button.addEventListener('click', () => {
-  document.querySelectorAll('[data-figure]').forEach(item => item.classList.toggle('is-active', item === button));
-  document.querySelectorAll('.figure-stage figure').forEach(figure => figure.classList.toggle('is-active', figure.dataset.figurePanel === button.dataset.figure));
-}));
 document.querySelectorAll('[data-family]').forEach(button => button.addEventListener('click', () => { leaderboardFamily = button.dataset.family; renderLeaderboard(); }));
 document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => { leaderboardView = button.dataset.view; renderLeaderboard(); }));
 
