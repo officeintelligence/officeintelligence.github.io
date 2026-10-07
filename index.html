@@ -3,172 +3,705 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="Office Intelligence builds executable environments where agents understand information, complete real workflows, and learn from interaction." />
+    <meta
+      name="description"
+      content="Office Intelligence studies knowledge-work agents across documents, data, code, media, 3D, CAD, and collaborative workflows. DocAtlas and XL-DocBench: NeurIPS 2026."
+    />
     <title>Office Intelligence</title>
-    <link rel="stylesheet" href="portal.css?v=20260818-2" />
+    <link rel="stylesheet" href="portal.css?v=20261007-vision-scene" />
     <script src="./assets/vendor/lucide.min.js?v=0.468.0" defer></script>
-    <script src="portal.js?v=20260818-2" defer></script>
+    <script src="portal.js?v=20261007-vision-scene" defer></script>
+    <script src="portal-scene.js?v=20261007-vision-scene" defer></script>
   </head>
-  <body>
-    <a class="skip-link" href="#vision">Skip to vision</a>
-
+  <body id="top">
+    <a class="skip-link" href="#main-content">Skip to content</a>
     <header class="site-header">
-      <a class="brand" href="#top">Office Intelligence</a>
-      <nav aria-label="Primary navigation">
-        <a href="#vision">Vision</a>
-        <a href="#projects">Projects</a>
-        <a href="./xl-docbench/">XL-DocBench</a>
-        <a href="./docatlas/">DocAtlas</a>
-      </nav>
+      <div class="header-inner">
+        <a class="brand" href="#top"
+          >Office Intelligence<span aria-hidden="true">.</span></a
+        >
+        <nav aria-label="Primary navigation">
+          <a href="#vision">Vision</a>
+          <a href="#work">Work</a>
+          <a href="#domains">Domains</a>
+          <a href="#projects">Research</a>
+        </nav>
+      </div>
     </header>
 
-    <main id="top">
-      <section class="hero" aria-label="Office Intelligence">
-        <div class="hero-network" aria-hidden="true">
-          <div class="office-grid"></div>
-          <svg class="network-map" viewBox="0 0 1440 760" preserveAspectRatio="none">
-            <path class="route route-red" id="portal-path-a" d="M40 145 C250 30 390 120 575 285 S930 505 1400 135" />
-            <path class="route route-green" id="portal-path-b" d="M10 650 C260 760 450 590 620 445 S1030 205 1430 650" />
-            <path class="route route-blue" id="portal-path-c" d="M230 20 C400 225 555 170 720 350 S1050 610 1245 745" />
-            <path class="route route-violet" id="portal-path-d" d="M30 390 C300 250 445 500 715 375 S1110 215 1410 390" />
-            <path class="route route-gold" id="portal-path-e" d="M345 745 C410 570 540 505 720 380 S1050 245 1115 10" />
-            <path class="route route-faint" d="M720 375 L185 125 M720 375 L1260 135 M720 375 L195 625 M720 375 L1255 625" />
-            <g class="fixed-nodes">
-              <circle cx="185" cy="125" r="5"/><circle cx="1260" cy="135" r="5"/>
-              <circle cx="195" cy="625" r="5"/><circle cx="1255" cy="625" r="5"/>
-              <circle cx="390" cy="315" r="3"/><circle cx="1035" cy="315" r="3"/>
-              <circle cx="420" cy="545" r="3"/><circle cx="1010" cy="545" r="3"/>
-            </g>
-            <circle class="signal signal-red" r="5" data-route="portal-path-a" data-duration="7000" data-offset="0"></circle>
-            <circle class="signal signal-red signal-small" r="3" data-route="portal-path-a" data-duration="7000" data-offset="3500"></circle>
-            <circle class="signal signal-green" r="5" data-route="portal-path-b" data-duration="8500" data-offset="4000"></circle>
-            <circle class="signal signal-blue" r="4" data-route="portal-path-c" data-duration="6500" data-offset="2000"></circle>
-            <circle class="signal signal-violet" r="4" data-route="portal-path-d" data-duration="7800" data-offset="5000"></circle>
-            <circle class="signal signal-gold" r="4" data-route="portal-path-e" data-duration="6800" data-offset="1000"></circle>
-          </svg>
-
-          <div class="intelligence-core">
-            <i class="core-ring ring-one"></i><i class="core-ring ring-two"></i><i class="core-ring ring-three"></i>
-            <span class="core-chip"><i data-lucide="cpu"></i></span>
-            <b class="core-satellite satellite-one"></b><b class="core-satellite satellite-two"></b><b class="core-satellite satellite-three"></b>
-          </div>
-
-          <div class="artifact artifact-document">
-            <span class="artifact-icon"><i data-lucide="file-text"></i></span>
-            <div class="document-lines"><i></i><i></i><i></i><i></i></div>
-            <mark></mark>
-          </div>
-          <div class="artifact artifact-table">
-            <span class="artifact-icon"><i data-lucide="table-2"></i></span>
-            <div class="mini-table"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-          <div class="artifact artifact-workflow">
-            <span class="artifact-icon"><i data-lucide="workflow"></i></span>
-            <div class="workflow-map"><i></i><i></i><i></i><i></i><b></b><b></b><b></b></div>
-          </div>
-          <div class="artifact artifact-analysis">
-            <span class="artifact-icon"><i data-lucide="chart-no-axes-combined"></i></span>
-            <div class="mini-chart"><i></i><i></i><i></i><i></i><i></i></div>
-          </div>
-
-          <span class="network-node node-doc"><i data-lucide="files"></i></span>
-          <span class="network-node node-evidence"><i data-lucide="scan-search"></i></span>
-          <span class="network-node node-agent"><i data-lucide="brain-circuit"></i></span>
-          <span class="network-node node-eval"><i data-lucide="blocks"></i></span>
-          <span class="scroll-indicator"><i data-lucide="chevrons-down"></i></span>
+    <main id="main-content">
+      <section class="intro" aria-labelledby="intro-title">
+        <div class="intro-scene" aria-hidden="true">
+          <canvas id="work-scene"></canvas>
         </div>
-
-        <div class="hero-intro">
-          <p class="eyebrow">A research program for executable work intelligence</p>
-          <h1>Office Intelligence</h1>
-          <p class="hero-copy">Building simulated organizations where agents understand information, execute real workflows, and learn from interaction.</p>
-          <a class="hero-action" href="#vision">Read our vision <i data-lucide="arrow-down"></i></a>
-        </div>
-      </section>
-
-      <section class="vision" id="vision" aria-labelledby="vision-title">
-        <div class="vision-layout">
-          <p class="vision-label">Our vision</p>
-          <div class="vision-copy">
-            <h2 id="vision-title">Make knowledge work <em>executable, observable, and learnable.</em></h2>
-            <p>At the core of Office Intelligence are executable simulated organizations: persistent environments where agents take on roles, use tools, coordinate under rules, and work toward shared goals over time. These organizations form a shared environment layer for dynamic evaluation, synthetic data generation, and reinforcement-learning-based post-training.</p>
-
-            <div class="vision-loop" aria-label="Office Intelligence research loop">
-              <article>
-                <span>01</span>
-                <h3>Understand</h3>
-                <p>Ground decisions in long, multimodal, evidence-rich information.</p>
-              </article>
-              <article>
-                <span>02</span>
-                <h3>Act</h3>
-                <p>Use tools, coordinate roles, and complete real workflows over time.</p>
-              </article>
-              <article>
-                <span>03</span>
-                <h3>Improve</h3>
-                <p>Turn interaction traces into evaluations, training data, and RL signals.</p>
-              </article>
-            </div>
+        <div class="intro-content section-shell">
+          <button
+            class="scene-toggle"
+            type="button"
+            aria-label="Pause background animation"
+            aria-pressed="false"
+            data-tooltip="Pause animation"
+            hidden
+          >
+            <i data-lucide="pause" aria-hidden="true"></i>
+          </button>
+          <p class="eyebrow">A research program for knowledge-work agents</p>
+          <h1 id="intro-title">Office Intelligence</h1>
+          <p class="intro-statement">
+            Environments, data, and learning<br class="desktop-break" />
+            for work that continues.
+          </p>
+          <p class="intro-copy">
+            Knowledge work moves between words, numbers, images, sound, and
+            spatial models. Our vision is for agents that can research, create,
+            analyze, and coordinate across tools and teams, turning ideas into
+            useful work and building on what came before.
+          </p>
+          <div class="intro-actions">
+            <a class="text-link" href="#vision"
+              >Our research direction
+              <i data-lucide="arrow-down" aria-hidden="true"></i
+            ></a>
+            <span class="intro-projects"
+              ><a href="./docatlas/"
+                >DocAtlas
+                <i data-lucide="arrow-up-right" aria-hidden="true"></i></a
+              ><a href="./xl-docbench/"
+                >XL-DocBench
+                <i data-lucide="arrow-up-right" aria-hidden="true"></i></a
+              ><span>NeurIPS 2026</span></span
+            >
           </div>
         </div>
       </section>
+      <div class="artifact-band section-shell">
+        <ul class="artifact-index" aria-label="Knowledge-work artifacts">
+          <li class="artifact-doc">
+            <i data-lucide="file-text" aria-hidden="true"></i
+            ><span>Documents<small>Word / PDF / knowledge</small></span>
+          </li>
+          <li class="artifact-sheet">
+            <i data-lucide="table-2" aria-hidden="true"></i
+            ><span>Spreadsheets<small>Excel / models / CSV</small></span>
+          </li>
+          <li class="artifact-slide">
+            <i data-lucide="presentation" aria-hidden="true"></i
+            ><span>Slides<small>PowerPoint / decks</small></span>
+          </li>
+          <li class="artifact-design">
+            <i data-lucide="image" aria-hidden="true"></i
+            ><span>Images<small>Graphics / visual design</small></span>
+          </li>
+          <li class="artifact-video">
+            <i data-lucide="film" aria-hidden="true"></i
+            ><span>Video<small>Editing / motion</small></span>
+          </li>
+          <li class="artifact-audio">
+            <i data-lucide="audio-lines" aria-hidden="true"></i
+            ><span>Audio<small>Speech / sound</small></span>
+          </li>
+          <li class="artifact-design">
+            <i data-lucide="box" aria-hidden="true"></i
+            ><span>3D &amp; CAD<small>Models / drawings / BIM</small></span>
+          </li>
+          <li class="artifact-report">
+            <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i
+            ><span>Reports<small>Analysis / dashboards</small></span>
+          </li>
+          <li class="artifact-code">
+            <i data-lucide="file-code-2" aria-hidden="true"></i
+            ><span>Code<small>Apps / scripts / tests</small></span>
+          </li>
+          <li class="artifact-sheet">
+            <i data-lucide="database" aria-hidden="true"></i
+            ><span>Data<small>Tables / SQL / pipelines</small></span>
+          </li>
+          <li class="artifact-doc">
+            <i data-lucide="messages-square" aria-hidden="true"></i
+            ><span>Mail &amp; chat<small>Messages / meetings</small></span>
+          </li>
+          <li class="artifact-report">
+            <i data-lucide="calendar-days" aria-hidden="true"></i
+            ><span>Planning<small>Schedules / workflows</small></span>
+          </li>
+        </ul>
+      </div>
 
-      <section class="projects" id="projects" aria-label="Projects">
+      <section
+        class="vision section-shell section"
+        id="vision"
+        aria-labelledby="vision-title"
+      >
         <div class="section-heading">
-          <p>Current research systems</p>
-          <h2>Building the environment layer for evidence, interaction, and learning.</h2>
+          <p class="section-label">
+            <span aria-hidden="true">01</span> Research in progress
+          </p>
+          <div>
+            <h2 id="vision-title">
+              From isolated tasks<br />to continuing work.
+            </h2>
+            <p class="section-lead">
+              We are developing persistent, role-based environments where new
+              assignments arise from ongoing professional activity. Requests
+              lead to working files; review leads to revisions; accepted work
+              becomes context for the next assignment.
+            </p>
+            <p class="vision-detail">
+              The goal is to connect realistic work generation with agent
+              evaluation and learning. Responsibilities, access permissions,
+              shared materials, and unresolved decisions are part of the
+              environment, not just extra text in a prompt.
+            </p>
+          </div>
         </div>
+        <div class="research-principles">
+          <article>
+            <i data-lucide="workflow" aria-hidden="true"></i>
+            <h3>Generate environments</h3>
+            <p>
+              Build professional settings with roles, working materials, shared
+              services, and explicit boundaries on what each participant can see
+              and do.
+            </p>
+          </article>
+          <article>
+            <i data-lucide="files" aria-hidden="true"></i>
+            <h3>Learn from ongoing work</h3>
+            <p>
+              Connect requests, authorized context, work products, and review
+              feedback into resources for supervised learning and on-policy
+              improvement.
+            </p>
+          </article>
+          <article>
+            <i data-lucide="clipboard-check" aria-hidden="true"></i>
+            <h3>Evaluate the delivery</h3>
+            <p>
+              Assess the submitted artifact and observable outcome: accuracy,
+              completeness, usability, source traceability, and issues that
+              remain unresolved.
+            </p>
+          </article>
+        </div>
+        <ol class="work-cycle" aria-label="Continuing professional work">
+          <li>
+            <span>01</span><strong>Scope</strong
+            ><small>Request &amp; responsibility</small>
+          </li>
+          <li>
+            <span>02</span><strong>Investigate</strong
+            ><small>Materials &amp; evidence</small>
+          </li>
+          <li>
+            <span>03</span><strong>Produce</strong
+            ><small>Files &amp; working changes</small>
+          </li>
+          <li>
+            <span>04</span><strong>Review</strong
+            ><small>Checks &amp; revisions</small>
+          </li>
+          <li>
+            <span>05</span><strong>Continue</strong
+            ><small>Handoffs &amp; follow-up</small>
+          </li>
+        </ol>
+      </section>
 
+      <section
+        class="work-section section-shell section"
+        id="work"
+        aria-labelledby="work-title"
+      >
+        <div class="section-heading">
+          <p class="section-label">
+            <span aria-hidden="true">02</span> Work &amp; deliverables
+          </p>
+          <div>
+            <h2 id="work-title">Useful work takes many forms.</h2>
+            <p class="section-lead">
+              A proposal can become a financial model, a slide deck, a visual
+              concept, or a working prototype. Our research vision connects
+              these forms of work, including the reasoning, collaboration, and
+              review that make them useful to the next person.
+            </p>
+          </div>
+        </div>
+        <div class="work-grid">
+          <article class="work-item artifact-doc">
+            <div class="work-item-heading">
+              <i data-lucide="file-text" aria-hidden="true"></i>
+              <h3>Documents &amp; shared knowledge</h3>
+            </div>
+            <p>
+              Research a question, draft a proposal, compare contract versions,
+              or maintain a team knowledge base. Keep the writing connected to
+              its sources, decisions, and revisions.
+            </p>
+            <p class="artifact-formats">Word / DOCX / PDF / Markdown</p>
+          </article>
+          <article class="work-item artifact-sheet">
+            <div class="work-item-heading">
+              <i data-lucide="table-2" aria-hidden="true"></i>
+              <h3>Spreadsheets &amp; financial models</h3>
+            </div>
+            <p>
+              Reconcile accounts, plan budgets, forecast cash flow, and compare
+              business scenarios. Keep formulas, assumptions, charts, and source
+              records consistent in editable workbooks.
+            </p>
+            <p class="artifact-formats">Excel / XLSX / CSV / structured data</p>
+          </article>
+          <article class="work-item artifact-slide">
+            <div class="work-item-heading">
+              <i data-lucide="presentation" aria-hidden="true"></i>
+              <h3>Slides &amp; visual storytelling</h3>
+            </div>
+            <p>
+              Build a research talk, pitch deck, lesson, or board briefing.
+              Connect narrative, layout, charts, and supporting evidence, then
+              revise the presentation for its audience.
+            </p>
+            <p class="artifact-formats">PowerPoint / PPTX / presentations</p>
+          </article>
+          <article class="work-item artifact-design">
+            <div class="work-item-heading">
+              <i data-lucide="image" aria-hidden="true"></i>
+              <h3>Images &amp; visual design</h3>
+            </div>
+            <p>
+              Develop brand assets, illustrations, interface layouts, diagrams,
+              and campaign imagery. Carry a creative brief through exploration,
+              editing, accessibility checks, and production handoff.
+            </p>
+            <p class="artifact-formats">
+              Images / layouts / diagrams / editable design assets
+            </p>
+          </article>
+          <article class="work-item artifact-video">
+            <div class="work-item-heading">
+              <i data-lucide="film" aria-hidden="true"></i>
+              <h3>Video, audio &amp; motion</h3>
+            </div>
+            <p>
+              Move from scripts and storyboards to edited clips, motion
+              graphics, voiceovers, and sound. Align timelines, captions,
+              transcripts, and review notes across a production.
+            </p>
+            <p class="artifact-formats">
+              Video / audio / animation / subtitles / timelines
+            </p>
+          </article>
+          <article class="work-item artifact-design">
+            <div class="work-item-heading">
+              <i data-lucide="box" aria-hidden="true"></i>
+              <h3>3D, CAD &amp; technical design</h3>
+            </div>
+            <p>
+              Explore product concepts, spatial layouts, and engineering
+              alternatives. Connect models and drawings to dimensions,
+              simulations, bills of materials, and technical review.
+            </p>
+            <p class="artifact-formats">
+              3D scenes / CAD / STEP / BIM / drawings / BOM
+            </p>
+          </article>
+          <article class="work-item artifact-report">
+            <div class="work-item-heading">
+              <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>
+              <h3>Data, reports &amp; decisions</h3>
+            </div>
+            <p>
+              Clean and join data, investigate trends, build dashboards, and
+              assemble evidence-backed reports. Make findings reproducible and
+              uncertainty visible to the people making decisions.
+            </p>
+            <p class="artifact-formats">
+              SQL / datasets / dashboards / reports / evidence
+            </p>
+          </article>
+          <article class="work-item artifact-code">
+            <div class="work-item-heading">
+              <i data-lucide="file-code-2" aria-hidden="true"></i>
+              <h3>Code, apps &amp; automation</h3>
+            </div>
+            <p>
+              Build a prototype, update an application, connect APIs, or
+              automate a recurring workflow. Deliver working changes with tests,
+              reproducible environments, and maintainable documentation.
+            </p>
+            <p class="artifact-formats">
+              Code / scripts / tests / configurations
+            </p>
+          </article>
+          <article class="work-item artifact-doc">
+            <div class="work-item-heading">
+              <i data-lucide="messages-square" aria-hidden="true"></i>
+              <h3>Communication &amp; coordination</h3>
+            </div>
+            <p>
+              Prepare meetings, draft correspondence, coordinate calendars, and
+              turn discussions into plans. Keep owners, dependencies, approvals,
+              and follow-up work connected across a team.
+            </p>
+            <p class="artifact-formats">
+              Email / chat / calendars / minutes / project plans
+            </p>
+          </article>
+        </div>
+        <p class="scope-note">
+          These are directions for our research, not a fixed capability list.
+          The ambition is useful, reviewable work across formats, professions,
+          and the tools people already use.
+        </p>
+      </section>
+
+      <section
+        class="domains-section section-shell section"
+        id="domains"
+        aria-labelledby="domains-title"
+      >
+        <div class="section-heading">
+          <p class="section-label">
+            <span aria-hidden="true">03</span> Professional settings
+          </p>
+          <div>
+            <h2 id="domains-title">
+              Different domains.<br />Shared demands on the work.
+            </h2>
+            <p class="section-lead">
+              From design studios and finance teams to engineering, research,
+              and everyday operations, our vision spans the settings where
+              people turn knowledge into action. Each brings its own materials,
+              constraints, handoffs, and standards of quality.
+            </p>
+          </div>
+        </div>
+        <div
+          class="domain-tabs"
+          role="tablist"
+          aria-label="Professional domain"
+        >
+          <button
+            id="domain-tab-finance"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="domain-panel"
+            data-domain="finance"
+          >
+            Finance
+          </button>
+          <button
+            id="domain-tab-assurance"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="assurance"
+          >
+            Assurance
+          </button>
+          <button
+            id="domain-tab-clinical"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="clinical"
+          >
+            Clinical operations
+          </button>
+          <button
+            id="domain-tab-design"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="design"
+          >
+            Design
+          </button>
+          <button
+            id="domain-tab-entertainment"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="entertainment"
+          >
+            Entertainment
+          </button>
+          <button
+            id="domain-tab-industrial"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="industrial"
+          >
+            Industrial
+          </button>
+          <button
+            id="domain-tab-legal"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="legal"
+          >
+            Legal
+          </button>
+          <button
+            id="domain-tab-research"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="research"
+          >
+            Research &amp; education
+          </button>
+          <button
+            id="domain-tab-commerce"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="commerce"
+          >
+            Marketing &amp; commerce
+          </button>
+          <button
+            id="domain-tab-operations"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="operations"
+          >
+            People &amp; operations
+          </button>
+          <button
+            id="domain-tab-strategy"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="strategy"
+          >
+            Product &amp; strategy
+          </button>
+          <button
+            id="domain-tab-software"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="domain-panel"
+            tabindex="-1"
+            data-domain="software"
+          >
+            Software
+          </button>
+        </div>
+        <div
+          class="domain-panel"
+          id="domain-panel"
+          role="tabpanel"
+          aria-labelledby="domain-tab-finance"
+          tabindex="0"
+        >
+          <div class="domain-summary">
+            <p class="domain-label">Illustrative work</p>
+            <h3 id="domain-title">Finance &amp; accounting</h3>
+            <p id="domain-description">
+              Connect operating records to editable analyses and explain what
+              the evidence can, and cannot, support.
+            </p>
+          </div>
+          <div class="domain-details">
+            <ul id="domain-examples">
+              <li>Reconcile deposits, clearing records, and vendor credits.</li>
+              <li>
+                Build cash-flow forecasts with explicit scenario assumptions.
+              </li>
+              <li>Prepare review workpapers and identify missing evidence.</li>
+            </ul>
+            <dl>
+              <div>
+                <dt>Working materials</dt>
+                <dd id="domain-materials">
+                  Spreadsheets, operating records, reference documents, and
+                  analysis scripts.
+                </dd>
+              </div>
+              <div>
+                <dt>Review focus</dt>
+                <dd id="domain-review">
+                  Numerical consistency, source traceability, editable outputs,
+                  and unresolved exceptions.
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+        <p class="scope-note">
+          Simulation does not authorize real-world financial, legal, clinical,
+          or operational decisions. Professional review and permission
+          boundaries remain part of the work.
+        </p>
+      </section>
+
+      <section
+        class="projects section-shell section"
+        id="projects"
+        aria-labelledby="projects-title"
+      >
+        <div class="section-heading">
+          <p class="section-label">
+            <span aria-hidden="true">04</span> Public research
+          </p>
+          <div>
+            <h2 id="projects-title">
+              Evidence and interaction<br />are part of the foundation.
+            </h2>
+            <p class="section-lead">
+              Our public work studies how agents gather and use document
+              evidence, and how their understanding can be evaluated.
+            </p>
+          </div>
+        </div>
         <article class="project project-xl">
-          <a class="project-visual" href="./xl-docbench/" aria-label="Open XL-DocBench project page">
-            <img src="./xl-docbench/assets/figures/pipeline.png" alt="XL-DocBench construction and human-verification pipeline" />
+          <a
+            class="project-visual"
+            href="./xl-docbench/"
+            aria-label="Open XL-DocBench project page"
+          >
+            <img
+              src="./xl-docbench/assets/figures/pipeline.png"
+              alt="XL-DocBench construction and human-verification pipeline"
+              loading="lazy"
+            />
             <span>Benchmark · 2026</span>
           </a>
           <div class="project-copy">
             <p class="project-index">01 / BENCHMARK</p>
+            <div class="publication-venue">NeurIPS 2026</div>
             <h3>XL-DocBench</h3>
-            <p>Evidence-grounded reasoning across hundreds or thousands of pages, with 1,519 human-verified questions and exact page-level support.</p>
+            <p>
+              Evidence-grounded reasoning across hundreds or thousands of pages,
+              with 1,519 human-verified questions and exact page-level support.
+            </p>
             <dl>
-              <div><dt>2,303</dt><dd>maximum context pages</dd></div>
-              <div><dt>72.6%</dt><dd>multi-page evidence</dd></div>
-              <div><dt>194</dt><dd>human experts</dd></div>
+              <div>
+                <dt>2,303</dt>
+                <dd>maximum context pages</dd>
+              </div>
+              <div>
+                <dt>72.6%</dt>
+                <dd>multi-page evidence</dd>
+              </div>
+              <div>
+                <dt>194</dt>
+                <dd>human experts</dd>
+              </div>
             </dl>
             <div class="project-actions">
-              <a class="project-link" href="./xl-docbench/">View project <i data-lucide="arrow-up-right"></i></a>
-              <a class="project-link" href="https://arxiv.org/abs/2608.00036v1" target="_blank" rel="noopener noreferrer">Paper <i data-lucide="file-text"></i></a>
-              <a class="project-link" href="https://huggingface.co/datasets/microsoft/XL-DocBench" target="_blank" rel="noopener noreferrer">Dataset <i data-lucide="database"></i></a>
+              <a class="project-link" href="./xl-docbench/"
+                >View project
+                <i data-lucide="arrow-up-right" aria-hidden="true"></i
+              ></a>
+              <a
+                class="project-link"
+                href="https://arxiv.org/abs/2608.00036v1"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Paper <i data-lucide="file-text" aria-hidden="true"></i
+              ></a>
+              <a
+                class="project-link"
+                href="https://huggingface.co/datasets/microsoft/XL-DocBench"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Dataset <i data-lucide="database" aria-hidden="true"></i
+              ></a>
             </div>
           </div>
         </article>
-
         <article class="project project-atlas">
-          <a class="project-visual" href="./docatlas/" aria-label="Open DocAtlas project page">
-            <img src="./docatlas/assets/figures/framework.png" alt="DocAtlas mutable-state document interaction framework" />
+          <a
+            class="project-visual"
+            href="./docatlas/"
+            aria-label="Open DocAtlas project page"
+          >
+            <img
+              src="./docatlas/assets/figures/framework.png"
+              alt="DocAtlas mutable-state document interaction framework"
+              loading="lazy"
+            />
             <span>Agent system · 2026</span>
           </a>
           <div class="project-copy">
             <p class="project-index">02 / AGENT SYSTEM</p>
+            <div class="publication-venue">NeurIPS 2026</div>
             <h3>DocAtlas</h3>
-            <p>Long-document understanding as mutable-state interaction through Search, Read, Note, Review, and end-to-end reinforcement learning.</p>
+            <p>
+              Long-document understanding as mutable-state interaction through
+              Search, Read, Note, Review, and end-to-end reinforcement learning.
+            </p>
             <dl>
-              <div><dt>71.4%</dt><dd>MMLongBench-Doc</dd></div>
-              <div><dt>63.7%</dt><dd>RL-trained 4B policy</dd></div>
-              <div><dt>4</dt><dd>stateful tools</dd></div>
+              <div>
+                <dt>71.4%</dt>
+                <dd>MMLongBench-Doc</dd>
+              </div>
+              <div>
+                <dt>63.7%</dt>
+                <dd>RL-trained 4B policy</dd>
+              </div>
+              <div>
+                <dt>4</dt>
+                <dd>stateful tools</dd>
+              </div>
             </dl>
             <div class="project-actions">
-              <a class="project-link" href="./docatlas/">View project <i data-lucide="arrow-up-right"></i></a>
-              <a class="project-link" href="https://arxiv.org/abs/2608.07527" target="_blank" rel="noopener noreferrer">Paper <i data-lucide="file-text"></i></a>
-              <a class="project-link" href="https://github.com/microsoft/DocAtlas-Harness" target="_blank" rel="noopener noreferrer">Code <i data-lucide="github"></i></a>
+              <a class="project-link" href="./docatlas/"
+                >View project
+                <i data-lucide="arrow-up-right" aria-hidden="true"></i
+              ></a>
+              <a
+                class="project-link"
+                href="https://arxiv.org/abs/2608.07527"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Paper <i data-lucide="file-text" aria-hidden="true"></i
+              ></a>
+              <a
+                class="project-link"
+                href="https://github.com/microsoft/DocAtlas-Harness"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Code <i data-lucide="github" aria-hidden="true"></i
+              ></a>
             </div>
           </div>
         </article>
       </section>
     </main>
-
-    <footer>
+    <footer class="section-shell">
       <a class="brand" href="#top">Office Intelligence</a>
-      <a href="#top">Back to top</a>
+      <p>Environments, data, and learning for knowledge work.</p>
+      <a class="back-top" href="#top"
+        >Back to top <i data-lucide="arrow-up" aria-hidden="true"></i
+      ></a>
     </footer>
   </body>
 </html>

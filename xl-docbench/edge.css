@@ -60,6 +60,7 @@ img { max-width: 100%; }
 @keyframes xlPageDrift { to{translate:0 -12px} } @keyframes xlScan { 0%,8%{left:-12%;opacity:0} 15%{opacity:1} 82%{opacity:1} 92%,100%{left:112%;opacity:0} } @keyframes xlEvidenceMark { 0%,35%,100%{transform:scaleX(0)} 46%,75%{transform:scaleX(1)} } @keyframes xlEvidenceHit { 0%,40%,100%{opacity:0;transform:translateY(3px)} 52%,74%{opacity:1;transform:none} }
 .hero-space { grid-column:2; }
 .hero-main { grid-column:4; }
+.publication-venue { display: table; max-width: 100%; margin: 0 0 14px; padding: 4px 8px; border: 1px solid #ecd4d2; border-radius: 3px; color: #a3372a; background: #fff0ed; font-size: 12px; font-weight: 600; line-height: 1.5; letter-spacing: 0; }
 .hero-main h1 { margin: 0; font-family: var(--serif); font-size: clamp(68px, 7vw, 92px); font-weight: 500; letter-spacing: -.055em; line-height: 1.01; }
 .hero-tagline { margin: 18px 0 0; color: #3f4147; font-family: var(--serif); font-size: 22px; line-height: 1.45; }
 .hero-resources { display:flex; justify-content:center; flex-wrap:wrap; gap:7px; max-width:520px; margin:28px auto 0; }

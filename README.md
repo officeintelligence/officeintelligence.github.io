@@ -26,7 +26,33 @@ The repository is self-contained: its static figure images are already included.
 
 ## Current scope
 
-The root is a responsive Office Intelligence portal. Each project subdirectory is a self-contained static academic site with its own figures, interactions, bilingual copy, and results tables. Paper links are enabled; Dataset, Code, and Model destinations remain disabled until release URLs are available.
+The root presents a research vision for knowledge-work agents: continuing work,
+reviewable deliverables, role-scoped environments, and data for evaluation and learning.
+Documents, spreadsheets, Slides, images, video, audio, 3D and CAD, reports, code,
+data, correspondence, and planning are parallel parts of this vision, not a
+claim that every artifact or workflow has already been validated. Nine work
+families connect these materials to practical deliverables.
+
+Twelve illustrative professional settings are presented through keyboard-accessible tabs:
+finance, assurance, clinical operations, design, entertainment, industrial, legal,
+research and education, marketing and commerce, people and operations, product
+and strategy, and software. Domain examples describe research directions and review requirements,
+not authorization for real-world professional decisions.
+
+The opening uses a local Canvas 2D background of connected work artifacts.
+A left-weighted white mask protects the text while the right remains more visible.
+The animation has a pause control, starts static for reduced-motion preferences,
+and stops when the intro is offscreen or the page is hidden. It requires no
+external animation library or private assets.
+
+Unreleased project names, manuscript figures, private documents, benchmark counts,
+and submission details are intentionally absent from the portal. Only existing
+public figures are used. The two public project entries retain their original
+authors, figures, statistics, and links, and are marked NeurIPS 2026.
+
+Each project subdirectory is a self-contained static academic site with its own
+figures, interactions, bilingual copy, and results tables. DocAtlas links to its
+paper and code; XL-DocBench links to its paper and dataset.
 
 ## GitHub Pages deployment
 
