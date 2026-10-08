@@ -1,0 +1,275 @@
+/* Native language links work even when JavaScript is disabled. */
+.site-header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 26px;
+}
+.site-header nav {
+  justify-content: flex-end;
+  gap: 23px;
+}
+.language-switch {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: #fff;
+}
+.language-switch a {
+  display: grid;
+  place-items: center;
+  min-width: 34px;
+  min-height: 32px;
+  padding-inline: 7px;
+  border-radius: 3px;
+  font: 500 11px/1.4 var(--sans);
+  color: #566c84;
+  white-space: nowrap;
+}
+.language-switch a[aria-current='page'] {
+  background: var(--surface-selected);
+  color: #2d527b;
+}
+.language-switch a:hover {
+  background: #f0f4fa;
+  text-decoration: none;
+}
+:root:lang(zh) {
+  --sans:
+    'DM Sans', 'PingFang SC', 'Microsoft YaHei', 'Noto Sans CJK SC', 'Droid Sans Fallback',
+    sans-serif;
+}
+:lang(zh) .subtitle,
+:lang(zh) .section-heading h2,
+:lang(zh) .showcase-intro h3,
+:lang(zh) .use-grid h3,
+:lang(zh) .domain-grid h3,
+:lang(zh) .research-heading h2,
+:lang(zh) .showcase-intro > .editorial-note,
+:lang(zh) .xl-prompt .prompt-lead {
+  font-family: var(--sans);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+:lang(zh) .subtitle {
+  font-size: 21px;
+  line-height: 1.7;
+}
+:lang(zh) .eyebrow {
+  letter-spacing: 2.5px;
+  font-size: 10px;
+}
+:lang(zh) .description {
+  line-height: 2;
+}
+:lang(zh) .annotation h2 {
+  font-size: 13px;
+}
+:lang(zh) .annotation p {
+  font-size: 11px;
+  line-height: 1.9;
+}
+:lang(zh) .section-heading h2 {
+  font-size: 29px;
+  line-height: 1.5;
+}
+:lang(zh) .section-kicker {
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+:lang(zh) .showcase-intro h3 {
+  font-size: 25px;
+  line-height: 1.55;
+}
+:lang(zh) .showcase-intro > p,
+:lang(zh) .section-description {
+  font-size: 13px;
+  line-height: 1.95;
+}
+:lang(zh) .showcase-intro > .editorial-note {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.9;
+}
+:lang(zh) .use-grid h3 {
+  font-size: 22px;
+  line-height: 1.5;
+}
+:lang(zh) .use-grid p {
+  font-size: 12px;
+  line-height: 1.95;
+}
+:lang(zh) .domain-grid h3 {
+  font-size: 20px;
+  line-height: 1.5;
+}
+:lang(zh) .domain-grid p,
+:lang(zh) .paper p {
+  font-size: 11px;
+  line-height: 1.9;
+}
+:lang(zh) .research-heading p {
+  font-size: 11px;
+}
+:lang(zh) .research-index {
+  font-size: 11px;
+  gap: 18px;
+}
+:lang(zh) .task-prompt {
+  line-height: 2;
+}
+:lang(zh) .task-prompt .prompt-lead {
+  font-size: 15px;
+  line-height: 1.95;
+}
+:lang(zh) .xl-prompt .prompt-lead {
+  font-size: 22px;
+  line-height: 1.85;
+  font-weight: 400;
+}
+:lang(zh) .criteria-table {
+  line-height: 1.95;
+}
+:lang(zh) .tool-definitions dt {
+  font-size: 12px;
+}
+:lang(zh) .tool-definitions dd {
+  font-size: 12px;
+}
+:lang(zh) .panel-footnote,
+:lang(zh) .recorded-demo figcaption {
+  line-height: 1.95;
+}
+:lang(zh) .evidence-chain .quote-translation {
+  font-size: 12px;
+  color: #3f6289;
+  line-height: 1.9;
+  margin-block: 8px;
+}
+.original-question {
+  margin-top: 15px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.original-question summary {
+  cursor: pointer;
+  width: fit-content;
+}
+.original-question p {
+  margin-top: 10px;
+  line-height: 1.85;
+}
+@media (max-width: 1100px) {
+  .site-header {
+    grid-template-columns: 1fr auto;
+    gap: 12px 20px;
+    padding-block: 14px;
+  }
+  .site-header nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+  .language-switch {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+}
+@media (max-width: 700px) {
+  .site-header {
+    align-items: center;
+    gap: 10px 12px;
+  }
+  .site-header nav {
+    gap: 10px 17px;
+  }
+  .language-switch a {
+    min-height: 34px;
+  }
+  :lang(zh) .site-header nav {
+    font-size: 11px;
+    gap: 11px 18px;
+  }
+  :lang(zh) .subtitle {
+    font-size: 18px;
+    max-width: 335px;
+  }
+  :lang(zh) .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.6px;
+  }
+  :lang(zh) .description {
+    font-size: 12px;
+  }
+  :lang(zh) .research-index {
+    font-size: 10px;
+    gap: 12px;
+  }
+  :lang(zh) .annotation h2 {
+    font-size: 12px;
+  }
+  :lang(zh) .annotation p {
+    font-size: 11px;
+  }
+  :lang(zh) .section-heading h2 {
+    font-size: 25px;
+  }
+  :lang(zh) .section-description,
+  :lang(zh) .showcase-intro > p {
+    font-size: 12px;
+  }
+  :lang(zh) .showcase-intro h3 {
+    font-size: 23px;
+  }
+  :lang(zh) .use-grid h3 {
+    font-size: 21px;
+  }
+  :lang(zh) .use-grid p {
+    font-size: 11px;
+  }
+  :lang(zh) .domain-grid h3 {
+    font-size: 18px;
+  }
+  :lang(zh) .domain-grid p {
+    font-size: 10px;
+  }
+  :lang(zh) .xl-prompt .prompt-lead {
+    font-size: 20px;
+  }
+  :lang(zh) .work-relation {
+    font-size: 10px;
+    gap: 9px;
+  }
+  :lang(zh) .context-stats span {
+    font-size: 10px;
+  }
+}
+:lang(zh) #tasks-title,
+:lang(zh) #harness-title,
+:lang(zh) #xldoc-title {
+  font: 450 32px/1.2 var(--serif);
+  letter-spacing: -0.4px;
+}
+:lang(zh) .answer-translation {
+  font-size: 12px;
+  line-height: 1.9;
+  margin-top: 5px;
+  color: var(--muted);
+}
+@media (max-width: 700px) {
+  :lang(zh) #tasks-title,
+  :lang(zh) #harness-title,
+  :lang(zh) #xldoc-title {
+    font-size: 29px;
+  }
+}
+@media print {
+  .language-switch {
+    display: none;
+  }
+}

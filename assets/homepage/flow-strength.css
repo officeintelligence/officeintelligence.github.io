@@ -1,0 +1,196 @@
+/* Make the connection read as a transfer of a named research object, not decorative wiring. */
+.organization-view {
+  position: relative;
+}
+.flow-payload {
+  position: absolute;
+  top: 4px;
+  right: 10px;
+  width: 244px;
+  z-index: 4;
+  border: 1px solid color-mix(in srgb, var(--use-color) 50%, white);
+  border-top: 3px solid var(--use-color);
+  background: #fff;
+  box-shadow: 0 5px 18px #2a49631a;
+  border-radius: 6px;
+  padding: 13px 15px;
+}
+.flow-kicker {
+  color: var(--use-color);
+  letter-spacing: 0.9px;
+  font-size: 8px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.flow-payload h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #2e4966;
+  font: 550 15px/1.4 var(--sans);
+}
+.flow-payload .computer-icon {
+  color: var(--use-color);
+  width: 22px;
+  height: 22px;
+}
+.flow-contents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+.flow-contents span {
+  color: var(--use-color);
+  background: var(--use-tint);
+  border: 1px solid color-mix(in srgb, var(--use-color) 20%, white);
+  border-radius: 3px;
+  padding: 3px 5px;
+  font-size: 8px;
+  line-height: 1.5;
+}
+.flow-payload [data-flow-object] > p {
+  margin-top: 9px;
+  color: #5e7188;
+  font-size: 9px;
+  line-height: 1.7;
+}
+.flow-origin {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  padding: 5px 8px;
+  background: #fff;
+  color: var(--use-color);
+  font: 550 10px/1.5 var(--sans);
+  box-shadow: 0 2px 9px #25456220;
+  border: 1px solid currentColor;
+  border-radius: 4px;
+  z-index: 3;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.flow-origin i {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  border-radius: 50%;
+}
+.use-connector {
+  z-index: 2;
+}
+.connector-underlay {
+  fill: none;
+  stroke: #f8fafc;
+  stroke-width: 8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.96;
+}
+.connector-track {
+  stroke-width: 3;
+  stroke-opacity: 0.82;
+  stroke-linecap: round;
+}
+.connector-highlight {
+  stroke-width: 4;
+  opacity: 1;
+  stroke-dasharray: 12 88;
+}
+.connector-start,
+.connector-end {
+  stroke-width: 2.1;
+}
+.connector-packet rect {
+  fill: var(--use-color);
+  stroke: #fff;
+  stroke-width: 2;
+}
+.connector-packet path {
+  stroke: #fff;
+  stroke-width: 1.3;
+}
+.snapshot-outline {
+  stroke-width: 7;
+  stroke-dasharray: 22 13;
+  opacity: 0.82;
+}
+.zone-fill {
+  fill-opacity: 0.22;
+  stroke-width: 6;
+}
+.local-route {
+  stroke-width: 5;
+  opacity: 0.8;
+}
+.scene-symbol {
+  display: none;
+}
+.organization-explanation {
+  font-size: 12px;
+  font-weight: 500;
+}
+.application-choice.is-active {
+  box-shadow: inset 3px 0 0 var(--use-color);
+}
+.application-choice.is-active .application-mechanism {
+  border-top: 1px solid color-mix(in srgb, var(--use-color) 20%, white);
+  padding-top: 8px;
+}
+:lang(zh) .flow-payload h3 {
+  font-size: 15px;
+}
+:lang(zh) .flow-contents span {
+  font-size: 10px;
+}
+:lang(zh) .flow-payload [data-flow-object] > p {
+  font-size: 10px;
+}
+@media (min-width: 851px) and (max-width: 1100px) {
+  .flow-payload {
+    width: 215px;
+    right: 2px;
+    padding: 11px 12px;
+  }
+  .flow-payload h3 {
+    font-size: 13px;
+  }
+  .flow-contents {
+    gap: 3px;
+  }
+  .organization-view {
+    padding-top: 140px;
+  }
+}
+@media (max-width: 850px) {
+  .flow-payload {
+    position: relative;
+    top: auto;
+    right: auto;
+    width: 100%;
+    max-width: none;
+    margin-top: 12px;
+    display: block;
+  }
+  .flow-origin {
+    display: none;
+  }
+  .flow-contents {
+    margin-top: 7px;
+  }
+  .flow-payload [data-flow-object] > p {
+    margin-top: 7px;
+  }
+}
+@media print {
+  .flow-origin {
+    display: none;
+  }
+  .flow-payload {
+    position: static;
+    width: 100%;
+  }
+}

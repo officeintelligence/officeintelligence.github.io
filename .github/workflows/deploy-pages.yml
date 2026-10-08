@@ -24,13 +24,15 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Validate static website
         run: |
-          test -f index.html
-          test -f portal.css
-          test -f assets/vendor/lucide.min.js
-          test -f xl-docbench/index.html
-          test -f docatlas/index.html
+          node tools/validate-site.mjs
+          for script in assets/homepage/*.js; do node --check "$script"; done
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5

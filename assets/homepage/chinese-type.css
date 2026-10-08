@@ -1,0 +1,196 @@
+/* Chinese typography: body/UI sans + editorial serif display, self-hosted. */
+@font-face {
+  font-family: 'OI Sans SC';
+  src: url('./fonts/oi-sans-sc.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'OI Serif SC';
+  src: url('./fonts/oi-serif-sc.woff2') format('woff2');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: swap;
+}
+:root:lang(zh) {
+  --sans: 'DM Sans', 'OI Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --zh-display: 'OI Serif SC', 'Songti SC', 'STSong', serif;
+}
+:lang(zh) body {
+  font-weight: 400;
+  line-height: 1.85;
+  font-synthesis: none;
+}
+:lang(zh) p {
+  line-break: strict;
+}
+:lang(zh) .eyebrow {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+}
+:lang(zh) .subtitle {
+  font-family: var(--zh-display);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: 0.025em;
+}
+:lang(zh) .description {
+  font-size: 14px;
+  line-height: 2;
+  font-weight: 400;
+}
+:lang(zh) .site-header nav {
+  font-size: 12px;
+  font-weight: 450;
+}
+:lang(zh) .section-kicker {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+:lang(zh) .figure-heading,
+:lang(zh) .rail-eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.06em;
+}
+:lang(zh) .showcase-intro h3,
+:lang(zh) .applications-rail h2,
+:lang(zh) .application-choice button,
+:lang(zh) .domain-grid h3,
+:lang(zh) #domains-title,
+:lang(zh) #research-title {
+  font-family: var(--zh-display);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+:lang(zh) .showcase-intro h3 {
+  font-size: 22px;
+  line-height: 1.65;
+  text-wrap: balance;
+}
+:lang(zh) .applications-rail h2 {
+  font-size: 23px;
+  line-height: 1.5;
+}
+:lang(zh) .application-choice button {
+  font-size: 22px;
+  line-height: 1.5;
+}
+:lang(zh) #domains-title,
+:lang(zh) #research-title {
+  font-size: 28px;
+  line-height: 1.5;
+}
+:lang(zh) .domain-grid h3 {
+  font-size: 21px;
+  line-height: 1.5;
+}
+:lang(zh) .domain-grid p {
+  font-size: 12px;
+  line-height: 1.85;
+}
+:lang(zh) .paper p {
+  font-size: 12px;
+  line-height: 1.85;
+}
+:lang(zh) .section-description,
+:lang(zh) .showcase-intro > p {
+  font-size: 13px;
+  line-height: 1.95;
+}
+:lang(zh) .application-choice > p {
+  font-size: 12px;
+  line-height: 1.95;
+}
+:lang(zh) .organization-legend h3 {
+  font-size: 11px;
+  font-weight: 450;
+}
+:lang(zh) .task-prompt {
+  font-size: 13.5px;
+  line-height: 1.95;
+}
+:lang(zh) .task-prompt .prompt-lead {
+  font-size: 15.5px;
+  font-weight: 500;
+  line-height: 1.95;
+}
+:lang(zh) .xl-prompt .prompt-lead {
+  font-family: var(--zh-display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.85;
+}
+:lang(zh) .criteria-table {
+  font-size: 12px;
+  line-height: 1.85;
+}
+:lang(zh) figcaption {
+  font-size: 11px;
+  line-height: 1.9;
+}
+:lang(zh) .computer-dock button {
+  font-size: 11px;
+}
+:lang(zh) .content-origin,
+:lang(zh) .demo-content-toggle {
+  font-size: 10px;
+}
+:lang(zh) .content-source,
+:lang(zh) .content-source code {
+  font-size: 10px !important;
+  line-height: 1.8;
+}
+:lang(zh) .computer-app-view > p,
+:lang(zh) .file-preview-body > p,
+:lang(zh) .memo-workstreams p,
+:lang(zh) .meeting-notes p,
+:lang(zh) .chat-thread p,
+:lang(zh) .work-timeline p,
+:lang(zh) .mail-draft p,
+:lang(zh) .repo-preview p {
+  font-size: 12.5px;
+  line-height: 1.95;
+}
+:lang(zh) .publication-status,
+:lang(zh) .section-home-link {
+  font-size: 10px;
+}
+@media (max-width: 700px) {
+  :lang(zh) .subtitle {
+    font-size: 20px;
+    line-height: 1.8;
+    letter-spacing: 0;
+  }
+  :lang(zh) .description {
+    font-size: 12.5px;
+  }
+  :lang(zh) .eyebrow {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+  }
+  :lang(zh) .site-header nav {
+    font-size: 11px;
+  }
+  :lang(zh) .figure-heading {
+    font-size: 9px;
+  }
+  :lang(zh) #domains-title,
+  :lang(zh) #research-title {
+    font-size: 25px;
+  }
+  :lang(zh) .domain-grid h3 {
+    font-size: 18px;
+  }
+  :lang(zh) .domain-grid p {
+    font-size: 11px;
+  }
+  :lang(zh) .showcase-intro h3 {
+    font-size: 22px;
+  }
+  :lang(zh) .xl-prompt .prompt-lead {
+    font-size: 20px;
+  }
+}

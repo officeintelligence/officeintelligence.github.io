@@ -1,0 +1,628 @@
+/* One research figure: the accepted office and four linked downstream uses. */
+.linked-figure {
+  --use-color: #376b98;
+  --use-tint: #e9f1fa;
+  scroll-margin-top: 20px;
+}
+.linked-figure[data-active-use='evaluation'] {
+  --use-color: #2f756f;
+  --use-tint: #e8f3f1;
+}
+.linked-figure[data-active-use='training'] {
+  --use-color: #6b60a0;
+  --use-tint: #f0edf8;
+}
+.linked-figure[data-active-use='harness'] {
+  --use-color: #4b678b;
+  --use-tint: #edf1f8;
+}
+.organization-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 310px;
+  gap: 34px;
+  position: relative;
+  align-items: start;
+  margin-top: 17px;
+}
+.organization-view {
+  min-width: 0;
+  padding-top: 29px;
+}
+.organization-image {
+  position: relative;
+  aspect-ratio: 2093 / 1308;
+  width: 100%;
+}
+.organization-image .office {
+  position: static;
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.organization-effects {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+.scene-use {
+  opacity: 0;
+  visibility: hidden;
+  color: var(--use-color);
+  transition: opacity 350ms;
+}
+[data-active-use='environments'] [data-scene-use='environments'],
+[data-active-use='evaluation'] [data-scene-use='evaluation'],
+[data-active-use='training'] [data-scene-use='training'],
+[data-active-use='harness'] [data-scene-use='harness'] {
+  opacity: 1;
+  visibility: visible;
+}
+.snapshot-outline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-dasharray: 15 13;
+  stroke-linejoin: round;
+  opacity: 0.55;
+}
+.zone-fill {
+  fill: currentColor;
+  fill-opacity: 0.13;
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-opacity: 0.8;
+  stroke-linejoin: round;
+}
+.secondary-zone {
+  fill-opacity: 0.07;
+  stroke-opacity: 0.5;
+}
+.local-route {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-dasharray: 11 12;
+  opacity: 0.75;
+}
+.pulse-ring {
+  fill: currentColor;
+  fill-opacity: 0.09;
+  stroke: currentColor;
+  stroke-width: 3;
+}
+.source-dot {
+  fill: var(--paper);
+  stroke: currentColor;
+  stroke-width: 5;
+}
+.scene-symbol {
+  fill: #f8fafc;
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.scene-symbol path {
+  fill: none;
+}
+.organization-legend {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  padding: 13px 4px 0;
+}
+.organization-legend > div {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  border-top: 1px solid var(--rule);
+  padding-top: 9px;
+  color: var(--muted);
+}
+.organization-legend span {
+  font: 400 12px/1.6 var(--serif);
+  color: #55718e;
+}
+.organization-legend h3 {
+  font: 450 10px/1.7 var(--sans);
+}
+[data-active-use='environments'] [data-legend='roles'],
+[data-active-use='evaluation'] [data-legend='review'],
+[data-active-use='training'] [data-legend='artifacts'],
+[data-active-use='harness'] [data-legend='context'] {
+  border-top-color: var(--use-color);
+  color: var(--use-color);
+}
+.organization-explanation {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  justify-content: center;
+  padding: 17px 5px 0;
+  color: var(--use-color);
+  font-size: 11px;
+  line-height: 1.7;
+  min-height: 44px;
+}
+.connection-marker {
+  width: 5px;
+  height: 5px;
+  flex: 0 0 5px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.applications-rail {
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+}
+.applications-rail-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+.rail-eyebrow {
+  font-size: 8px;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+}
+.applications-rail h2 {
+  font: 450 23px/1.3 var(--serif);
+  margin-top: 6px;
+  letter-spacing: -0.25px;
+}
+.linkage-toggle {
+  flex-shrink: 0;
+  border: 1px solid #cddbec;
+  border-radius: 4px;
+  background: #fff;
+  color: #496584;
+  cursor: pointer;
+  padding: 6px 8px;
+  min-height: 32px;
+  font: 400 9px/1.5 var(--sans);
+}
+.application-choice {
+  border-top: 1px solid var(--rule);
+  position: relative;
+  padding: 13px 13px 12px;
+  min-width: 0;
+  border-left: 2px solid transparent;
+  background: var(--paper);
+  transition: background-color 250ms;
+  scroll-margin-top: 24px;
+}
+.application-choice:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+.application-choice h3 {
+  margin: 0;
+}
+.application-choice button {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  border: 0;
+  padding: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+  font: 450 21px/1.35 var(--serif);
+}
+.application-choice button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+.application-choice button:disabled {
+  cursor: default;
+  opacity: 1;
+}
+.application-choice button:focus-visible {
+  outline: none;
+}
+.application-choice:has(button:focus-visible) {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+  z-index: 1;
+}
+.application-choice .line-icon {
+  width: 19px;
+  height: 19px;
+  color: #536c88;
+}
+.application-choice .choice-index {
+  margin-left: auto;
+  color: #50667f;
+  font: 400 10px/1.5 var(--sans);
+}
+.application-choice > p {
+  font: 400 10px/1.75 var(--sans);
+  color: var(--muted);
+  margin-top: 6px;
+}
+.application-mechanism {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 8px;
+}
+.application-mechanism > span {
+  color: #526d87;
+  font-size: 8px;
+  line-height: 1.5;
+}
+.mechanism-mini {
+  width: 66px;
+  height: 20px;
+  flex: 0 0 66px;
+  fill: none;
+  stroke: #5e7895;
+  stroke-width: 1.3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+[data-active-use='environments'] [data-use-choice='environments'],
+[data-active-use='evaluation'] [data-use-choice='evaluation'],
+[data-active-use='training'] [data-use-choice='training'],
+[data-active-use='harness'] [data-use-choice='harness'] {
+  border-left-color: var(--use-color);
+  background: var(--use-tint);
+}
+.application-choice.is-active button,
+.application-choice.is-active .line-icon,
+.application-choice.is-active .application-mechanism > span {
+  color: var(--use-color);
+}
+.application-choice.is-active .mechanism-mini {
+  stroke: var(--use-color);
+}
+.linkage-footer {
+  display: none;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 11px;
+  min-height: 27px;
+}
+.linkage-hint {
+  color: #5c7089;
+  font-size: 8px;
+  line-height: 1.8;
+}
+.linkage-auto {
+  background: none;
+  border: 0;
+  color: var(--accent-ink);
+  font-size: 9px;
+  padding: 4px 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.use-connector {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  color: var(--use-color);
+  z-index: 1;
+  opacity: 0;
+}
+.links-ready .use-connector {
+  opacity: 1;
+}
+.connector-track {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-opacity: 0.35;
+}
+.connector-highlight {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-dasharray: 6 94;
+  stroke-linecap: round;
+  opacity: 0.7;
+}
+.connector-start,
+.connector-end {
+  fill: var(--paper);
+  stroke: currentColor;
+  stroke-width: 1.3;
+}
+.connector-packet rect {
+  fill: var(--paper);
+  stroke: currentColor;
+  stroke-width: 1.3;
+}
+.connector-packet path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+}
+.linked-figure .work-relation {
+  padding-block: 17px;
+}
+/* No independent timers: CSS animations share the controller's visible/paused state. */
+.links-ready .scene-use .pulse-ring {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: linked-pulse 2.8s ease-in-out infinite;
+}
+.links-ready .scene-use .local-route {
+  animation: linked-dashes 3.8s linear infinite;
+}
+.links-ready .scene-use .scene-symbol {
+  animation: linked-symbol 3.2s ease-in-out infinite;
+}
+.links-ready .scene-use .snapshot-outline {
+  animation: linked-dashes 7s linear infinite;
+}
+.links-ready .application-choice.is-active .mini-flow {
+  stroke-dasharray: 5 4;
+  animation: linked-dashes 3s linear infinite;
+}
+.links-ready .application-choice.is-active .mini-sheet,
+.links-ready .application-choice.is-active .mini-stack {
+  animation: linked-stack 2.8s ease-in-out infinite;
+}
+.links-ready .application-choice.is-active .mini-check {
+  animation: linked-check 3s ease-in-out infinite;
+}
+.links-ready .connector-highlight {
+  animation: linked-transfer 3.2s linear infinite;
+}
+.links-ready .scene-use:not(.is-active) * {
+  animation-play-state: paused;
+}
+[data-effects='paused'] .organization-effects *,
+[data-effects='paused'] .mechanism-mini *,
+[data-effects='paused'] .use-connector * {
+  animation-play-state: paused !important;
+}
+[data-motion-reduced='true'] .scene-use,
+[data-motion-reduced='true'] .application-choice {
+  transition: none;
+}
+@keyframes linked-pulse {
+  0%,
+  100% {
+    transform: scale(0.85);
+    opacity: 0.65;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 1;
+  }
+}
+@keyframes linked-dashes {
+  to {
+    stroke-dashoffset: -46;
+  }
+}
+@keyframes linked-symbol {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes linked-stack {
+  0%,
+  100% {
+    translate: 0 1px;
+  }
+  50% {
+    translate: 0 -2px;
+  }
+}
+@keyframes linked-check {
+  0%,
+  20% {
+    stroke-dasharray: 0 24;
+  }
+  55%,
+  100% {
+    stroke-dasharray: 24 0;
+  }
+}
+@keyframes linked-transfer {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+:lang(zh) .applications-rail h2 {
+  font: 500 19px/1.5 var(--sans);
+  letter-spacing: 0;
+}
+:lang(zh) .rail-eyebrow {
+  font-size: 9px;
+}
+:lang(zh) .application-choice button {
+  font: 500 18px/1.45 var(--sans);
+}
+:lang(zh) .application-choice > p {
+  font-size: 11px;
+  line-height: 1.9;
+}
+:lang(zh) .application-mechanism > span {
+  font-size: 9px;
+}
+:lang(zh) .organization-legend h3 {
+  font-size: 10px;
+}
+:lang(zh) .linkage-hint {
+  font-size: 9px;
+}
+:lang(zh) .linkage-toggle {
+  font-size: 10px;
+}
+@media (max-width: 1100px) {
+  .organization-layout {
+    grid-template-columns: minmax(0, 1fr) 285px;
+    gap: 25px;
+  }
+  .organization-view {
+    padding-top: 55px;
+  }
+  .organization-legend {
+    grid-template-columns: 1fr 1fr;
+    gap: 9px 16px;
+  }
+  .application-choice {
+    padding-inline: 11px;
+  }
+  .applications-rail h2 {
+    font-size: 21px;
+  }
+  .application-choice button {
+    font-size: 20px;
+  }
+}
+@media (max-width: 850px) {
+  .organization-layout {
+    grid-template-columns: 1fr;
+    gap: 23px;
+  }
+  .organization-view {
+    padding-top: 0;
+  }
+  .organization-image {
+    max-width: 760px;
+    margin-inline: auto;
+  }
+  .organization-legend {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .use-connector {
+    display: none;
+  }
+  .applications-rail-heading {
+    margin-bottom: 13px;
+  }
+  .applications-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 18px;
+  }
+  .application-choice:nth-last-child(2) {
+    border-bottom: 1px solid var(--rule);
+  }
+  .application-choice button {
+    font-size: 23px;
+  }
+  .application-choice > p {
+    font-size: 11px;
+  }
+  .organization-explanation {
+    font-size: 11px;
+    padding-top: 12px;
+    min-height: 36px;
+  }
+}
+@media (max-width: 540px) {
+  .linked-figure .figure-heading {
+    font-size: 7px;
+  }
+  .organization-layout {
+    margin-top: 14px;
+    gap: 18px;
+  }
+  .organization-legend {
+    grid-template-columns: 1fr 1fr;
+    padding-top: 8px;
+    gap: 6px 15px;
+  }
+  .organization-legend > div {
+    padding-top: 6px;
+  }
+  .organization-legend h3 {
+    font-size: 10px;
+  }
+  .organization-explanation {
+    justify-content: flex-start;
+    padding-top: 10px;
+    font-size: 10px;
+  }
+  .applications-rail-heading {
+    align-items: center;
+  }
+  .applications-rail h2 {
+    font-size: 23px;
+  }
+  .applications-choices {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .application-choice {
+    padding: 12px 13px;
+  }
+  .application-choice button {
+    font-size: 23px;
+  }
+  .application-choice > p {
+    font-size: 11px;
+    line-height: 1.85;
+  }
+  .application-mechanism > span {
+    font-size: 9px;
+  }
+  .application-choice:nth-last-child(2) {
+    border-bottom: 0;
+  }
+  .linkage-footer {
+    margin-top: 8px;
+  }
+  .linkage-hint {
+    font-size: 9px;
+  }
+  :lang(zh) .organization-explanation {
+    font-size: 11px;
+  }
+  :lang(zh) .application-choice button {
+    font-size: 20px;
+  }
+  :lang(zh) .application-choice > p {
+    font-size: 12px;
+  }
+  :lang(zh) .organization-legend h3 {
+    font-size: 11px;
+  }
+}
+@media print {
+  .use-connector,
+  .organization-effects,
+  .linkage-toggle,
+  .linkage-auto,
+  .linkage-footer {
+    display: none !important;
+  }
+  .organization-layout {
+    grid-template-columns: 1fr;
+  }
+  .applications-choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .application-choice {
+    break-inside: avoid;
+    background: none !important;
+  }
+}
+
+.links-ready .linkage-footer {
+  display: flex;
+}

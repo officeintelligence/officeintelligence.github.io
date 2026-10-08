@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<symbol id="files" viewBox="0 0 32 32"><path d="M3 8h10l3 4h13v16H3Z" fill="currentColor" fill-opacity=".14"/><path d="M3 12V6h10l3 3h13v3M3 14h26"/></symbol>
+<symbol id="terminal" viewBox="0 0 32 32"><rect x="3" y="5" width="26" height="22" rx="3" fill="currentColor" fill-opacity=".12"/><path d="m8 12 5 4-5 4m9 1h7M3 9h26"/></symbol>
+<symbol id="docs" viewBox="0 0 32 32"><path d="M7 3h12l7 7v19H7Z" fill="currentColor" fill-opacity=".12"/><path d="M19 3v7h7M11 14h11m-11 5h11m-11 5h7"/></symbol>
+<symbol id="sheets" viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="24" rx="2" fill="currentColor" fill-opacity=".12"/><path d="M4 10h24M4 16h24M4 22h24M12 10v18M20 10v18"/></symbol>
+<symbol id="chat" viewBox="0 0 32 32"><path d="M4 5h24v18H14l-7 5v-5H4Z" fill="currentColor" fill-opacity=".12"/><path d="M9 11h14M9 16h9"/></symbol>
+<symbol id="notices" viewBox="0 0 32 32"><path d="M6 21V13a10 10 0 0 1 20 0v8l3 3H3Z" fill="currentColor" fill-opacity=".12"/><path d="M12 27a4 4 0 0 0 8 0M16 2v2"/></symbol>
+<symbol id="mail" viewBox="0 0 32 32"><rect x="3" y="6" width="26" height="21" rx="2" fill="currentColor" fill-opacity=".12"/><path d="m4 8 12 10L28 8"/></symbol>
+<symbol id="calendar" viewBox="0 0 32 32"><rect x="4" y="6" width="24" height="23" rx="2" fill="currentColor" fill-opacity=".12"/><path d="M10 3v6M22 3v6M4 12h24M10 17h2m8 0h2m-12 6h2m8 0h2"/></symbol>
+<symbol id="git" viewBox="0 0 32 32"><circle cx="9" cy="6" r="3"/><circle cx="9" cy="26" r="3"/><circle cx="24" cy="8" r="3"/><path d="M9 9v14M24 11v3c0 7-15 0-15 9"/></symbol>
+<symbol id="meetings" viewBox="0 0 32 32"><circle cx="10" cy="10" r="4"/><circle cx="23" cy="12" r="3"/><path d="M2 27v-6c0-7 16-7 16 0v6m3-9c7-2 9 2 9 5v4"/></symbol>
+<symbol id="shared" viewBox="0 0 32 32"><path d="M3 9h10l3 3h13v16H3Z" fill="currentColor" fill-opacity=".1"/><circle cx="16" cy="18" r="3"/><path d="M10 26v-2c0-4 12-4 12 0v2"/></symbol>
+<symbol id="code" viewBox="0 0 32 32"><path d="m11 8-8 8 8 8m10-16 8 8-8 8M19 5l-6 22"/></symbol>
+<symbol id="lock" viewBox="0 0 32 32"><rect x="6" y="14" width="20" height="15" rx="2"/><path d="M10 14V9a6 6 0 0 1 12 0v5M16 20v4"/></symbol>
+</svg>
